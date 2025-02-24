@@ -1,0 +1,122 @@
+/*#region Accueil*/
+.banner {
+    background: linear-gradient(90deg,
+            var(--color-orange) 0%,
+            color-mix(in srgb, var(--color-orange), transparent 50%) 30%,
+            color-mix(in srgb, var(--color-orange), transparent 50%) 70%,
+            var(--color-orange) 100%),
+        url('../../../../public/assets/images/Crea-Mage-Cavern.jpg');
+    background-size: 100% 100%, cover;
+    background-position: center, center, 25px;
+    background-blend-mode: normal;
+    height: calc(100vh - 161px);
+}
+
+.more-infos {
+    position: relative;
+    top: 85%;
+}
+
+.lucide-ChevronDown {
+    position: relative;
+    animation-name: example;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes example {
+    0% {
+        top: 0px;
+    }
+
+    50% {
+        top: 10px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}
+
+/*#endregion*/
+
+/*#region Composants*/
+.concept,
+.community,
+.contact {
+    height: calc(100vh + 1px);
+}
+
+.conceptImg,
+.communityImg,
+.contactImg {
+    height: 100vh;
+    width: 60%;
+    object-fit: cover;
+}
+
+.conceptBlock {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(90deg, transparent 0%, var(--color-blue) 60%, var(--color-blue) 100%);
+}
+
+.communityImg {
+    right: 0;
+}
+
+.communityBlock {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(90deg, var(--color-orange) 0%, var(--color-orange) 40%, transparent 100%);
+}
+
+.contactBlock {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(90deg, transparent 0%, var(--color-blue-dark) 60%, var(--color-blue-dark) 100%);
+}
+
+.contactBlock .btn {
+    height: auto;
+}
+
+.conceptInfos,
+.communityInfos,
+.contactInfos {
+    width: 40%;
+    height: 100vh;
+}
+
+@media (min-width: 768px) and (max-width:1024px) {
+
+    .conceptImg,
+    .communityImg,
+    .contactImg {
+        width: 45%;
+    }
+
+    .conceptBlock {
+        background: linear-gradient(90deg, transparent 0%, var(--color-blue) 45%, var(--color-blue) 100%);
+    }
+
+    .communityBlock {
+        background: linear-gradient(90deg, var(--color-orange) 0%, var(--color-orange) 55%, transparent 100%);
+    }
+
+    .contactBlock {
+        background: linear-gradient(90deg, transparent 0%, var(--color-blue-dark) 45%, var(--color-blue-dark) 100%);
+    }
+
+    .conceptInfos,
+    .communityInfos,
+    .contactInfos {
+        width: 55%;
+    }
+
+    .contactInfos .btn {
+        font-size: 19px;
+    }
+}
+
+/*#endregion*/

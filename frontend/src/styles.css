@@ -1,0 +1,100 @@
+/*#region Tailwind*/
+@import "tailwindcss";
+
+@theme {
+    /*Colors*/
+    --color-white-base: #F7F2EB;
+    --color-black: #171C2D;
+    --color-blue-dark: #254252;
+    --color-blue: #2A777C;
+    --color-orange: #E37239;
+
+    /*Fonts*/
+    --font-helvetica: "Helvetica", sans-serif;
+    --font-revalia: "Revalia", sans-serif;
+}
+
+/*#endregion*/
+
+/*#region Composants prédéfinis*/
+.stroke-blue-dark {
+    text-shadow: rgb(37, 66, 82) 3px 0px 0px, rgb(37, 66, 82) 2.83487px 0.981584px 0px, rgb(37, 66, 82) 2.35766px 1.85511px 0px,
+        rgb(37, 66, 82) 1.62091px 2.52441px 0px, rgb(37, 66, 82) 0.705713px 2.91581px 0px, rgb(37, 66, 82) -0.287171px 2.98622px 0px,
+        rgb(37, 66, 82) -1.24844px 2.72789px 0px, rgb(37, 66, 82) -2.07227px 2.16926px 0px, rgb(37, 66, 82) -2.66798px 1.37182px 0px,
+        rgb(37, 66, 82) -2.96998px 0.42336px 0px, rgb(37, 66, 82) -2.94502px -0.571704px 0px, rgb(37, 66, 82) -2.59586px -1.50383px 0px,
+        rgb(37, 66, 82) -1.96093px -2.27041px 0px, rgb(37, 66, 82) -1.11013px -2.78704px 0px, rgb(37, 66, 82) -0.137119px -2.99686px 0px,
+        rgb(37, 66, 82) 0.850987px -2.87677px 0px, rgb(37, 66, 82) 1.74541px -2.43999px 0px, rgb(37, 66, 82) 2.44769px -1.73459px 0px,
+        rgb(37, 66, 82) 2.88051px -0.838247px 0px;
+}
+
+.stroke-blue {
+    text-shadow: rgb(42, 119, 124) 3px 0px 0px, rgb(42, 119, 124) 2.83487px 0.981584px 0px, rgb(42, 119, 124) 2.35766px 1.85511px 0px,
+        rgb(42, 119, 124) 1.62091px 2.52441px 0px, rgb(42, 119, 124) 0.705713px 2.91581px 0px,
+        rgb(42, 119, 124) -0.287171px 2.98622px 0px, rgb(42, 119, 124) -1.24844px 2.72789px 0px,
+        rgb(42, 119, 124) -2.07227px 2.16926px 0px, rgb(42, 119, 124) -2.66798px 1.37182px 0px,
+        rgb(42, 119, 124) -2.96998px 0.42336px 0px, rgb(42, 119, 124) -2.94502px -0.571704px 0px,
+        rgb(42, 119, 124) -2.59586px -1.50383px 0px, rgb(42, 119, 124) -1.96093px -2.27041px 0px,
+        rgb(42, 119, 124) -1.11013px -2.78704px 0px, rgb(42, 119, 124) -0.137119px -2.99686px 0px,
+        rgb(42, 119, 124) 0.850987px -2.87677px 0px, rgb(42, 119, 124) 1.74541px -2.43999px 0px,
+        rgb(42, 119, 124) 2.44769px -1.73459px 0px, rgb(42, 119, 124) 2.88051px -0.838247px 0px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.btn {
+    min-width: 200px;
+    height: 50px;
+    padding: 5px 15px;
+    align-content: center;
+    border-radius: 5px;
+    text-align: center;
+    font-family: var(--font-revalia);
+    font-size: 24px;
+    transition: 0.15s;
+}
+
+.btn:focus-visible {
+    outline: none;
+}
+
+.btn-white {
+    background-color: var(--color-white-base);
+    color: var(--color-blue);
+}
+
+.btn-white:hover {
+    background-color: var(--color-blue);
+    color: var(--color-white-base);
+    border: 2px solid;
+}
+
+.btn-white:focus-visible {
+    box-shadow: 0 0 0 5px var(--color-orange);
+}
+
+.btn-white:active {
+    border: 2px solid;
+}
+
+.btn-orange {
+    background-color: var(--color-orange);
+    color: var(--color-black);
+}
+
+.btn-orange:hover {
+    background-color: var(--color-black);
+    color: var(--color-orange);
+    border: 2px solid;
+}
+
+.btn-orange:focus-visible {
+    box-shadow: 0 0 0 5px var(--color-black);
+}
+
+.btn-orange:active {
+    border: 2px solid;
+}
+
+/*#endregion*/
