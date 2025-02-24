@@ -1,0 +1,22 @@
+{
+    "name": "emeline/creaquest",
+    "description": "Application pour garder la concentration et la motivation dans les domaines artistiques",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Emeline De Roo"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "filp/whoops": "^2.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "Router\\": "src/routes/",
+            "App\\": "src/",
+            "Database\\": "src/database/"
+        }
+    }
+}
