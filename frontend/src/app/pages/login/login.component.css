@@ -1,0 +1,16 @@
+.loginGradient {
+    background: linear-gradient(90deg,
+            var(--color-blue-dark) 0%,
+            var(--color-blue-dark) 25%,
+            color-mix(in srgb, var(--color-blue-dark), transparent 80%) 50%,
+            var(--color-blue-dark) 75%,
+            var(--color-blue-dark) 100%);
+}
+
+h1 {
+    text-shadow: 0 0 5px var(--color-black);
+}
+
+.btn {
+    font-size: 16px;
+}

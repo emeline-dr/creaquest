@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div>
+    <app-logo-nav></app-logo-nav>
+    <img src="assets/images/Crea-Login.jpg" alt="Background Login" class="w-1/2 h-screen object-cover mx-auto">
+    <div class="loginGradient w-full h-screen absolute top-0 left-0 content-center">
+        <div class="w-11/12 lg:w-3/5 mx-auto">
+            <div class="hidden md:inline-flex w-1/2 flex-wrap align-center justify-center">
+                <h1 class="font-revalia text-white-base text-4xl">Pas de compte ?</h1>
+                <p class="w-3/4 mx-auto mt-[25px] p-[15px] bg-orange rounded-sm text-white-base text-xs">
+                    N'ayez crainte ! Il n'est pas trop tard pour rejoindre le reste de la communauté dans cette
+                    aventure.
+                    <br><br>
+                    <a routerLink="/register" class="underline">Cliquez ici pour vous inscrire !</a>
+                </p>
+            </div>
+            <div class="w-full md:w-1/2 md:border-s md:border-s-1 md:border-s-orange inline-block py-[75px]">
+                <h1 class="font-revalia text-4xl text-white-base text-center pb-[50px]">Se connecter</h1>
+                <form class="w-3/4 mx-auto flex justify-center flex-wrap">
+                    <div class="contactFormulaire w-full bg-blue rounded p-[15px] text-white-base text-xs">
+                        <label for="creaLogin" class="mt-[10px] font-bold text-base">Nom d'utilisateur</label>
+                        <input
+                            class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
+                            name="creaLogin" id="creaLogin" type="text" placeholder="Entrez votre nom d'utilisateur"
+                            required>
+                        <label for="creaPassword" class="font-bold text-base">Adresse mail</label>
+                        <input
+                            class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
+                            name="creaPassword" id="creaPassword" type="password"
+                            placeholder="Entrez votre mot de passe" required>
+                        <input type="checkbox" name="rememberMe" id="rememberMe" class="accent-orange me-[10px]">
+                        <label for="rememberMe">Se souvenir de moi</label>
+                    </div>
+                    <button class="btn btn-orange w-11/12 mt-[15px]">Se connecter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
