@@ -16,17 +16,22 @@
             <div class="w-full md:w-1/2 md:border-s md:border-s-1 md:border-s-orange inline-block py-[75px]">
                 <h1 class="font-revalia text-4xl text-white-base text-center pb-[50px] underline">Se connecter</h1>
                 <form class="w-3/4 mx-auto flex justify-center flex-wrap">
-                    <div class="contactFormulaire w-full bg-blue rounded p-[15px] text-white-base text-xs">
+                    <div class="contactFormulaire relative w-full bg-blue rounded p-[15px] text-white-base text-xs">
                         <label for="creaLogin" class="mt-[10px] font-bold text-base">Nom d'utilisateur</label>
                         <input
                             class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                             name="creaLogin" id="creaLogin" type="text" placeholder="Entrez votre nom d'utilisateur"
                             required>
                         <label for="creaPassword" class="font-bold text-base">Adresse mail</label>
-                        <input
+                        <input #passwordInput
                             class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                             name="creaPassword" id="creaPassword" type="password"
                             placeholder="Entrez votre mot de passe" required>
+                        <div class="password-eye flex absolute bottom-[22%] right-[8%]" (click)="viewPassword()">
+                            <i-lucide *ngIf="isPasswordVisible" [size]="35" name="Eye" class="text-orange"></i-lucide>
+                            <i-lucide *ngIf="isPasswordInvisible" [size]="35" name="EyeOff"
+                                class="text-orange"></i-lucide>
+                        </div>
                         <input type="checkbox" name="rememberMe" id="rememberMe" class="accent-orange me-[10px]">
                         <label for="rememberMe">Se souvenir de moi</label>
                     </div>
