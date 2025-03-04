@@ -11,5 +11,18 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './logo-nav.component.css'
 })
 export class LogoNavComponent {
+  routeUrl = '';
 
+  constructor(
+    private route: Router
+  ) {
+  }
+
+  ngOnInit() {
+    if (this.route.url === "/login" || this.route.url === "/register") {
+      this.routeUrl = "/home";
+    } else {
+      this.routeUrl = "/index";
+    }
+  }
 }
