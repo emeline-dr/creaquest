@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -14,11 +13,8 @@ export class AppComponent {
 
   data: any[] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.dataService.getUsers().subscribe(response => {
-      this.data = response;
-    });
   }
 }

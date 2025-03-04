@@ -9,6 +9,7 @@ return array(
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Router\\' => array($baseDir . '/src/routes'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
+    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
     'Database\\' => array($baseDir . '/src/database'),
     'App\\' => array($baseDir . '/src'),
 );

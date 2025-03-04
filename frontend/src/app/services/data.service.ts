@@ -11,8 +11,13 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<any> {
+  /* getUsers(): Observable<any> {
     this.apiRoute = 'users';
     return this.http.get<any>(this.apiUrl + this.apiRoute);
+  } */
+
+  login(login: { username: string; password: string }): Observable<any> {
+    this.apiRoute = 'login';
+    return this.http.post<any>(this.apiUrl + this.apiRoute, login);
   }
 }

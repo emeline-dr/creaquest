@@ -19,6 +19,10 @@ class ComposerStaticInit573c0a765223a49f6e3cf404932c757a
         array (
             'Psr\\Log\\' => 8,
         ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
+        ),
         'D' => 
         array (
             'Database\\' => 9,
@@ -41,6 +45,10 @@ class ComposerStaticInit573c0a765223a49f6e3cf404932c757a
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'Database\\' => 
         array (

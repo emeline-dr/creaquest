@@ -3,6 +3,11 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 use App\Exceptions\NotFoundException;
 use Router\Router;
 
@@ -25,6 +30,9 @@ $router = new Router($_GET['api']);
 
 /* Les Routes */
 $router->get('/users', 'App\Controllers\UserController@index');
+
+/* Login */
+$router->post('/login', 'App\Controllers\UserController@loginPost');
 
 /* Lancement du routeur */
 try {
