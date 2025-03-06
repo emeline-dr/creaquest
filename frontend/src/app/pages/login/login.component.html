@@ -16,14 +16,29 @@
             </div>
             <div class="w-full md:w-1/2 md:border-s md:border-s-1 md:border-s-orange inline-block py-[75px]">
                 <h2 class="font-revalia text-4xl text-white-base text-center pb-[50px] underline">Se connecter</h2>
+                @if(loginError == true){
+                <div class="w-3/4 mx-auto rounded p-3 mb-2 bg-rose-600 text-center">
+                    Identifiant et/ou mot de passe incorrect(s).
+                </div>
+                }
                 <form class="w-3/4 mx-auto flex justify-center flex-wrap" [formGroup]="loginForm" (submit)="login()">
                     <div class="contactFormulaire relative w-full bg-blue rounded p-[15px] text-white-base text-xs">
                         <label for="username" class="mt-[10px] font-bold text-base">Nom d'utilisateur</label>
+                        @if(loginForm.get('username')?.invalid && loginForm.get('username')?.touched){
+                        <div class="bg-rose-600 rounded text-xs text-center">
+                            Le champ doit être complété.
+                        </div>
+                        }
                         <input
                             class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                             formControlName="username" name="username" id="username" type="text"
                             placeholder="Entrez votre nom d'utilisateur" required>
                         <label for="password" class="font-bold text-base">Mot de passe</label>
+                        @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
+                        <div class="bg-rose-600 rounded text-xs text-center">
+                            Le champ doit être complété.
+                        </div>
+                        }
                         <input #passwordInput
                             class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                             formControlName="password" name="password" id="password" type="password"

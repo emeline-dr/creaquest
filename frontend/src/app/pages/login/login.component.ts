@@ -24,6 +24,7 @@ import { DataService } from '../../services/data.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  loginError: boolean = false;
 
   @ViewChild('passwordInput') passwordInput!: ElementRef;
   isPasswordVisible = false;
@@ -74,6 +75,7 @@ export class LoginComponent {
             window.location.href = '/index';
           } else {
             console.error('Erreur de connexion :', response.message);
+            this.loginError = true;
           }
         },
         (error) => {
