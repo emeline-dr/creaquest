@@ -34,6 +34,9 @@ $router->get('/users', 'App\Controllers\UserController@index');
 /* Login */
 $router->post('/login', 'App\Controllers\UserController@loginPost');
 
+/* Register */
+$router->post('/register', 'App\Controllers\UserController@loginRegister');
+
 /* Lancement du routeur */
 try {
     $router->run();

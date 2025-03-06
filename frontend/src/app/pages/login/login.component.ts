@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LogoNavComponent } from '../../components/logo-nav/logo-nav.component';
+import { TitleCreaquestComponent } from '../../components/title-creaquest/title-creaquest.component';
 import { Router, RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +16,8 @@ import { DataService } from '../../services/data.service';
     RouterModule,
     LucideAngularModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TitleCreaquestComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -42,7 +44,6 @@ export class LoginComponent {
 
   constructor(
     private titleService: Title,
-    private router: Router,
     private fb: FormBuilder,
     private dataService: DataService
   ) {

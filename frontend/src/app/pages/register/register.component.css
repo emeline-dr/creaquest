@@ -1,0 +1,23 @@
+.registerGradient {
+    background: linear-gradient(90deg,
+            var(--color-blue) 0%,
+            var(--color-blue) 25%,
+            color-mix(in srgb, var(--color-blue), transparent 80%) 50%,
+            var(--color-blue) 75%,
+            var(--color-blue) 100%);
+}
+
+h2 {
+    text-shadow: 0 0 5px var(--color-black);
+}
+
+.btn {
+    font-size: 16px;
+}
+
+
+@media (max-width: 768px) {
+    .registerGradient {
+        background: var(--color-blue);
+    }
+}

@@ -3,18 +3,19 @@
     <img src="assets/images/Crea-Login.jpg" alt="Background Login"
         class="hidden md:block w-1/2 h-screen object-cover mx-auto">
     <div class="loginGradient w-full h-screen absolute top-0 left-0 content-center">
+        <app-title-creaquest></app-title-creaquest>
         <div class="w-11/12 lg:w-3/5 mx-auto">
             <div class="hidden md:inline-flex w-1/2 flex-wrap align-center justify-center">
-                <h1 class="font-revalia text-white-base text-4xl">Pas de compte ?</h1>
+                <h2 class="font-revalia text-white-base text-4xl">Pas de compte ?</h2>
                 <p class="w-3/4 mx-auto mt-[25px] p-[15px] bg-orange rounded-sm text-white-base text-xs">
                     N'ayez crainte ! Il n'est pas trop tard pour rejoindre le reste de la communauté dans cette
                     aventure.
                     <br><br>
-                    <a routerLink="/register" class="underline text-sm">Cliquez ici pour vous inscrire !</a>
+                    <a routerLink="/register" class="underline text-sm">Rejoignez la quête dès maintenant !</a>
                 </p>
             </div>
             <div class="w-full md:w-1/2 md:border-s md:border-s-1 md:border-s-orange inline-block py-[75px]">
-                <h1 class="font-revalia text-4xl text-white-base text-center pb-[50px] underline">Se connecter</h1>
+                <h2 class="font-revalia text-4xl text-white-base text-center pb-[50px] underline">Se connecter</h2>
                 <form class="w-3/4 mx-auto flex justify-center flex-wrap" [formGroup]="loginForm" (submit)="login()">
                     <div class="contactFormulaire relative w-full bg-blue rounded p-[15px] text-white-base text-xs">
                         <label for="username" class="mt-[10px] font-bold text-base">Nom d'utilisateur</label>
@@ -22,7 +23,7 @@
                             class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                             formControlName="username" name="username" id="username" type="text"
                             placeholder="Entrez votre nom d'utilisateur" required>
-                        <label for="password" class="font-bold text-base">Adresse mail</label>
+                        <label for="password" class="font-bold text-base">Mot de passe</label>
                         <input #passwordInput
                             class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                             formControlName="password" name="password" id="password" type="password"
@@ -40,6 +41,10 @@
                         Vous n'avez pas de compte ?
                     </a>
                     <button class="btn btn-orange w-full mt-[5px] md:mt-[25px]" type="submit">Se connecter</button>
+                    <a routerLink="/forgot-password"
+                        class="w-11/12 opacity-75 text-xs underline text-white-base mt-[5px] text-end">
+                        Identifiant(s) oublié(s) ?
+                    </a>
                 </form>
             </div>
         </div>

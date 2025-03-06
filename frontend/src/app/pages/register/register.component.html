@@ -1,2 +1,48 @@
 <app-logo-nav></app-logo-nav>
-<p>register works!</p>
+
+<img src="assets/images/Crea-Register.jpg" alt="Background Register"
+    class="hidden md:block w-1/2 h-screen object-cover mx-auto">
+<div class="registerGradient bg-blue w-full h-screen absolute top-0 left-0 content-center">
+    <app-title-creaquest></app-title-creaquest>
+    <div class="w-11/12 lg:w-3/5 mx-auto flex items-center">
+        <div class="hidden md:inline-flex h-fit w-1/2 flex-wrap align-center justify-center">
+            <h2 class="font-revalia text-white-base text-4xl">Déjà un compte ?</h2>
+            <p class="w-3/4 mx-auto mt-[25px] p-[15px] bg-orange rounded-sm text-white-base text-xs">
+                Votre aventure est déjà en cours, nul besoin de recommencer !
+                <br><br>
+                <a routerLink="/login" class="underline text-sm">Reprenez votre quête en vous connectant ici !</a>
+            </p>
+        </div>
+        <div class="w-full md:w-1/2 md:border-s md:border-s-1 md:border-s-orange inline-block py-[20px]">
+            <h2 class="font-revalia text-4xl text-white-base text-center pb-[10px] underline">S'inscrire</h2>
+            <form class="w-3/4 mx-auto flex justify-center flex-wrap" [formGroup]="registerForm" (submit)="register()">
+                <div class="contactFormulaire relative w-full bg-blue-dark rounded p-[15px] text-white-base text-xs">
+                    <label for="username" class="mt-[10px] font-bold text-base">Nom d'utilisateur</label>
+                    <input
+                        class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
+                        formControlName="username" name="username" id="username" type="text"
+                        placeholder="Entrez votre nom d'utilisateur" required>
+                    <label for="password" class="font-bold text-base">Mot de passe</label>
+                    <input
+                        class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
+                        formControlName="password" name="password" id="password" type="password" minlength="5"
+                        placeholder="Entrez votre mot de passe" required>
+                    <label for="password" class="font-bold text-base">Vérification du mot de passe</label>
+                    <input
+                        class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
+                        formControlName="passwordBis" name="passwordBis" id="passwordBis" type="password" minlength="5"
+                        placeholder="Réécrivez votre mot de passe" required>
+                    <label for="password" class="font-bold text-base">Adresse mail</label>
+                    <input
+                        class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
+                        formControlName="email" name="email" id="email" type="email"
+                        placeholder="Entrez votre mot de passe" required>
+                </div>
+                <a routerLink="/login" class="md:hidden w-11/12 text-xs underline text-white-base mt-[5px]">
+                    Vous avez déjà un compte ?
+                </a>
+                <button class="btn btn-orange w-full mt-[5px] md:mt-[25px]" type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </div>
+</div>

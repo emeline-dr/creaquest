@@ -18,6 +18,19 @@ class UserController extends Controller
         echo json_encode($users);
     }
 
+    /* Traite les données pour l'inscription */
+    public function loginRegister()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $post = new User($this->getDB());
+        $result = $post->addUser($data);
+
+        if ($result) {
+            echo json_encode(["status" => "success"]);
+        }
+    }
+
     /* Traite les données pour la connexion */
     public function loginPost()
     {

@@ -20,4 +20,9 @@ export class DataService {
     this.apiRoute = 'login';
     return this.http.post<any>(this.apiUrl + this.apiRoute, login);
   }
+
+  register(register: { username: string; password: string; passwordBis: string; email: string }): Observable<any> {
+    this.apiRoute = 'register';
+    return this.http.post<any>(this.apiUrl + this.apiRoute, register)
+  }
 }
