@@ -1,0 +1,5 @@
+.noPageGradient {
+    background: radial-gradient(circle,
+            transparent 0%,
+            var(--color-orange) 100%);
+}

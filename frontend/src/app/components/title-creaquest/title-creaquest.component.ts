@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrl: './title-creaquest.component.css'
 })
 export class TitleCreaquestComponent {
-  classStroke = 'stroke-blue';
+  classStroke = '';
 
   constructor(
     private route: Router
@@ -18,6 +18,10 @@ export class TitleCreaquestComponent {
   ngOnInit() {
     if (this.route.url === '/login') {
       this.classStroke = 'stroke-blue-dark'
+    }
+
+    if (this.route.url === '/register') {
+      this.classStroke = 'stroke-blue'
     }
   }
 }
