@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { IndexComponent } from './pages/index/index.component';
 import { AuthGuard } from './services/auth/auth.guard';
+import { NoPageComponent } from './pages/no-page/no-page.component';
 
 export const routes: Routes = [
     {
@@ -27,5 +28,9 @@ export const routes: Routes = [
         path: 'index',
         component: IndexComponent,
         canActivate: [AuthGuard]
-    }
+    },
+    {
+        path: '**',
+        component: NoPageComponent
+    },
 ];
