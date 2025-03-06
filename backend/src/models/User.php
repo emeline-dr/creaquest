@@ -43,5 +43,7 @@ class User extends Model
 
             return $this->query("INSERT INTO {$this->table} ($firstParenthesis, u_registered_at) VALUES ($secondParenthesis, CURDATE())", $filteredData);
         }
+
+        return false;
     }
 }

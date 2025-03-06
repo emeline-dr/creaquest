@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { LogoNavComponent } from '../../components/logo-nav/logo-nav.component';
 import { TitleCreaquestComponent } from '../../components/title-creaquest/title-creaquest.component';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
@@ -25,25 +25,14 @@ import { DataService } from '../../services/data.service';
 export class LoginComponent {
   loginForm: FormGroup;
   loginError: boolean = false;
+  registrationSuccess: boolean = false;
 
   @ViewChild('passwordInput') passwordInput!: ElementRef;
   isPasswordVisible = false;
   isPasswordInvisible = true;
 
-  ngOnInit() {
-    const savedUsername = localStorage.getItem('username');
-    const savedPassword = localStorage.getItem('password');
-
-    if (savedUsername && savedPassword) {
-      this.loginForm.patchValue({
-        username: savedUsername,
-        password: savedPassword,
-        rememberMe: true
-      });
-    }
-  }
-
   constructor(
+    private activeRoute: ActivatedRoute,
     private titleService: Title,
     private fb: FormBuilder,
     private dataService: DataService
@@ -54,6 +43,25 @@ export class LoginComponent {
       password: ['', Validators.required],
       rememberMe: [false]
     });
+  }
+
+  ngOnInit() {
+    this.activeRoute.queryParams.subscribe(params => {
+      if (params['registration'] === 'success') {
+        this.registrationSuccess = true;
+      }
+    });
+
+    const savedUsername = localStorage.getItem('username');
+    const savedPassword = localStorage.getItem('password');
+
+    if (savedUsername && savedPassword) {
+      this.loginForm.patchValue({
+        username: savedUsername,
+        password: savedPassword,
+        rememberMe: true
+      });
+    }
   }
 
   login() {

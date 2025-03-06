@@ -15,28 +15,75 @@
         </div>
         <div class="w-full md:w-1/2 md:border-s md:border-s-1 md:border-s-orange inline-block py-[20px]">
             <h2 class="font-revalia text-4xl text-white-base text-center pb-[10px] underline">S'inscrire</h2>
+            @if(registerError == true){
+            <div class="w-3/4 mx-auto rounded p-3 mb-2 bg-rose-600 text-center text-white-base">
+                Les mots de passe sont différents.
+            </div>
+            }
             <form class="w-3/4 mx-auto flex justify-center flex-wrap" [formGroup]="registerForm" (submit)="register()">
                 <div class="contactFormulaire relative w-full bg-blue-dark rounded p-[15px] text-white-base text-xs">
                     <label for="username" class="mt-[10px] font-bold text-base">Nom d'utilisateur</label>
+                    @if(registerForm.get('username')?.invalid && registerForm.get('username')?.touched){
+                    <div class="bg-rose-600 rounded text-xs text-center">
+                        Le champ doit être complété.
+                    </div>
+                    }
                     <input
                         class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                         formControlName="username" name="username" id="username" type="text"
                         placeholder="Entrez votre nom d'utilisateur" required>
+
                     <label for="password" class="font-bold text-base">Mot de passe</label>
+                    @if(registerForm.get('password')?.hasError('required') &&
+                    registerForm.get('password')?.touched){
+                    <div class="bg-rose-600 rounded text-xs text-center">
+                        Le champ doit être complété.
+                    </div>
+                    }
+                    @if(registerForm.get('password')?.hasError('minlength') &&
+                    registerForm.get('password')?.touched){
+                    <div class="bg-rose-600 rounded text-xs text-center">
+                        Le mot de passe ne fait pas min. 5 caractères.
+                    </div>
+                    }
                     <input
                         class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                         formControlName="password" name="password" id="password" type="password" minlength="5"
                         placeholder="Entrez votre mot de passe" required>
-                    <label for="password" class="font-bold text-base">Vérification du mot de passe</label>
+
+                    <label for="passwordBis" class="font-bold text-base">Vérification du mot de passe</label>
+                    @if(registerForm.get('passwordBis')?.hasError('required') &&
+                    registerForm.get('passwordBis')?.touched){
+                    <div class="bg-rose-600 rounded text-xs text-center">
+                        Le champ doit être complété.
+                    </div>
+                    }
+                    @if(registerForm.get('passwordBis')?.hasError('minlength') &&
+                    registerForm.get('passwordBis')?.touched){
+                    <div class="bg-rose-600 rounded text-xs text-center">
+                        Le mot de passe ne fait pas min. 5 caractères.
+                    </div>
+                    }
                     <input
                         class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                         formControlName="passwordBis" name="passwordBis" id="passwordBis" type="password" minlength="5"
                         placeholder="Réécrivez votre mot de passe" required>
-                    <label for="password" class="font-bold text-base">Adresse mail</label>
+
+                    <label for="email" class="font-bold text-base">Adresse mail</label>
+                    @if(registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched){
+                    <div class="bg-rose-600 rounded text-xs text-center">
+                        Le champ doit être complété.
+                    </div>
+                    }
+                    @if(registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched){
+                    <div class="bg-rose-600 rounded text-xs text-center">
+                        L'e-mail est invalide.
+                    </div>
+                    }
                     <input
                         class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-blue-dark bg-white-base"
                         formControlName="email" name="email" id="email" type="email"
-                        placeholder="Entrez votre mot de passe" required>
+                        placeholder="Entrez votre adresse mail" required>
                 </div>
                 <a routerLink="/login" class="md:hidden w-11/12 text-xs underline text-white-base mt-[5px]">
                     Vous avez déjà un compte ?

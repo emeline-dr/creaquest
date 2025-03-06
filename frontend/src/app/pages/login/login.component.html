@@ -17,8 +17,14 @@
             <div class="w-full md:w-1/2 md:border-s md:border-s-1 md:border-s-orange inline-block py-[75px]">
                 <h2 class="font-revalia text-4xl text-white-base text-center pb-[50px] underline">Se connecter</h2>
                 @if(loginError == true){
-                <div class="w-3/4 mx-auto rounded p-3 mb-2 bg-rose-600 text-center">
+                <div class="w-3/4 mx-auto rounded p-3 mb-2 bg-rose-600 text-center text-white-base">
                     Identifiant et/ou mot de passe incorrect(s).
+                </div>
+                }
+
+                @if(registrationSuccess){
+                <div class="w-3/4 mx-auto rounded p-3 mb-2 bg-green-600 text-center text-white-base">
+                    Votre inscription est réussie ! Vous pouvez maintenant vous connecter.
                 </div>
                 }
                 <form class="w-3/4 mx-auto flex justify-center flex-wrap" [formGroup]="loginForm" (submit)="login()">

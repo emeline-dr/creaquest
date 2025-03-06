@@ -19,7 +19,7 @@ export class LogoNavComponent {
   }
 
   ngOnInit() {
-    if (this.route.url === "/login" || this.route.url === "/register") {
+    if (this.route.url === "/login" || this.route.url === "/register" || this.route.url === "/login?registration=success") {
       this.routeUrl = "/home";
     } else {
       this.routeUrl = "/index";

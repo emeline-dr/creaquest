@@ -20,6 +20,7 @@ import { DataService } from '../../services/data.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  registerError: boolean = false;
 
   constructor(
     private titleService: Title,
@@ -30,9 +31,9 @@ export class RegisterComponent {
 
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
-      passwordBis: ['', Validators.required],
-      email: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      passwordBis: ['', [Validators.required, Validators.minLength(5)]],
+      email: ['', [Validators.required, Validators.email]],
     })
   }
 
@@ -43,7 +44,9 @@ export class RegisterComponent {
       this.dataService.register({ username, password, passwordBis, email }).subscribe(
         (response) => {
           if (response.status === "success") {
-            window.location.href = '/login'
+            window.location.href = '/login?registration=success'
+          } else {
+            this.registerError = true;
           }
         },
         (error) => {
