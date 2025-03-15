@@ -29,8 +29,6 @@ define('DB_PASSWORD', '');
 $router = new Router($_GET['api']);
 
 /* Les Routes */
-$router->get('/users', 'App\Controllers\UserController@index');
-
 /* Login */
 $router->post('/login', 'App\Controllers\UserController@loginPost');
 
