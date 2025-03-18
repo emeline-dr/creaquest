@@ -1,10 +1,14 @@
 <div>
+    <!-- Logo -->
     <app-logo-nav></app-logo-nav>
     <img src="assets/images/Crea-Login.jpg" alt="Background Login"
         class="hidden md:block w-1/2 h-screen object-cover mx-auto">
     <div class="loginGradient w-full h-screen absolute top-0 left-0 content-center">
+        <!-- h1 - Créaquest -->
         <app-title-creaquest></app-title-creaquest>
+
         <div class="w-11/12 lg:w-3/5 mx-auto">
+            <!-- Pas de compte -->
             <div class="hidden md:inline-flex w-1/2 flex-wrap align-center justify-center">
                 <h2 class="font-revalia text-white-base text-[32px]">Pas de compte ?</h2>
                 <p class="w-3/4 mx-auto mt-[25px] p-[15px] bg-orange rounded-sm text-white-base text-xs">
@@ -14,6 +18,8 @@
                     <a routerLink="/register" class="underline text-sm">Rejoignez la quête dès maintenant !</a>
                 </p>
             </div>
+
+            <!-- Se connecter -->
             <div class="w-full md:w-1/2 md:border-s md:border-s-1 md:border-s-orange inline-block py-[75px]">
                 <h2 class="font-revalia text-[32px] text-white-base text-center pb-[50px] underline">Se connecter</h2>
                 @if(loginError == true){
@@ -69,5 +75,8 @@
                 </form>
             </div>
         </div>
+
+        <!-- Copyright -->
+        <app-copyright></app-copyright>
     </div>
 </div>

@@ -18,14 +18,6 @@ class Route
         $this->action = $action;
     }
 
-    /* 
-    Permet de vérifier si une route appelée "match
-    avec les routes disponibles
-    
-    @param string $url - l'url appelée
-    
-    @return bool
-    */
     public function matches(string $url)
     {
         $path = preg_replace('#:([\w]+)#', '([^/]+)', $this->path);
@@ -39,7 +31,6 @@ class Route
         }
     }
 
-    /* Permet de retourner le bon contrôler avec ou sans paramètre */
     public function execute()
     {
         $params = explode('@', $this->action);

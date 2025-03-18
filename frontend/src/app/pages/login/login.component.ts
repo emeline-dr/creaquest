@@ -1,12 +1,14 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { LogoNavComponent } from '../../components/logo-nav/logo-nav.component';
-import { TitleCreaquestComponent } from '../../components/title-creaquest/title-creaquest.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { LucideAngularModule } from 'lucide-angular';
+import { Copy, LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
+
+import { LogoNavComponent } from '../../components/logo-nav/logo-nav.component';
+import { TitleCreaquestComponent } from '../../components/title-creaquest/title-creaquest.component';
+import { CopyrightComponent } from '../../components/copyright/copyright.component';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ import { DataService } from '../../services/data.service';
     LucideAngularModule,
     CommonModule,
     ReactiveFormsModule,
-    TitleCreaquestComponent
+    TitleCreaquestComponent,
+    CopyrightComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

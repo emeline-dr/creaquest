@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { DataService } from '../../services/data.service';
+
 import { LogoNavComponent } from '../../components/logo-nav/logo-nav.component';
 import { TitleCreaquestComponent } from '../../components/title-creaquest/title-creaquest.component';
-import { DataService } from '../../services/data.service';
+import { CopyrightComponent } from '../../components/copyright/copyright.component';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,8 @@ import { DataService } from '../../services/data.service';
     LogoNavComponent,
     ReactiveFormsModule,
     RouterModule,
-    TitleCreaquestComponent
+    TitleCreaquestComponent,
+    CopyrightComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'

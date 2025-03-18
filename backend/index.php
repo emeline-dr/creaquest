@@ -19,7 +19,6 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 /* Définition des constantes */
-define('SCRIPTS', dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR);
 define('DB_NAME', 'creaquest');
 define('DB_HOST', '127.0.0.1');
 define('DB_USER', 'root');
@@ -39,6 +38,5 @@ $router->post('/register', 'App\Controllers\UserController@loginRegister');
 try {
     $router->run();
 } catch (NotFoundException $e) {
-    /* Si 404, on catch et on affiche */
     return $e->error404();
 }

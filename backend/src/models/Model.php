@@ -16,22 +16,12 @@ abstract class Model
         protected DBConnexion $db,
     ) {}
 
-    /* 
-    Retourne un ensemble d'une table
-    @return array - le contenu de la table ciblée
-    */
+    /* Retourne un ensemble d'une table */
     public function all(): array
     {
         return $this->query("SELECT * FROM {$this->table} ORDER BY u_id DESC");
     }
 
-    /* 
-    Permet de lancer un query avec différents paramètres
-    
-    @param string $sql - La requête à exécuter
-    @param int $param - S'il s'agit d'un query ou d'un prepare
-    @param bool $single - Savoir si on veut faire un fetchAll ou un fetch
-    */
     public function query(string $sql, ?array $param = null, ?bool $single = null)
     {
         $method = is_null($param) ? 'query' : 'prepare';
