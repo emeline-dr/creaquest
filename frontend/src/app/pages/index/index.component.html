@@ -42,6 +42,10 @@
                     @for(writingTask of tasksWriting; track writingTask){
                     {{ writingTask.w_name }}
                     }
+
+                    @for(writingCompletedTask of tasksCompletedWriting; track writingCompletedTask){
+                    {{ writingCompletedTask.w_name }}
+                    }
                 </p>
             </div>
             <div id="equal-width-elements-2" class="hidden" role="tabpanel"
@@ -50,6 +54,10 @@
                     @for(readingTask of tasksReading; track readingTask){
                     {{ readingTask.r_name }}
                     }
+
+                    @for(readingCompletedTask of tasksCompletedReading; track readingCompletedTask){
+                    {{ readingCompletedTask.r_name }}
+                    }
                 </p>
             </div>
             <div id="equal-width-elements-3" class="hidden" role="tabpanel"
@@ -57,6 +65,10 @@
                 <p>
                     @for(drawingTask of tasksDrawing; track drawingTask){
                     {{ drawingTask.d_name }}
+                    }
+
+                    @for(drawingCompletedTask of tasksCompletedDrawing; track drawingCompletedTask){
+                    {{ drawingCompletedTask.d_name }}
                     }
                 </p>
             </div>

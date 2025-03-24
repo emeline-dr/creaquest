@@ -42,6 +42,10 @@ $router->get('/tasks/writing/:id', 'App\Controllers\TaskController@getWritingTas
 $router->get('/tasks/reading/:id', 'App\Controllers\TaskController@getReadingTasks');
 $router->get('/tasks/drawing/:id', 'App\Controllers\TaskController@getDrawingTasks');
 
+$router->get('/completed-tasks/writing/:id', 'App\Controllers\TaskController@getCompletedWritingTasks');
+$router->get('/completed-tasks/reading/:id', 'App\Controllers\TaskController@getCompletedReadingTasks');
+$router->get('/completed-tasks/drawing/:id', 'App\Controllers\TaskController@getCompletedDrawingTasks');
+
 /* Lancement du routeur */
 try {
     $router->run();

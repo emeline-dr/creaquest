@@ -4,40 +4,33 @@ namespace App\Models;
 
 class Task extends Model
 {
-    protected $w_table = 'writing';
-    protected $d_table = 'drawing';
-    protected $r_table = 'reading';
-
-    public function getWritingTask($userId)
+    public function getTask($userId, $taskType, $status)
     {
-        return $this->query("
-        SELECT w.*
-        FROM writing w
-        LEFT JOIN users_writing uw ON w.w_id = uw.users_writing_w_id 
-        AND uw.users_writing_u_id = ?
-        WHERE uw.users_writing_w_id IS NULL;
-        ", [$userId]);
-    }
+        $tables = [
+            'writing' => ['w', 'w_id', 'users_writing', 'users_writing_w_id', 'users_writing_u_id'],
+            'reading' => ['r', 'r_id', 'users_reading', 'users_reading_r_id', 'users_reading_u_id'],
+            'drawing' => ['d', 'd_id', 'users_drawing', 'users_drawing_d_id', 'users_drawing_u_id']
+        ];
 
-    public function getReadingTask($userId)
-    {
-        return $this->query("
-        SELECT r.*
-        FROM reading r
-        LEFT JOIN users_reading ur ON r.r_id = ur.users_reading_r_id 
-        AND ur.users_reading_u_id = ?
-        WHERE ur.users_reading_r_id IS NULL;
-        ", [$userId]);
-    }
+        [$alias, $id, $userTable, $userTaskId, $userIdField] = $tables[$taskType];
 
-    public function getDrawingTask($userId)
-    {
-        return $this->query("
-        SELECT d.* 
-        FROM drawing d
-        LEFT JOIN users_drawing ud ON d.d_id = ud.users_drawing_d_id
-        AND ud.users_drawing_u_id = ?
-        WHERE ud.users_drawing_d_id IS NULL;
-        ", [$userId]);
+        $taskStatus = [
+            'completed' => "
+                SELECT $alias.*
+                FROM $taskType $alias
+                INNER JOIN $userTable ut 
+                ON $alias.$id = ut.$userTaskId 
+                WHERE ut.$userIdField = ?;
+            ",
+            'uncompleted' => "
+                SELECT $alias.*
+                FROM $taskType $alias
+                LEFT JOIN $userTable ut ON $alias.$id = ut.$userTaskId
+                AND ut.$userIdField = ?
+                WHERE ut.$userTaskId IS NULL;
+            "
+        ];
+
+        return $this->query($taskStatus[$status], [$userId]);
     }
 }

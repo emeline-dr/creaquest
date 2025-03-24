@@ -41,6 +41,12 @@ export class DataService {
     return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
   }
 
+  getCompletedWritingTasks(): Observable<any> {
+    this.apiRoute = 'completed-tasks/writing/';
+    const userId = this.authService.getUserId();
+    return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
+  }
+
   /* Tâches Lecture */
   getReadingTasks(): Observable<any> {
     this.apiRoute = 'tasks/reading/';
@@ -48,9 +54,21 @@ export class DataService {
     return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
   }
 
+  getCompletedReadingTasks(): Observable<any> {
+    this.apiRoute = 'completed-tasks/reading/';
+    const userId = this.authService.getUserId();
+    return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
+  }
+
   /* Tâches Dessin */
   getDrawingTasks(): Observable<any> {
     this.apiRoute = 'tasks/drawing/';
+    const userId = this.authService.getUserId();
+    return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
+  }
+
+  getCompletedDrawingTasks(): Observable<any> {
+    this.apiRoute = 'completed-tasks/drawing/';
     const userId = this.authService.getUserId();
     return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
   }
