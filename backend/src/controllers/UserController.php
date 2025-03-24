@@ -10,12 +10,18 @@ use App\Models\Model;
 
 class UserController extends Controller
 {
-    public function index()
+    /* Traite les données pour récupérer les informations de l'utilisateur connecté */
+    public function getUser(int $id)
     {
-        $user = new User($this->getDB());
-        $users = $user->all();
+        $result = (new User($this->getDB()))->getInfos($id);
 
-        echo json_encode($users);
+        if ($result) {
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        } else {
+            http_response_code(404);
+            echo json_encode(["error" => "Utilisateur non trouvé"]);
+        }
     }
 
     /* Traite les données pour l'inscription */
@@ -50,6 +56,13 @@ class UserController extends Controller
             ];
 
             $jwt = JWT::encode($payload, "token", 'HS256');
+
+            $_SESSION['auth'] = $user->u_role;
+            $_SESSION['username'] = $user->u_username;
+            $_SESSION['password'] = $user->u_password;
+            $_SESSION['email'] = $user->u_email;
+            $_SESSION['avatar'] = $user->u_avatar;
+            $_SESSION['id'] = $user->u_id;
 
             echo json_encode(["status" => "success", "token" => $jwt]);
         } else {

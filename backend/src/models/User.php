@@ -6,7 +6,18 @@ class User extends Model
 {
     protected $table = 'users';
 
-    /* Récupération de l'username - fonction : login */
+    /* Récupération de l'username - fonction : getUser */
+    public function getInfos(int $id): ?User
+    {
+        $result = $this->query("SELECT * FROM {$this->table} WHERE u_id = ?", [$id], true);
+
+        if ($result) {
+            return $result;
+        }
+        return null;
+    }
+
+    /* Récupération de l'username - fonction : loginPost */
     public function getUsername(string $username): ?User
     {
         $result = $this->query("SELECT * FROM {$this->table} WHERE u_username = ?", [$username], true);

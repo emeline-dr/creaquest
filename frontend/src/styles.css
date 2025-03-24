@@ -1,5 +1,6 @@
 /*#region Tailwind*/
 @import "tailwindcss";
+@import "preline/variants.css";
 
 @theme {
     /*Colors*/

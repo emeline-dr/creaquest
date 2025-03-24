@@ -1,2 +1,68 @@
+<!-- Logo -->
 <app-logo-nav></app-logo-nav>
-<p>index works!</p>
+
+<!-- Nav bar -->
+<app-navbar></app-navbar>
+
+<!-- Barre : pseudo + avatar -->
+<app-user-snippet></app-user-snippet>
+
+<div class="indexBlock absolute w-full top-[125px]">
+    <div class="w-3/4 h-[90%] mx-auto p-[25px] rounded bg-black text-white-base">
+        <!-- Onglets -->
+        <nav class="flex gap-x-10" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
+            <button type="button"
+                class="hs-tab-active:bg-blue hs-tab-active:outline-5 hs-tab-active:outline-white-base py-3 px-4 text-center basis-0 grow inline-flex justify-center items-center gap-x-2 bg-orange text-2xl font-revalia rounded active"
+                id="equal-width-elements-item-1" aria-selected="true" data-hs-tab="#equal-width-elements-1"
+                aria-controls="equal-width-elements-1" role="tab">
+                Écriture
+            </button>
+            <button type="button"
+                class="hs-tab-active:bg-blue hs-tab-active:outline-5 hs-tab-active:outline-white-base py-3 px-4 text-center basis-0 grow inline-flex justify-center items-center gap-x-2 bg-orange text-2xl font-revalia rounded"
+                id="equal-width-elements-item-2" aria-selected="false" data-hs-tab="#equal-width-elements-2"
+                aria-controls="equal-width-elements-2" role="tab">
+                Lecture
+            </button>
+            <button type="button"
+                class="hs-tab-active:bg-blue hs-tab-active:outline-5 hs-tab-active:outline-white-base py-3 px-4 text-center basis-0 grow inline-flex justify-center items-center gap-x-2 bg-orange text-2xl font-revalia rounded"
+                id="equal-width-elements-item-3" aria-selected="false" data-hs-tab="#equal-width-elements-3"
+                aria-controls="equal-width-elements-3" role="tab">
+                Dessin
+            </button>
+        </nav>
+
+        <!-- Cocher pour voir les tâches terminées -->
+        <input type="checkbox" name="taskCompleted" id="taskCompleted" class="accent-orange mt-[25px] me-[10px]">
+        <label for="taskCompleted" class="text-base">Montrer les tâches terminées.</label>
+
+        <!-- Contenu des onglets -->
+        <div class="mt-3">
+            <div id="equal-width-elements-1" role="tabpanel" aria-labelledby="equal-width-elements-item-1">
+                <p>
+                    @for(writingTask of tasksWriting; track writingTask){
+                    {{ writingTask.w_name }}
+                    }
+                </p>
+            </div>
+            <div id="equal-width-elements-2" class="hidden" role="tabpanel"
+                aria-labelledby="equal-width-elements-item-2">
+                <p>
+                    @for(readingTask of tasksReading; track readingTask){
+                    {{ readingTask.r_name }}
+                    }
+                </p>
+            </div>
+            <div id="equal-width-elements-3" class="hidden" role="tabpanel"
+                aria-labelledby="equal-width-elements-item-3">
+                <p>
+                    @for(drawingTask of tasksDrawing; track drawingTask){
+                    {{ drawingTask.d_name }}
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Copyright -->
+<app-copyright></app-copyright>

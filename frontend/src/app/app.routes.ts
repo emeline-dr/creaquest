@@ -1,9 +1,12 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './services/auth/auth.guard';
+
+
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { IndexComponent } from './pages/index/index.component';
-import { AuthGuard } from './services/auth/auth.guard';
+import { ForumComponent } from './pages/forum/forum.component';
 import { NoPageComponent } from './pages/no-page/no-page.component';
 
 export const routes: Routes = [
@@ -27,6 +30,11 @@ export const routes: Routes = [
     {
         path: 'index',
         component: IndexComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'forum',
+        component: ForumComponent,
         canActivate: [AuthGuard]
     },
     {
