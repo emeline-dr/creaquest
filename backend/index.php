@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-use App\Exceptions\NotFoundException;
 use Router\Router;
 
 require "vendor/autoload.php";
@@ -49,6 +48,8 @@ $router->get('/completed-tasks/drawing/:id', 'App\Controllers\TaskController@get
 /* Lancement du routeur */
 try {
     $router->run();
-} catch (NotFoundException $e) {
-    return $e->error404();
+} catch (Exception $e) {
+    http_response_code(404);
+    echo json_encode(["error" => "Route not found"]);
+    exit();
 }

@@ -1,12 +1,3 @@
-<!-- Logo -->
-<app-logo-nav></app-logo-nav>
-
-<!-- Nav bar -->
-<app-navbar></app-navbar>
-
-<!-- Barre : pseudo + avatar -->
-<app-user-snippet></app-user-snippet>
-
 <div class="indexBlock absolute w-full top-[125px]">
     <div class="w-3/4 h-[90%] mx-auto p-[25px] rounded bg-black text-white-base">
         <!-- Onglets -->
@@ -32,49 +23,99 @@
         </nav>
 
         <!-- Cocher pour voir les tâches terminées -->
-        <input type="checkbox" name="taskCompleted" id="taskCompleted" class="accent-orange mt-[25px] me-[10px]">
-        <label for="taskCompleted" class="text-base">Montrer les tâches terminées.</label>
+        <div class="flex flex-wrap mt-3">
+            <input type="checkbox" name="taskCompleted" id="taskCompleted" class="hidden" [(ngModel)]="isTaskCompleted"
+                (click)="viewTasksCompleted()">
+
+            <label for="taskCompleted" class="cursor-pointer text-orange-500 text-xl me-[10px]">
+                @if(isTaskCompleted){
+                <i-lucide name="SquareCheck"></i-lucide>
+                } @else{
+                <i-lucide name="Square"></i-lucide>
+                }
+            </label>
+            <label for="taskCompleted" class="text-base">Montrer les tâches terminées.</label>
+        </div>
 
         <!-- Contenu des onglets -->
-        <div class="mt-3">
+        <div class="mt-3 h-4/5 overflow-auto scrollbar scrollbar-thin scrollbar-thumb-orange scrollbar-track-orange/00">
             <div id="equal-width-elements-1" role="tabpanel" aria-labelledby="equal-width-elements-item-1">
-                <p>
-                    @for(writingTask of tasksWriting; track writingTask){
+                @for(writingTask of tasksWriting; track writingTask){
+                <div class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
+                    [ngClass]="{'last:mb-0': !viewCompletedTasks}">
                     {{ writingTask.w_name }}
-                    }
+                    <div class="flex flex-wrap items-center">
+                        <span class="h-fit text-2xl font-revalia me-3">+{{ writingTask.w_exp}} XP</span>
+                        <i-lucide name="Circle" [size]="75"></i-lucide>
+                    </div>
+                </div>
+                }
 
-                    @for(writingCompletedTask of tasksCompletedWriting; track writingCompletedTask){
+                @if(viewCompletedTasks) {
+                @for(writingCompletedTask of tasksCompletedWriting; track writingCompletedTask){
+                <div
+                    class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue opacity-50 rounded text-base px-[20px] mb-[15px]">
                     {{ writingCompletedTask.w_name }}
-                    }
-                </p>
+                    <div class="flex flex-wrap items-center">
+                        <span class="h-fit text-2xl font-revalia me-3">+{{ writingCompletedTask.w_exp}} XP</span>
+                        <i-lucide name="CircleCheckBig" class="text-orange" [size]="75"></i-lucide>
+                    </div>
+                </div>
+                }
+                }
             </div>
             <div id="equal-width-elements-2" class="hidden" role="tabpanel"
                 aria-labelledby="equal-width-elements-item-2">
-                <p>
-                    @for(readingTask of tasksReading; track readingTask){
+                @for(readingTask of tasksReading; track readingTask){
+                <div class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
+                    [ngClass]="{'last:mb-0': !viewCompletedTasks}">
                     {{ readingTask.r_name }}
-                    }
+                    <div class="flex flex-wrap items-center">
+                        <span class="h-fit text-2xl font-revalia me-3">+{{ readingTask.r_exp}} XP</span>
+                        <i-lucide name="Circle" [size]="75"></i-lucide>
+                    </div>
+                </div>
+                }
 
-                    @for(readingCompletedTask of tasksCompletedReading; track readingCompletedTask){
+                @if(viewCompletedTasks) {
+                @for(readingCompletedTask of tasksCompletedReading; track readingCompletedTask){
+                <div
+                    class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue opacity-50 rounded text-base px-[20px] mb-[15px]">
                     {{ readingCompletedTask.r_name }}
-                    }
-                </p>
+                    <div class="flex flex-wrap items-center">
+                        <span class="h-fit text-2xl font-revalia me-3">+{{ readingCompletedTask.r_exp}} XP</span>
+                        <i-lucide name="CircleCheckBig" class="text-orange" [size]="75"></i-lucide>
+                    </div>
+                </div>
+                }
+                }
             </div>
             <div id="equal-width-elements-3" class="hidden" role="tabpanel"
                 aria-labelledby="equal-width-elements-item-3">
-                <p>
-                    @for(drawingTask of tasksDrawing; track drawingTask){
+                @for(drawingTask of tasksDrawing; track drawingTask){
+                <div class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
+                    [ngClass]="{'last:mb-0': !viewCompletedTasks}">
                     {{ drawingTask.d_name }}
-                    }
+                    <div class="flex flex-wrap items-center">
+                        <span class="h-fit text-2xl font-revalia me-3">+{{ drawingTask.d_exp}} XP</span>
+                        <i-lucide name="Circle" [size]="75"></i-lucide>
+                    </div>
+                </div>
+                }
 
-                    @for(drawingCompletedTask of tasksCompletedDrawing; track drawingCompletedTask){
+                @if(viewCompletedTasks) {
+                @for(drawingCompletedTask of tasksCompletedDrawing; track drawingCompletedTask){
+                <div
+                    class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue opacity-50 rounded text-base px-[20px] mb-[15px]">
                     {{ drawingCompletedTask.d_name }}
-                    }
-                </p>
+                    <div class="flex flex-wrap items-center">
+                        <span class="h-fit text-2xl font-revalia me-3">+{{ drawingCompletedTask.d_exp}} XP</span>
+                        <i-lucide name="CircleCheckBig" class="text-orange" [size]="75"></i-lucide>
+                    </div>
+                </div>
+                }
+                }
             </div>
         </div>
     </div>
 </div>
-
-<!-- Copyright -->
-<app-copyright></app-copyright>

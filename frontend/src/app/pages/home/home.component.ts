@@ -4,7 +4,6 @@ import { LucideAngularModule } from 'lucide-angular';
 import { RouterModule } from '@angular/router';
 
 import { SocialNetworkComponent } from './components/social-network/social-network.component';
-import { CopyrightComponent } from '../../components/copyright/copyright.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomeMobileComponent } from './components/home-mobile/home-mobile.component';
 
@@ -17,8 +16,7 @@ import { HomeMobileComponent } from './components/home-mobile/home-mobile.compon
     LucideAngularModule,
     SocialNetworkComponent,
     NavBarComponent,
-    HomeMobileComponent,
-    CopyrightComponent
+    HomeMobileComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

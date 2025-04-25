@@ -2,7 +2,6 @@
 
 namespace Router;
 
-use App\Exceptions\NotFoundException;
 
 class Router
 {
@@ -34,7 +33,5 @@ class Router
                 exit;
             }
         }
-
-        throw new NotFoundException("La page demandée est introuvable.");
     }
 }

@@ -1,6 +1,7 @@
 /*#region Tailwind*/
 @import "tailwindcss";
 @import "preline/variants.css";
+@plugin 'tailwind-scrollbar';
 
 @theme {
     /*Colors*/

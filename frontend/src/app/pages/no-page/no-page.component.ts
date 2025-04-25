@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import { TitleCreaquestComponent } from '../../components/title-creaquest/title-creaquest.component';
-import { CopyrightComponent } from '../../components/copyright/copyright.component';
 
 @Component({
   selector: 'app-no-page',
@@ -11,7 +10,6 @@ import { CopyrightComponent } from '../../components/copyright/copyright.compone
   imports: [
     RouterModule,
     TitleCreaquestComponent,
-    CopyrightComponent
   ],
   templateUrl: './no-page.component.html',
   styleUrl: './no-page.component.css'

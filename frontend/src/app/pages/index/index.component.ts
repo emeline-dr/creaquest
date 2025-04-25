@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { LogoNavComponent } from '../../components/logo-nav/logo-nav.component';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
-import { CopyrightComponent } from '../../components/copyright/copyright.component';
+import { LucideAngularModule } from 'lucide-angular';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-index',
   standalone: true,
   imports: [
-    LogoNavComponent,
-    UserSnippetComponent,
-    NavbarComponent,
-    CopyrightComponent
+    CommonModule,
+    LucideAngularModule,
+    FormsModule
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
@@ -25,11 +24,19 @@ export class IndexComponent {
   tasksDrawing: any;
   tasksCompletedDrawing: any;
 
+  isTaskCompleted = false;
+  viewCompletedTasks = false;
+
   constructor(
     private dataService: DataService
   ) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('viewCompletedTasks') === 'true') {
+      this.viewCompletedTasks = true;
+      this.isTaskCompleted = true;
+    }
+
     this.dataService.getWritingTasks().subscribe({
       next: (writingTasks) => this.tasksWriting = writingTasks,
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
@@ -57,5 +64,12 @@ export class IndexComponent {
       next: (drawingCompletedTasks) => this.tasksCompletedDrawing = drawingCompletedTasks,
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
+  }
+
+  viewTasksCompleted() {
+    this.viewCompletedTasks = !this.viewCompletedTasks;
+    this.isTaskCompleted = !this.isTaskCompleted;
+
+    localStorage.setItem('viewCompletedTasks', this.viewCompletedTasks.toString())
   }
 }

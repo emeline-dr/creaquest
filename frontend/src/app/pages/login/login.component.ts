@@ -6,21 +6,17 @@ import { Copy, LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
 
-import { LogoNavComponent } from '../../components/logo-nav/logo-nav.component';
 import { TitleCreaquestComponent } from '../../components/title-creaquest/title-creaquest.component';
-import { CopyrightComponent } from '../../components/copyright/copyright.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    LogoNavComponent,
     RouterModule,
     LucideAngularModule,
     CommonModule,
     ReactiveFormsModule,
     TitleCreaquestComponent,
-    CopyrightComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
