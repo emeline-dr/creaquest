@@ -47,6 +47,11 @@ export class DataService {
     return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
   }
 
+  validateWritingTasks(userId: number, taskId: number): Observable<any> {
+    this.apiRoute = `tasks/validation/writing/${userId}/${taskId}`;
+    return this.http.post<any>(this.apiUrl + this.apiRoute, {});
+  }
+
   /* Tâches Lecture */
   getReadingTasks(): Observable<any> {
     this.apiRoute = 'tasks/reading/';
@@ -60,6 +65,11 @@ export class DataService {
     return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
   }
 
+  validateReadingTasks(userId: number, taskId: number): Observable<any> {
+    this.apiRoute = `tasks/validation/reading/${userId}/${taskId}`;
+    return this.http.post<any>(this.apiUrl + this.apiRoute, {});
+  }
+
   /* Tâches Dessin */
   getDrawingTasks(): Observable<any> {
     this.apiRoute = 'tasks/drawing/';
@@ -71,5 +81,10 @@ export class DataService {
     this.apiRoute = 'completed-tasks/drawing/';
     const userId = this.authService.getUserId();
     return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
+  }
+
+  validateDrawingTasks(userId: number, taskId: number): Observable<any> {
+    this.apiRoute = `tasks/validation/drawing/${userId}/${taskId}`;
+    return this.http.post<any>(this.apiUrl + this.apiRoute, {});
   }
 }

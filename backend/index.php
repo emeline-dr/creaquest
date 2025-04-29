@@ -18,10 +18,10 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 /* Définition des constantes */
-define('DB_NAME', 'creaquest');
-define('DB_HOST', '127.0.0.1');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
+define('DB_NAME', 'emelinedr_creaquest');
+define('DB_HOST', 'mysql-emelinedr.alwaysdata.net');
+define('DB_USER', 'emelinedr');
+define('DB_PASSWORD', 'Eme410121');
 
 /* Instanciation du retour et définition des routes */
 $router = new Router($_GET['api']);
@@ -44,6 +44,10 @@ $router->get('/tasks/drawing/:id', 'App\Controllers\TaskController@getDrawingTas
 $router->get('/completed-tasks/writing/:id', 'App\Controllers\TaskController@getCompletedWritingTasks');
 $router->get('/completed-tasks/reading/:id', 'App\Controllers\TaskController@getCompletedReadingTasks');
 $router->get('/completed-tasks/drawing/:id', 'App\Controllers\TaskController@getCompletedDrawingTasks');
+
+$router->post('/tasks/validation/writing/:userId/:taskId', 'App\Controllers\TaskController@validateWritingTask');
+$router->post('/tasks/validation/reading/:userId/:taskId', 'App\Controllers\TaskController@validateReadingTask');
+$router->post('/tasks/validation/drawing/:userId/:taskId', 'App\Controllers\TaskController@validateDrawingTask');
 
 /* Lancement du routeur */
 try {

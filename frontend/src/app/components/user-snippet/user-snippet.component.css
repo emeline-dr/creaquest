@@ -1,4 +1,10 @@
 .hs-dropdown-menu {
-    inset: 75px 150px auto auto !important;
+    inset: 75px 120px auto auto !important;
     background-color: rgba(23, 28, 45, 0.5);
+}
+
+@media (max-width: 768px) {
+    .hs-dropdown-menu {
+        inset: 95px 15px auto auto !important;
+    }
 }

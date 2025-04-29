@@ -2,24 +2,26 @@
     <img src="assets/images/Crea-Logo.png" alt="Logo Créaquest" class="absolute z-99 size-[100px] object-cover">
 </a>
 
-<div class="absolute flex flex-wrap start-[120px] top-[20px]" [ngClass]="{'hidden' : pageCo}">
+<div class="absolute flex flex-wrap top-[32px] start-[120px] md:top-[20px]" [ngClass]="{'hidden' : pageCo}">
     <div class="hs-tooltip [--placement:bottom]">
-        <a routerLink="/index" tabindex="0"
-            class="hs-tooltip-toggle flex justify-center items-center h-[60px] w-[60px] rounded-full me-[25px] bg-white-base text-blue hover:outline-3 hover:text-white-base hover:bg-blue hover:outline-white-base">
-            <i-lucide name="List" [size]="45"></i-lucide>
+        <a routerLink="/index" tabindex="0" routerLinkActive="text-orange outline-3 outline-orange"
+            class="hs-tooltip-toggle flex justify-center items-center h-[40px] w-auto md:h-[60px] md:w-[60px] rounded md:rounded-full me-[24px] bg-white-base text-blue hover:outline-3 hover:text-white-base hover:bg-blue hover:outline-white-base">
+            <i-lucide name="List" class="hidden md:block size-[45px]"></i-lucide>
+            <p class="px-1 md:hidden">Accueil</p>
             <span
-                class="tool-index hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 mt-[15px] p-2 text-center bg-blue text-2xl font-revalia text-white-base rounded-md border-3 border-white-base"
+                class="tool-index md:hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 translate-x-[25%] mt-[15px] p-2 text-center bg-blue text-2xl font-revalia text-white-base rounded-md border-3 border-white-base"
                 role="tooltip">
                 Accueil
             </span>
         </a>
     </div>
     <div class="hs-tooltip [--placement:bottom]">
-        <a routerLink="/forum" tabindex="0"
-            class="hs-tooltip-toggle flex justify-center items-center h-[60px] w-[60px] rounded-full me-[25px] bg-white-base text-blue hover:outline-3 hover:text-white-base hover:bg-blue hover:outline-white-base">
-            <i-lucide name="Users" [size]="45"></i-lucide>
+        <a routerLink="/forum" tabindex="0" routerLinkActive="text-orange outline-3 outline-orange"
+            class="hs-tooltip-toggle flex justify-center items-center h-[40px] w-auto md:h-[60px] md:w-[60px] rounded md:rounded-full bg-white-base text-blue hover:outline-3 hover:text-white-base hover:bg-blue hover:outline-white-base">
+            <i-lucide name="Users" class="hidden md:block size-[45px]"></i-lucide>
+            <p class="px-1 md:hidden">Communauté</p>
             <span
-                class="tool-forum hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 mt-[15px] p-2 text-center bg-blue text-2xl font-revalia text-white-base rounded-md border-3 border-white-base"
+                class="tool-forum md:hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 translate-x-[35%] mt-[15px] p-2 text-center bg-blue text-2xl font-revalia text-white-base rounded-md border-3 border-white-base"
                 role="tooltip">
                 Communauté
             </span>

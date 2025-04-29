@@ -39,7 +39,10 @@ class Route
         );
         $method = $params[1];
 
-        return isset($this->matches[1]) ? $controller->$method($this->matches[1]) :
-            $controller->$method();
+        // Si nous avons plusieurs paramètres, nous devons les passer tous à la méthode
+        $numParams = count($this->matches) - 1; // Le premier élément est le chemin complet, les autres sont les paramètres
+        $methodParams = array_slice($this->matches, 1, $numParams);
+
+        return call_user_func_array([$controller, $method], $methodParams);
     }
 }

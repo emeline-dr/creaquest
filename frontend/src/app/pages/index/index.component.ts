@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+declare var HSOverlay: any;
+
+import { AuthService } from '../../services/auth/auth.service';
 import { DataService } from '../../services/data.service';
+
+import { LoadingComponent } from '../../components/loading/loading.component';
 
 @Component({
   selector: 'app-index',
@@ -11,7 +17,8 @@ import { DataService } from '../../services/data.service';
   imports: [
     CommonModule,
     LucideAngularModule,
-    FormsModule
+    FormsModule,
+    LoadingComponent
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
@@ -27,9 +34,17 @@ export class IndexComponent {
   isTaskCompleted = false;
   viewCompletedTasks = false;
 
+  isWritingTaskLoading = true;
+  isDrawingTaskLoading = true;
+  isReadingTaskLoading = true;
+
   constructor(
-    private dataService: DataService
-  ) { }
+    private authService: AuthService,
+    private dataService: DataService,
+    private titleService: Title,
+  ) {
+    this.titleService.setTitle("Créaquest - Index");
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem('viewCompletedTasks') === 'true') {
@@ -38,7 +53,14 @@ export class IndexComponent {
     }
 
     this.dataService.getWritingTasks().subscribe({
-      next: (writingTasks) => this.tasksWriting = writingTasks,
+      next: (writingTasks) => {
+        this.tasksWriting = writingTasks
+        this.isWritingTaskLoading = false
+
+        setTimeout(() => {
+          HSOverlay.autoInit();
+        });
+      },
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
     this.dataService.getCompletedWritingTasks().subscribe({
@@ -47,7 +69,14 @@ export class IndexComponent {
     });
 
     this.dataService.getReadingTasks().subscribe({
-      next: (readingTasks) => this.tasksReading = readingTasks,
+      next: (readingTasks) => {
+        this.tasksReading = readingTasks
+        this.isReadingTaskLoading = false
+
+        setTimeout(() => {
+          HSOverlay.autoInit();
+        });
+      },
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
     this.dataService.getCompletedReadingTasks().subscribe({
@@ -56,7 +85,14 @@ export class IndexComponent {
     });
 
     this.dataService.getDrawingTasks().subscribe({
-      next: (drawingTasks) => this.tasksDrawing = drawingTasks,
+      next: (drawingTasks) => {
+        this.tasksDrawing = drawingTasks
+        this.isDrawingTaskLoading = false
+
+        setTimeout(() => {
+          HSOverlay.autoInit();
+        });
+      },
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
 
@@ -71,5 +107,38 @@ export class IndexComponent {
     this.isTaskCompleted = !this.isTaskCompleted;
 
     localStorage.setItem('viewCompletedTasks', this.viewCompletedTasks.toString())
+  }
+
+  validateTask(taskId: number, taskType: string) {
+    const userId = Number(this.authService.getUserId());
+    if (taskType === 'writing') {
+      this.dataService.validateWritingTasks(userId, taskId).subscribe({
+        next: response => {
+          console.log('Tâche validée', response)
+          window.location.reload();
+        },
+        error: err => console.error('Erreur', err)
+      });
+    }
+
+    if (taskType === 'reading') {
+      this.dataService.validateReadingTasks(userId, taskId).subscribe({
+        next: response => {
+          console.log('Tâche validée', response)
+          window.location.reload();
+        },
+        error: err => console.error('Erreur', err)
+      });
+    }
+
+    if (taskType === 'drawing') {
+      this.dataService.validateDrawingTasks(userId, taskId).subscribe({
+        next: response => {
+          console.log('Tâche validée', response)
+          window.location.reload();
+        },
+        error: err => console.error('Erreur', err)
+      });
+    }
   }
 }

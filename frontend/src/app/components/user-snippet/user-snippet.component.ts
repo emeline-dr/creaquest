@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule, NavigationEnd } from '@angular/router';
+import { RouterModule, ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { DataService } from '../../services/data.service';
 import { AuthService } from '../../services/auth/auth.service';
+
+import { NoPageComponent } from '../../pages/no-page/no-page.component';
 
 @Component({
   selector: 'app-user-snippet',
@@ -18,34 +20,46 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class UserSnippetComponent {
   userProfile: any;
-
   pageCo = false;
 
   constructor(
     private authService: AuthService,
     private dataService: DataService,
-    private route: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd || event instanceof ActivationEnd))
+      .subscribe(() => {
+        const lastChild = this.getLastChild(this.activatedRoute);
+        const component = lastChild.snapshot.routeConfig?.component;
 
-    this.route.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        const currentUrl = event.urlAfterRedirects;
         if (
-          currentUrl === '/home' ||
-          currentUrl === '/login' ||
-          currentUrl === '/register' ||
-          currentUrl === '/login?registration=success'
+          component === NoPageComponent ||
+          this.router.url === '/home' ||
+          this.router.url === '/login' ||
+          this.router.url === '/register' ||
+          this.router.url === '/login?registration=success'
         ) {
           this.pageCo = true;
+        } else {
+          this.pageCo = false;
         }
       });
+
     this.dataService.getUser().subscribe({
       next: (profile) => this.userProfile = profile,
       error: (err) => console.error('Erreur lors de la récupération du profil', err)
     });
+  }
+
+  getLastChild(route: ActivatedRoute): ActivatedRoute {
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+    return route;
   }
 
   logout(): void {
