@@ -26,7 +26,6 @@ export class AuthService {
 
   getUserId(): string | null {
     const decodedToken: any = this.getDecodedToken();
-    console.log(decodedToken);
     return decodedToken ? decodedToken.user_id : null;
   }
 }
