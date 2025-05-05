@@ -11,6 +11,10 @@
     --color-blue: #2A777C;
     --color-orange: #E37239;
 
+    /*Gradient-Color*/
+    --color-black-95: #171C2D95;
+    --color-blue-dark-95: #25425295;
+
     /*Fonts*/
     --font-helvetica: "Helvetica", sans-serif;
     --font-revalia: "Revalia", sans-serif;

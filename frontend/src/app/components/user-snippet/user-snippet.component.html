@@ -1,32 +1,48 @@
-<div [ngClass]="{'hidden' : pageCo}">
-    <div class="hs-dropdown relative">
-        <button id="hs-dropdown-profile"
-            class="absolute end-0 md:end-[100px] bg-orange hs-dropdown-open:bg-blue font-revalia text-white base rounded-bl md:text-4xl p-0 w-[100px] h-[100px] md:h-auto md:w-auto md:px-15 md:py-5">
-            <span class="hidden md:block">{{ userProfile.u_username }}</span>
+@if(!pageCo && isLoading) {
+<div class="fixed absolute top-5 end-5 text-orange">
+    <app-loading></app-loading>
+</div>
+}
 
-            <img src="assets/images/{{ userProfile.u_avatar }}" alt="Avatar de {{ userProfile.u_username }}"
-                class="md:hidden absolute end-[-5px] top-[-5px] object-cover rounded size-[100px]">
-        </button>
+@if(!pageCo && !isLoading) {
+@if(isBackgroundCustom) {
+<img src="assets/images/backgrounds/Background-Steampunk.jpg" alt=""
+    class="fixed absolute top-0 w-full h-full z-[-2] object-cover blur-xs opacity-50">
+<div class="fixed absolute top-0 w-full h-full z-[-1] bg-blue-dark-95"></div>
+}
 
-        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 rounded"
-            role="menu" aria-labelledby="hs-dropdown-unstyled">
-            <a tabindex="0"
-                class="block m-[15px] py-[15px] bg-blue text-white-base text-2xl text-center rounded border-2 border-white-base transition duration-450 hover:bg-white-base hover:text-blue">
-                Modifier le profil
-            </a>
-            @if(userProfile.u_role === "admin") {
-            <a tabindex="0"
-                class="block m-[15px] py-[15px] bg-blue text-white-base text-2xl text-center rounded border-2 border-white-base transition duration-450 hover:bg-white-base hover:text-blue">
-                Panneau d'administration
-            </a>
-            }
-            <a tabindex="0" (click)="logout()"
-                class="block mx-[15px] mb-[15px] py-[15px] bg-blue text-white-base text-2xl text-center rounded border-2 border-white-base transition duration-450 hover:bg-white-base hover:text-blue">
-                Se déconnecter
-            </a>
-        </div>
+<div class="hs-dropdown relative">
+    <button id="hs-dropdown-profile"
+        class="absolute end-0 md:end-[100px] bg-orange hs-dropdown-open:bg-blue font-revalia text-white base rounded-bl md:text-4xl p-0 w-[100px] h-[100px] md:h-auto md:w-auto md:px-15 md:py-5">
+        <span class="hidden md:block">
+            <img src="{{userMedal}}" alt="Médaille" class="size-[50px] inline">
+
+            {{ userProfile.u_username }}
+        </span>
 
         <img src="assets/images/{{ userProfile.u_avatar }}" alt="Avatar de {{ userProfile.u_username }}"
-            class="hidden md:block absolute end-[-26px] top-[-26px] object-cover rounded-full size-[150px] border-5 border-orange hs-dropdown-open:border-blue">
+            class="md:hidden absolute end-[-5px] top-[-5px] object-cover rounded size-[100px]">
+    </button>
+
+    <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 rounded"
+        role="menu" aria-labelledby="hs-dropdown-unstyled">
+        <a tabindex="0"
+            class="block m-[15px] py-[15px] bg-blue text-white-base text-2xl text-center rounded border-2 border-white-base transition duration-450 hover:bg-white-base hover:text-blue">
+            Modifier le profil
+        </a>
+        @if(userProfile.u_role === "admin") {
+        <a tabindex="0"
+            class="block m-[15px] py-[15px] bg-blue text-white-base text-2xl text-center rounded border-2 border-white-base transition duration-450 hover:bg-white-base hover:text-blue">
+            Panneau d'administration
+        </a>
+        }
+        <a tabindex="0" (click)="logout()"
+            class="block mx-[15px] mb-[15px] py-[15px] bg-blue text-white-base text-2xl text-center rounded border-2 border-white-base transition duration-450 hover:bg-white-base hover:text-blue">
+            Se déconnecter
+        </a>
     </div>
+
+    <img src="assets/images/{{ userProfile.u_avatar }}" alt="Avatar de {{ userProfile.u_username }}"
+        class="hidden md:block absolute end-[-26px] top-[-26px] object-cover rounded-full size-[150px] border-5 border-orange hs-dropdown-open:border-blue">
 </div>
+}

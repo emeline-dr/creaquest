@@ -6,7 +6,6 @@ import { DataService } from '../../services/data.service';
 
 import { LogoNavComponent } from '../../components/logo-nav/logo-nav.component';
 import { TitleCreaquestComponent } from '../../components/title-creaquest/title-creaquest.component';
-import { CopyrightComponent } from '../../components/copyright/copyright.component';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +14,7 @@ import { CopyrightComponent } from '../../components/copyright/copyright.compone
     LogoNavComponent,
     ReactiveFormsModule,
     RouterModule,
-    TitleCreaquestComponent,
-    CopyrightComponent
+    TitleCreaquestComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'

@@ -1,10 +1,11 @@
-import { Component, AfterViewChecked } from '@angular/core';
+import { Component, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 declare var HSOverlay: any;
+declare const HSStaticMethods: any;
 
 import { AuthService } from '../../services/auth/auth.service';
 import { DataService } from '../../services/data.service';
@@ -100,6 +101,10 @@ export class IndexComponent {
       next: (drawingCompletedTasks) => this.tasksCompletedDrawing = drawingCompletedTasks,
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
+  }
+
+  ngAfterViewInit(): void {
+    HSStaticMethods?.autoInit?.();
   }
 
   viewTasksCompleted() {

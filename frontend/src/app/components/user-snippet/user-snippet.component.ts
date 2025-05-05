@@ -7,20 +7,33 @@ import { DataService } from '../../services/data.service';
 import { AuthService } from '../../services/auth/auth.service';
 
 import { NoPageComponent } from '../../pages/no-page/no-page.component';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-user-snippet',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    LoadingComponent
   ],
   templateUrl: './user-snippet.component.html',
   styleUrl: './user-snippet.component.css'
 })
 export class UserSnippetComponent {
+  isLoading = true;
+
   userProfile: any;
   pageCo = false;
+  isBackgroundCustom = false;
+
+  userMedal = '';
+  medalLevels = [
+    { max: 5, medal: "Medal-Default" },
+    { max: 10, medal: "Medal-Bronze" },
+    { max: 15, medal: "Medal-Silver" },
+    { max: 20, medal: "Medal-Gold" },
+  ];
 
   constructor(
     private authService: AuthService,
@@ -50,7 +63,23 @@ export class UserSnippetComponent {
       });
 
     this.dataService.getUser().subscribe({
-      next: (profile) => this.userProfile = profile,
+      next: (profile) => {
+        this.userProfile = profile
+
+        const userLvl = this.userProfile.u_lvl
+        let medal = 'Medal-Diamond'
+
+        for (const tier of this.medalLevels) {
+          if (userLvl < tier.max) {
+            medal = tier.medal;
+            break;
+          }
+        }
+
+        this.userMedal = `assets/images/medals/${medal}.png`;
+
+        this.isLoading = false;
+      },
       error: (err) => console.error('Erreur lors de la récupération du profil', err)
     });
   }

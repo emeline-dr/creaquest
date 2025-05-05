@@ -1,0 +1,29 @@
+@if(!pageCo){
+<div
+    class="player text-orange absolute w-1/2 flex flex-wrap justify-evenly bg-black-95 bottom-0 left-1/4 p-1 rounded-t-lg">
+    <button (click)="togglePlay()">
+        @if(!isPlaying) {
+        <span>
+            <i-lucide name="Play" size="32"></i-lucide>
+        </span>
+        }
+
+        @if(isPlaying) {
+        <span>
+            <i-lucide name="Pause" size="32"></i-lucide>
+        </span>
+        }
+    </button>
+
+    <input type="range" [value]="progress" (input)="seekAudio($event)"
+        class="w-1/3 lg:w-1/2 progress-bar accent-orange" />
+
+    <button (click)="playPrevious()">
+        <i-lucide name="SkipBack" size="32"></i-lucide>
+    </button>
+    <span class="title text-white-base content-center">{{ currentTitle }}</span>
+    <button (click)="playNext()">
+        <i-lucide name="SkipForward" size="32"></i-lucide>
+    </button>
+</div>
+}

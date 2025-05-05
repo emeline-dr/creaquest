@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 
 import { LogoNavComponent } from './components/logo-nav/logo-nav.component';
 import { UserSnippetComponent } from './components/user-snippet/user-snippet.component';
-import { CopyrightComponent } from './components/copyright/copyright.component';
+import { AudioPlayerComponent } from './components/audio-player/audio-player.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,7 @@ import { CopyrightComponent } from './components/copyright/copyright.component';
     RouterOutlet,
     LogoNavComponent,
     UserSnippetComponent,
-    CopyrightComponent
+    AudioPlayerComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

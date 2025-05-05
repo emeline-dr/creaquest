@@ -49,6 +49,9 @@ $router->post('/tasks/validation/writing/:userId/:taskId', 'App\Controllers\Task
 $router->post('/tasks/validation/reading/:userId/:taskId', 'App\Controllers\TaskController@validateReadingTask');
 $router->post('/tasks/validation/drawing/:userId/:taskId', 'App\Controllers\TaskController@validateDrawingTask');
 
+/* Music */
+$router->get('/music', 'App\Controllers\MusicController@getMusicPlaylist');
+
 /* Lancement du routeur */
 try {
     $router->run();

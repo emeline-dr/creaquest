@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { IndexComponent } from './pages/index/index.component';
 import { ForumComponent } from './pages/forum/forum.component';
 import { NoPageComponent } from './pages/no-page/no-page.component';
+import { MemberlistComponent } from './pages/memberlist/memberlist.component';
 
 export const routes: Routes = [
     {
@@ -29,6 +30,11 @@ export const routes: Routes = [
     {
         path: 'index',
         component: IndexComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'memberlist',
+        component: MemberlistComponent,
         canActivate: [AuthGuard]
     },
     {

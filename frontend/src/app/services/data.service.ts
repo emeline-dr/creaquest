@@ -87,4 +87,10 @@ export class DataService {
     this.apiRoute = `tasks/validation/drawing/${userId}/${taskId}`;
     return this.http.post<any>(this.apiUrl + this.apiRoute, {});
   }
+
+  /* Récupération Music */
+  getMusic(): Observable<any> {
+    this.apiRoute = 'music';
+    return this.http.get<any>(this.apiUrl + this.apiRoute);
+  }
 }
