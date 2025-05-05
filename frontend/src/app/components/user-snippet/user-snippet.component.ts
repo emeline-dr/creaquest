@@ -7,15 +7,13 @@ import { DataService } from '../../services/data.service';
 import { AuthService } from '../../services/auth/auth.service';
 
 import { NoPageComponent } from '../../pages/no-page/no-page.component';
-import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-user-snippet',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
-    LoadingComponent
+    RouterModule
   ],
   templateUrl: './user-snippet.component.html',
   styleUrl: './user-snippet.component.css'

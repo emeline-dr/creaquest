@@ -8,6 +8,8 @@ import { IndexComponent } from './pages/index/index.component';
 import { ForumComponent } from './pages/forum/forum.component';
 import { NoPageComponent } from './pages/no-page/no-page.component';
 import { MemberlistComponent } from './pages/memberlist/memberlist.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
     {
@@ -30,6 +32,16 @@ export const routes: Routes = [
     {
         path: 'index',
         component: IndexComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'administration',
+        component: AdminComponent,
         canActivate: [AuthGuard]
     },
     {

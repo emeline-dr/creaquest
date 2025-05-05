@@ -1,10 +1,4 @@
-@if(!pageCo && isLoading) {
-<div class="fixed absolute top-5 end-5 text-orange">
-    <app-loading></app-loading>
-</div>
-}
-
-@if(!pageCo && !isLoading) {
+@if(!pageCo) {
 @if(isBackgroundCustom) {
 <img src="assets/images/backgrounds/Background-Steampunk.jpg" alt=""
     class="fixed absolute top-0 w-full h-full z-[-2] object-cover blur-xs opacity-50">
@@ -26,12 +20,12 @@
 
     <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 rounded"
         role="menu" aria-labelledby="hs-dropdown-unstyled">
-        <a tabindex="0"
+        <a tabindex="0" routerLink="/profile"
             class="block m-[15px] py-[15px] bg-blue text-white-base text-2xl text-center rounded border-2 border-white-base transition duration-450 hover:bg-white-base hover:text-blue">
             Modifier le profil
         </a>
         @if(userProfile.u_role === "admin") {
-        <a tabindex="0"
+        <a tabindex="0" routerLink="/administration"
             class="block m-[15px] py-[15px] bg-blue text-white-base text-2xl text-center rounded border-2 border-white-base transition duration-450 hover:bg-white-base hover:text-blue">
             Panneau d'administration
         </a>
