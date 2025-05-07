@@ -27,6 +27,12 @@ export class DataService {
     return this.http.post<any>(this.apiUrl + this.apiRoute, register)
   }
 
+  /* Tous les Users */
+  getAllUsers(): Observable<any> {
+    this.apiRoute = 'users';
+    return this.http.get<any>(this.apiUrl + this.apiRoute);
+  }
+
   /* Infos User */
   getUser(): Observable<any> {
     this.apiRoute = 'users/';

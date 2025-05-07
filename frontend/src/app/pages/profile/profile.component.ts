@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-
+  constructor(
+    private titleService: Title
+  ) {
+    this.titleService.setTitle("Créaquest - Modifier mon profil");
+  }
 }

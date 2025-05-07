@@ -1,1 +1,22 @@
-<p>forum works!</p>
+<div class="relative top-[160px] md:top-[125px] mx-20 pb-[45px]">
+    @for(categorie of allCategories; track categorie) {
+    <div class="w-full">
+        <a routerLink="/forum/categorie/{{categorie.c_id}}">
+            {{categorie.c_title}}
+        </a>
+        Sujet :
+        @for(subject of allSubjects; track subject) {
+        @if(categorie.c_id === subject.s_categorie_id) {
+        {{subject.s_title}}
+
+        Dernier sujet :
+        @for(post of allPosts; track post) {
+        @if(subject.s_id === post.p_subject_id) {
+        {{post.p_date}}
+        }
+        }
+        }
+        }
+    </div>
+    }
+</div>

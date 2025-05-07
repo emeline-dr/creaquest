@@ -1,1 +1,65 @@
-<p>memberlist works!</p>
+<div class="relative top-[160px] md:top-[125px] mx-20 pb-[45px]">
+    <div class="flex flex-col">
+        <div class="-m-1.5 overflow-x-auto">
+            <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                    <table class="min-w-full border-separate border-spacing-y-1">
+                        <thead>
+                            <tr class="font-revalia text-lg">
+                                <th scope="col" class="px-6 py-3 text-start text-white-base uppercase">
+                                    Avatar
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-start text-white-base uppercase">
+                                    Pseudo
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-white-base uppercase">
+                                    Niveau
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-white-base uppercase">
+                                    Expérience
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-end text-white-base uppercase">
+                                    Inscrit depuis le :
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(isLoading) {
+                            <tr>
+                                <td colspan="5">
+                                    <div class="text-orange w-full flex justify-center">
+                                        <app-loading></app-loading>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+
+                            @for(user of allUsers; track user) {
+                            <tr class="odd:bg-blue even:bg-orange text-white-base">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    <img src="assets/images/{{ user.u_avatar }}" alt="" class="size-25 rounded-lg">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                    {{user.u_username}}
+                                </td>
+                                <td class="px-6 py-4 text-center whitespace-nowrap text-sm font-revalia">
+                                    {{user.u_lvl}}
+                                </td>
+                                <td class="px-6 py-4 text-center whitespace-nowrap text-sm">
+                                    <span class="font-revalia">
+                                        {{user.u_exp}}
+                                    </span> / 100
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-end text-sm">
+                                    {{user.u_registered_at}}
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

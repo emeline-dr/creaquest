@@ -3,13 +3,25 @@
 namespace App\Controllers;
 
 use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
 use App\Models\User;
-use App\Models\Model;
 
 class UserController extends Controller
 {
+    /* Récupération de tous les utilisateurs */
+    public function getAllUsers()
+    {
+        $result = (new User($this->getDB()))->getUsers();
+
+        if ($result) {
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        } else {
+            http_response_code(404);
+            echo json_encode(["error" => "Utilisateurs non trouvés"]);
+        }
+    }
+
     /* Traite les données pour récupérer les informations de l'utilisateur connecté */
     public function getUser(int $id)
     {

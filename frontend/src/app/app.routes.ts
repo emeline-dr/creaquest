@@ -10,6 +10,8 @@ import { NoPageComponent } from './pages/no-page/no-page.component';
 import { MemberlistComponent } from './pages/memberlist/memberlist.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { SingleCategorieComponent } from './pages/single-categorie/single-categorie.component';
+import { SingleSubjectComponent } from './pages/single-subject/single-subject.component';
 
 export const routes: Routes = [
     {
@@ -52,6 +54,16 @@ export const routes: Routes = [
     {
         path: 'forum',
         component: ForumComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'forum/categorie/:id',
+        component: SingleCategorieComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'forum/subject/:id',
+        component: SingleSubjectComponent,
         canActivate: [AuthGuard]
     },
     {

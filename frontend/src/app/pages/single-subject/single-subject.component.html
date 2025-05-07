@@ -1,0 +1,6 @@
+<div class="relative top-[160px] md:top-[125px] mx-20 pb-[45px]">
+    <h1>{{currentSubject.s_title}}</h1>
+    @for(post of postsInSubject; track post) {
+    <p [innerHTML]="post.p_content"></p>
+    }
+</div>
