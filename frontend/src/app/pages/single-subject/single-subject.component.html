@@ -1,6 +1,14 @@
-<div class="relative top-[160px] md:top-[125px] mx-20 pb-[45px]">
-    <h1>{{currentSubject.s_title}}</h1>
+<div class="relative flex flex-wrap justify-center top-[160px] md:top-[125px] mx-20 pb-[45px]">
+    <h1 class="font-revalia text-white-base text-[36px] mb-[32px]">{{currentSubject.s_title}}</h1>
     @for(post of postsInSubject; track post) {
-    <p [innerHTML]="post.p_content"></p>
+    <div class="w-full flex flex-wrap justify-between mb-[24px]">
+        <div class="w-1/4">a</div>
+        <p [innerHTML]="post.p_content" class="w-3/4"></p>
+    </div>
     }
+
+    <div class="w-1/2">
+        <quill-editor [placeholder]="'Votre message...'" class="w-full h-[200px] my-[16px]"></quill-editor>
+        <button class="btn btn-orange w-full mt-[16px]">Envoyer le message</button>
+    </div>
 </div>

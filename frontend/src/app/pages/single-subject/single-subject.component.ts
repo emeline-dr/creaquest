@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import { QuillModule } from 'ngx-quill';
 
 import { ForumService } from '../../services/forum/forum.service';
 
 @Component({
   selector: 'app-single-subject',
   standalone: true,
-  imports: [],
+  imports: [
+    QuillModule
+  ],
   templateUrl: './single-subject.component.html',
   styleUrl: './single-subject.component.css'
 })
@@ -17,6 +20,8 @@ export class SingleSubjectComponent implements OnInit {
 
   subjectResponse: any;
   postsResponse: any;
+
+  newPostContent: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,

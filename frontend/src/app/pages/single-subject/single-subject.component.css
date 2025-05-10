@@ -1,0 +1,88 @@
+::ng-deep .ql-toolbar.ql-snow {
+    border: 0px;
+    background: var(--color-orange);
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+::ng-deep .ql-snow .ql-stroke {
+    stroke: var(--color-white-base)
+}
+
+::ng-deep .ql-snow .ql-fill,
+::ng-deep .ql-snow .ql-stroke.ql-fill {
+    fill: var(--color-white-base);
+}
+
+::ng-deep .ql-snow.ql-toolbar button:hover .ql-stroke,
+::ng-deep .ql-snow .ql-toolbar button:hover .ql-stroke,
+::ng-deep .ql-snow.ql-toolbar button:focus .ql-stroke,
+::ng-deep .ql-snow .ql-toolbar button:focus .ql-stroke,
+::ng-deep .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+::ng-deep .ql-snow .ql-toolbar button.ql-active .ql-stroke,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+::ng-deep .ql-snow.ql-toolbar button:hover .ql-stroke-miter,
+::ng-deep .ql-snow .ql-toolbar button:hover .ql-stroke-miter,
+::ng-deep .ql-snow.ql-toolbar button:focus .ql-stroke-miter,
+::ng-deep .ql-snow .ql-toolbar button:focus .ql-stroke-miter,
+::ng-deep .ql-snow.ql-toolbar button.ql-active .ql-stroke-miter,
+::ng-deep .ql-snow .ql-toolbar button.ql-active .ql-stroke-miter,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke-miter,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke-miter,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke-miter,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke-miter {
+    stroke: var(--color-blue);
+}
+
+::ng-deep .ql-snow.ql-toolbar button:hover .ql-fill,
+::ng-deep .ql-snow .ql-toolbar button:hover .ql-fill,
+::ng-deep .ql-snow.ql-toolbar button:focus .ql-fill,
+::ng-deep .ql-snow .ql-toolbar button:focus .ql-fill,
+::ng-deep .ql-snow.ql-toolbar button.ql-active .ql-fill,
+::ng-deep .ql-snow .ql-toolbar button.ql-active .ql-fill,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-label:hover .ql-fill,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-fill,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-item:hover .ql-fill,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-item:hover .ql-fill,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-fill,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-fill,
+::ng-deep .ql-snow.ql-toolbar button:hover .ql-stroke.ql-fill,
+::ng-deep .ql-snow .ql-toolbar button:hover .ql-stroke.ql-fill,
+::ng-deep .ql-snow.ql-toolbar button:focus .ql-stroke.ql-fill,
+::ng-deep .ql-snow .ql-toolbar button:focus .ql-stroke.ql-fill,
+::ng-deep .ql-snow.ql-toolbar button.ql-active .ql-stroke.ql-fill,
+::ng-deep .ql-snow .ql-toolbar button.ql-active .ql-stroke.ql-fill,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke.ql-fill,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke.ql-fill,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke.ql-fill,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke.ql-fill,
+::ng-deep .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill,
+::ng-deep .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke.ql-fill {
+    fill: var(--color-blue)
+}
+
+::ng-deep .ql-container.ql-snow {
+    border: 2px solid var(--color-white-base);
+    border-radius: 3px;
+    background: var(--color-blue);
+    color: var(--color-white-base)
+}
+
+::ng-deep .ql-toolbar.ql-snow+.ql-container.ql-snow {
+    border-top: 2px solid var(--color-white-base);
+}
