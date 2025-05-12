@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
+import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ForumService } from '../../services/forum/forum.service';
 
@@ -8,7 +10,9 @@ import { ForumService } from '../../services/forum/forum.service';
   selector: 'app-single-subject',
   standalone: true,
   imports: [
-    QuillModule
+    QuillModule,
+    DatePipe,
+    FormsModule
   ],
   templateUrl: './single-subject.component.html',
   styleUrl: './single-subject.component.css'
@@ -49,10 +53,32 @@ export class SingleSubjectComponent implements OnInit {
           this.postsInSubject = posts.sort((a: any, b: any) => {
             return new Date(a.p_date).getTime() - new Date(b.p_date).getTime();
           });
+
+          console.log(this.postsInSubject);
         },
         error: (err) =>
           console.error('Erreur lors de la récupération des posts', err)
       })
+    });
+  }
+
+  sendPost() {
+    if (this.newPostContent.trim() === '') {
+      console.error('Le contenu du message est vide');
+      return;
+    }
+
+    this.forumService.addPost({
+      subjectId: this.id_subject,
+      content: this.newPostContent
+    }).subscribe({
+      next: (response) => {
+        console.log('Post ajouté :', response);
+        this.newPostContent = '';
+
+        window.location.reload();
+      },
+      error: (err) => console.error('Erreur lors de l\'ajout du post', err)
     });
   }
 }

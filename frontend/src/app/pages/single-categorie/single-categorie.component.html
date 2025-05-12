@@ -1,13 +1,26 @@
 <div class="relative top-[160px] md:top-[125px] mx-20 pb-[45px]">
-    <h1>{{currentCategory.c_title}}</h1>
-    @for(subject of subjectInThisCategory; track subject) {
-    <a routerLink="/forum/subject/{{subject.s_id}}">
-        {{subject.s_title}}
-    </a>
-    @if(lastPost[subject.s_id]) {
-    - Dernier message le {{ lastPost[subject.s_id].p_date | date:'dd/MM/yyyy, HH:mm' }}
+    @if(isCatLoading && isSubPostLoading) {
+    <div class="text-orange w-full flex justify-center">
+        <app-loading></app-loading>
+    </div>
     } @else {
-    Pas de message.
-    }<br>
+    <div class="w-full bg-blue rounded px-4 py-2 mb-[24px]">
+        <h1 class="text-2xl font-revalia text-white-base">{{currentCategory.c_title}}</h1>
+    </div>
+
+    @for(subject of subjectInThisCategory; track subject) {
+    <div
+        class="w-9/10 flex flex-wrap justify-between bg-orange text-white-base rounded-sm mx-auto my-1 px-2 py-1 last:mb-[40px] font-revalia">
+        <a routerLink="/forum/subject/{{subject.s_id}}">
+            {{subject.s_title}}
+        </a>
+        @if(lastPost[subject.s_id]) {
+        <span class="font-helvetica">
+            Dernier message :
+            {{ lastPost[subject.s_id].p_date | date:'dd/MM/yyyy, HH:mm' }}
+        </span>
+        }
+    </div>
+    }
     }
 </div>

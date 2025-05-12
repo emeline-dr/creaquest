@@ -1,20 +1,36 @@
 <div class="relative top-[160px] md:top-[125px] mx-20 pb-[45px]">
+    @if(isCatLoading &&
+    isSubLoading &&
+    isPostLoading) {
+    <div class="text-orange w-full flex justify-center">
+        <app-loading></app-loading>
+    </div>
+    }
+
     @for(categorie of allCategories; track categorie) {
     <div class="w-full">
-        <a routerLink="/forum/categorie/{{categorie.c_id}}">
-            {{categorie.c_title}}
-        </a>
-        Sujet :
-        @for(subject of allSubjects; track subject) {
-        @if(categorie.c_id === subject.s_categorie_id) {
-        {{subject.s_title}}
+        <div class="w-full bg-blue rounded px-4 py-2 mb-[24px]">
+            <a routerLink="/forum/categorie/{{categorie.c_id}}" class="text-2xl font-revalia text-white-base">
+                {{categorie.c_title}}
+            </a>
 
-        Dernier sujet :
-        @for(post of allPosts; track post) {
-        @if(subject.s_id === post.p_subject_id) {
-        {{post.p_date}}
-        }
-        }
+            <i class="text-xs">(les 5 derniers sujets actifs sont affichés)</i>
+        </div>
+        @for(subject of linkedSubjects; track subject) {
+        @if(categorie.c_id === subject.s_categorie_id) {
+        <div
+            class="w-9/10 flex flex-wrap justify-between bg-orange text-white-base rounded-sm mx-auto my-1 px-2 py-1 last:mb-[40px] font-revalia">
+            <a routerLink="/forum/subject/{{subject.s_id}}">
+                {{subject.s_title}}
+            </a>
+
+            <span class="font-helvetica">
+                Dernier message :
+                @if(subject.lastPost) {
+                {{subject.lastPost.p_date | date:'dd/MM/yyyy, HH:mm'}}
+                }
+            </span>
+        </div>
         }
         }
     </div>

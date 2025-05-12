@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ForumService {
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   /* Récupérer les catégories */
@@ -31,9 +33,18 @@ export class ForumService {
     return this.http.get<any>(this.apiUrl + this.apiRoute);
   }
 
-  /* Récupérer les posts */
+  /* Récupérer le post par id */
   getPostsBySubjectId(subjectId: number): Observable<any> {
     this.apiRoute = `subjects/${subjectId}/posts`;
     return this.http.get<any>(this.apiUrl + this.apiRoute);
+  }
+
+  /* Nouveau Message dans un sujet */
+  addPost(postData: { subjectId: number, content: string }): Observable<any> {
+    const authorId = this.authService.getUserId();
+    const data = { ...postData, authorId };
+
+    this.apiRoute = 'posts';
+    return this.http.post<any>(this.apiUrl + this.apiRoute, data);
   }
 }

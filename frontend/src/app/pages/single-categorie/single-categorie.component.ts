@@ -4,12 +4,15 @@ import { DatePipe } from '@angular/common';
 
 import { ForumService } from '../../services/forum/forum.service';
 
+import { LoadingComponent } from '../../components/loading/loading.component';
+
 @Component({
   selector: 'app-single-categorie',
   standalone: true,
   imports: [
     RouterModule,
-    DatePipe
+    DatePipe,
+    LoadingComponent
   ],
   templateUrl: './single-categorie.component.html',
   styleUrl: './single-categorie.component.css'
@@ -21,6 +24,9 @@ export class SingleCategorieComponent implements OnInit {
   lastPost: any;
   categorieResponse: any;
   subjectResponse: any;
+
+  isCatLoading = true;
+  isSubPostLoading = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,6 +44,8 @@ export class SingleCategorieComponent implements OnInit {
           this.currentCategory = this.categorieResponse.find(
             (element: any) => element.c_id === this.id_categorie
           );
+
+          this.isCatLoading = false;
         },
         error: (err) =>
           console.error('Erreur lors de la récupération des catégories', err)
@@ -51,7 +59,6 @@ export class SingleCategorieComponent implements OnInit {
             (element: any) => element.s_categorie_id === this.id_categorie
           );
 
-          // Initialiser la structure pour stocker les derniers posts par sujet
           this.lastPost = {};
 
           // Pour chaque sujet, récupérer les posts et stocker le dernier
@@ -67,6 +74,7 @@ export class SingleCategorieComponent implements OnInit {
                   // Stocker le dernier post pour ce sujet
                   this.lastPost[subject.s_id] = last;
                 }
+                this.isSubPostLoading = false;
               },
               error: (err) =>
                 console.error(`Erreur lors de la récupération des posts pour le sujet ${subject.s_id}`, err)

@@ -62,4 +62,30 @@ class ForumController extends Controller
             echo json_encode(["error" => "Posts de ce sujet non trouvés"]);
         }
     }
+
+    public function addPost()
+    {
+        $inputData = json_decode(file_get_contents('php://input'), true);
+
+        if (!$inputData) {
+            http_response_code(400);
+            echo json_encode(["error" => "Requête invalide."]);
+            return;
+        }
+
+        $subjectId = isset($inputData['subjectId']) ? (int) $inputData['subjectId'] : null;
+        $authorId = isset($inputData['authorId']) ? (int) $inputData['authorId'] : null;
+        $content = isset($inputData['content']) ? $inputData['content'] : '';
+
+        $forumModel = new Forum($this->getDB());
+        $result = $forumModel->addPostsToSubject($subjectId, $authorId, $content);
+
+        if ($result) {
+            http_response_code(201);
+            echo json_encode(["message" => "Message ajouté avec succès."]);
+        } else {
+            http_response_code(500);
+            echo json_encode(["error" => "Erreur serveur lors de l'ajout du message."]);
+        }
+    }
 }

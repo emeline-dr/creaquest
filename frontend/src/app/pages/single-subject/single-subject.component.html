@@ -1,14 +1,28 @@
 <div class="relative flex flex-wrap justify-center top-[160px] md:top-[125px] mx-20 pb-[45px]">
-    <h1 class="font-revalia text-white-base text-[36px] mb-[32px]">{{currentSubject.s_title}}</h1>
+    <h1
+        class="block w-full text-center border-b-1 border-b-white-base font-revalia text-white-base text-[36px] mb-[32px]">
+        {{currentSubject.s_title}}</h1>
     @for(post of postsInSubject; track post) {
     <div class="w-full flex flex-wrap justify-between mb-[24px]">
-        <div class="w-1/4">a</div>
-        <p [innerHTML]="post.p_content" class="w-3/4"></p>
+        <div class="w-1/4">
+            <div class="w-4/5 text-center font-revalia bg-orange text-white-base text-lg mx-auto rounded-sm">
+                {{post.author_username}}
+            </div>
+            <img src="assets/images/{{ post.author_avatar }}" alt="Avatar de {{ post.author_username }}"
+                class="rounded-full outline outline-3 outline-orange mt-[32px] size-[160px] mx-auto">
+        </div>
+        <div class="w-3/4">
+            <div class="w-full bg-orange text-white-base rounded px-1 mb-1">
+                {{post.p_date | date:'dd/MM/yyyy, HH:mm'}}
+            </div>
+            <p [innerHTML]="post.p_content" class="w-full bg-white-base text-md p-2 rounded"></p>
+        </div>
     </div>
     }
 
     <div class="w-1/2">
-        <quill-editor [placeholder]="'Votre message...'" class="w-full h-[200px] my-[16px]"></quill-editor>
-        <button class="btn btn-orange w-full mt-[16px]">Envoyer le message</button>
+        <quill-editor [(ngModel)]="newPostContent" [placeholder]="'Votre message...'"
+            class="w-full h-[200px] my-[16px]"></quill-editor>
+        <button (click)="sendPost()" class="btn btn-orange w-full mt-[16px]">Envoyer le message</button>
     </div>
 </div>
