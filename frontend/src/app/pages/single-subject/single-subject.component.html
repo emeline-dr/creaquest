@@ -1,4 +1,8 @@
 <div class="relative flex flex-wrap justify-center top-[160px] md:top-[125px] mx-20 pb-[45px]">
+    @if(isPostLoading && isSubLoading){
+    <div class="text-orange w-full flex justify-center">
+        <app-loading></app-loading>
+    </div>} @else {
     <h1
         class="block w-full text-center border-b-1 border-b-white-base font-revalia text-white-base text-[36px] mb-[32px]">
         {{currentSubject.s_title}}</h1>
@@ -25,4 +29,5 @@
             class="w-full h-[200px] my-[16px]"></quill-editor>
         <button (click)="sendPost()" class="btn btn-orange w-full mt-[16px]">Envoyer le message</button>
     </div>
+    }
 </div>

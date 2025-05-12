@@ -17,7 +17,8 @@
         @if(lastPost[subject.s_id]) {
         <span class="font-helvetica">
             Dernier message :
-            {{ lastPost[subject.s_id].p_date | date:'dd/MM/yyyy, HH:mm' }}
+            {{ lastPost[subject.s_id].p_date | date:'dd/MM/yyyy, HH:mm' }} par
+            {{lastPost[subject.s_id].author_username}}
         </span>
         }
     </div>

@@ -23,6 +23,8 @@ define('DB_HOST', 'mysql-emelinedr.alwaysdata.net');
 define('DB_USER', 'emelinedr');
 define('DB_PASSWORD', 'Eme410121');
 
+date_default_timezone_set('Europe/Paris');
+
 /* Instanciation du retour et définition des routes */
 $router = new Router($_GET['api']);
 

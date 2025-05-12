@@ -6,13 +6,16 @@ import { FormsModule } from '@angular/forms';
 
 import { ForumService } from '../../services/forum/forum.service';
 
+import { LoadingComponent } from '../../components/loading/loading.component';
+
 @Component({
   selector: 'app-single-subject',
   standalone: true,
   imports: [
     QuillModule,
     DatePipe,
-    FormsModule
+    FormsModule,
+    LoadingComponent
   ],
   templateUrl: './single-subject.component.html',
   styleUrl: './single-subject.component.css'
@@ -26,6 +29,9 @@ export class SingleSubjectComponent implements OnInit {
   postsResponse: any;
 
   newPostContent: string = '';
+
+  isSubLoading = true;
+  isPostLoading = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -43,6 +49,7 @@ export class SingleSubjectComponent implements OnInit {
           this.currentSubject = this.subjectResponse.find(
             (element: any) => element.s_id === this.id_subject
           );
+          this.isSubLoading = false;
         },
         error: (err) =>
           console.error('Erreur lors de la récupération du sujet', err)
@@ -54,7 +61,7 @@ export class SingleSubjectComponent implements OnInit {
             return new Date(a.p_date).getTime() - new Date(b.p_date).getTime();
           });
 
-          console.log(this.postsInSubject);
+          this.isPostLoading = false;
         },
         error: (err) =>
           console.error('Erreur lors de la récupération des posts', err)
