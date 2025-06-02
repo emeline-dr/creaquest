@@ -7,7 +7,7 @@ import { AuthService } from './auth/auth.service';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://emelinedr.alwaysdata.net/backend/api=';
+  private apiUrl = 'http://emelinedr.alwaysdata.net/backend/api/';
   private apiRoute = '';
 
   constructor(
