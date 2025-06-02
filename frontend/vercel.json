@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "dist/creaquest-frontend/browser/index.html",
+            "src": "dist/creaquest-frontend/**/*",
             "use": "@vercel/static"
         }
     ],
