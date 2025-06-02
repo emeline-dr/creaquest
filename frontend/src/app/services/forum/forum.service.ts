@@ -7,7 +7,7 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class ForumService {
-  private apiUrl = 'http://emelinedr.alwaysdata.net/backend/api/forum/';
+  private apiUrl = 'http://localhost:8000/index.php?api=forum/';
   private apiRoute = '';
 
   constructor(
