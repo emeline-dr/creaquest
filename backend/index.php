@@ -19,7 +19,7 @@ $whoops->register();
 
 /* Définition des constantes */
 define('DB_NAME', 'emelinedr_creaquest');
-define('DB_HOST', 'mysql-emelinedr.alwaysdata.net');
+define('DB_HOST', 'emelinedr.alwaysdata.net/backend');
 define('DB_USER', 'emelinedr');
 define('DB_PASSWORD', 'Eme410121');
 
