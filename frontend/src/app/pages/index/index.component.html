@@ -47,15 +47,15 @@
                 </div>
                 } @else {
                 @for(writingTask of tasksWriting; track writingTask){
-                <div class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
+                <div class="flex flex-wrap justify-center md:justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
                     [ngClass]="{'last:mb-0': !viewCompletedTasks}">
                     {{ writingTask.w_name }}
                     <div class="flex flex-wrap items-center">
-                        <span class="h-fit text-2xl font-revalia me-3">+{{ writingTask.w_exp}} XP</span>
+                        <span class="h-fit text-lg md:text-2xl font-revalia me-3">+{{ writingTask.w_exp}} XP</span>
                         <button type="button" class="py-3 px-4 inline-flex items-center" aria-haspopup="dialog"
                             aria-expanded="false" [attr.aria-controls]="'hs-basic-modal-w' + writingTask.w_id"
                             [attr.data-hs-overlay]="'#hs-basic-modal-w' + writingTask.w_id">
-                            <i-lucide name="Circle" [size]="75"></i-lucide>
+                            <i-lucide name="Circle" class="size-[40px] md:size-[75px]"></i-lucide>
                         </button>
 
                         <div [id]="'hs-basic-modal-w' + writingTask.w_id"
@@ -112,8 +112,8 @@
                     class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue opacity-50 rounded text-base px-[20px] mb-[15px] last:mb-0">
                     {{ writingCompletedTask.w_name }}
                     <div class="flex flex-wrap items-center">
-                        <span class="h-fit text-2xl font-revalia me-3">+{{ writingCompletedTask.w_exp}} XP</span>
-                        <i-lucide name="CircleCheckBig" class="text-orange" [size]="75"></i-lucide>
+                        <span class="h-fit text-lg md:text-2xl font-revalia me-3">+{{ writingCompletedTask.w_exp}} XP</span>
+                        <i-lucide name="CircleCheckBig" class="text-orange" class="size-[40px] md:size-[75px]"></i-lucide>
                     </div>
                 </div>
                 }
@@ -128,15 +128,15 @@
                 </div>
                 } @else {
                 @for(readingTask of tasksReading; track readingTask){
-                <div class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
+                <div class="flex flex-wrap justify-center md:justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
                     [ngClass]="{'last:mb-0': !viewCompletedTasks}">
                     {{ readingTask.r_name }}
                     <div class="flex flex-wrap items-center">
-                        <span class="h-fit text-2xl font-revalia me-3">+{{ readingTask.r_exp}} XP</span>
+                        <span class="h-fit text-lg md:text-2xl font-revalia me-3">+{{ readingTask.r_exp}} XP</span>
                         <button type="button" class="py-3 px-4 inline-flex items-center" aria-haspopup="dialog"
                             aria-expanded="false" [attr.aria-controls]="'hs-basic-modal-r' + readingTask.r_id"
                             [attr.data-hs-overlay]="'#hs-basic-modal-r' + readingTask.r_id">
-                            <i-lucide name="Circle" [size]="75"></i-lucide>
+                            <i-lucide name="Circle" class="size-[40px] md:size-[75px]"></i-lucide>
                         </button>
 
                         <div [id]="'hs-basic-modal-r' + readingTask.r_id"
@@ -193,8 +193,8 @@
                     class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue opacity-50 rounded text-base px-[20px] mb-[15px] last:mb-0">
                     {{ readingCompletedTask.r_name }}
                     <div class="flex flex-wrap items-center">
-                        <span class="h-fit text-2xl font-revalia me-3">+{{ readingCompletedTask.r_exp}} XP</span>
-                        <i-lucide name="CircleCheckBig" class="text-orange" [size]="75"></i-lucide>
+                        <span class="h-fit text-lg md:text-2xl font-revalia me-3">+{{ readingCompletedTask.r_exp}} XP</span>
+                        <i-lucide name="CircleCheckBig" class="text-orange" class="size-[40px] md:size-[75px]"></i-lucide>
                     </div>
                 </div>
                 }
@@ -209,15 +209,15 @@
                 </div>
                 } @else {
                 @for(drawingTask of tasksDrawing; track drawingTask){
-                <div class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
+                <div class="flex flex-wrap justify-center md:justify-between items-center w-full h-[130px] bg-blue rounded text-base px-[20px] mb-[15px]"
                     [ngClass]="{'last:mb-0': !viewCompletedTasks}">
                     {{ drawingTask.d_name }}
                     <div class="flex flex-wrap items-center">
-                        <span class="h-fit text-2xl font-revalia me-3">+{{ drawingTask.d_exp}} XP</span>
+                        <span class="h-fit text-lg md:text-2xl font-revalia me-3">+{{ drawingTask.d_exp}} XP</span>
                         <button type="button" class="py-3 px-4 inline-flex items-center" aria-haspopup="dialog"
                             aria-expanded="false" [attr.aria-controls]="'hs-basic-modal-d' + drawingTask.d_id"
                             [attr.data-hs-overlay]="'#hs-basic-modal-d' + drawingTask.d_id">
-                            <i-lucide name="Circle" [size]="75"></i-lucide>
+                            <i-lucide name="Circle" class="size-[40px] md:size-[75px]"></i-lucide>
                         </button>
 
                         <div [id]="'hs-basic-modal-d' + drawingTask.d_id"
@@ -274,8 +274,8 @@
                     class="flex flex-wrap justify-between items-center w-full h-[130px] bg-blue opacity-50 rounded text-base px-[20px] mb-[15px] last:mb-0">
                     {{ drawingCompletedTask.d_name }}
                     <div class="flex flex-wrap items-center">
-                        <span class="h-fit text-2xl font-revalia me-3">+{{ drawingCompletedTask.d_exp}} XP</span>
-                        <i-lucide name="CircleCheckBig" class="text-orange" [size]="75"></i-lucide>
+                        <span class="h-fit text-lg md:text-2xl font-revalia me-3">+{{ drawingCompletedTask.d_exp}} XP</span>
+                        <i-lucide name="CircleCheckBig" class="text-orange" class="size-[40px] md:size-[75px]"></i-lucide>
                     </div>
                 </div>
                 }
