@@ -26,9 +26,7 @@ define('DB_PASSWORD', 'Eme410121');
 date_default_timezone_set('Europe/Paris');
 
 /* Instanciation du retour et définition des routes */
-$requestUri = $_SERVER['REQUEST_URI'];  // Récupère l'URL complète
-$parts = explode('/api/', $requestUri);  // Extrait la partie de l'URL après "/api/"
-$router = new Router($parts[1] ?? '');  // Si la route après "/api/" existe, utilise-la
+$router = new Router($_GET['api']);
 
 /* Les Routes */
 /* Login */
