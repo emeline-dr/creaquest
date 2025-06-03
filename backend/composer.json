@@ -18,7 +18,7 @@
         "psr-4": {
             "Router\\": "src/routes/",
             "App\\": "src/",
-            "App\\Controllers\\": "src/Controllers/",
+            "App\\Controllers\\": "src/controllers/",
             "Database\\": "src/database/"
         }
     }
