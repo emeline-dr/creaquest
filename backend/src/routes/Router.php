@@ -10,7 +10,10 @@ class Router
     public function __construct()
     {
         // Récupérer l'URL de la requête sans la partie du domaine
-        $this->url = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $this->url = rtrim($uri, '/'); // supprime le slash de fin uniquement
+        $this->url = ltrim($this->url, '/'); // évite un slash au début
+
     }
 
     public function get(string $path, string $action)
