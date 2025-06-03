@@ -11,7 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 use Router\Router;
 use Dotenv\Dotenv;
 
-// Charger les variables d'environnement à partir du fichier .env
+/* Charger les variables d'environnement à partir du fichier .env */
+
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
