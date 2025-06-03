@@ -1,4 +1,3 @@
-# Utilise PHP avec FPM
 FROM php:8.2-fpm
 
 # Installe nginx
@@ -7,17 +6,17 @@ RUN apt-get update && apt-get install -y nginx
 # Crée les dossiers nécessaires
 RUN mkdir -p /app /run/php
 
-# Copie tous les fichiers dans le conteneur
+# Copie les fichiers de l'app
 COPY . /app
 
-# Copie la configuration nginx
+# Copie la config nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Déclare le dossier de travail
+# Dossier de travail
 WORKDIR /app
 
-# Expose le port attendu par Railway
+# Expose le port
 EXPOSE 8080
 
-# Démarre PHP-FPM et nginx
-CMD service php8.2-fpm start && nginx -g 'daemon off;'
+# Commande de démarrage : lance php-fpm en arrière-plan, puis nginx
+CMD php-fpm -D && nginx -g 'daemon off;'
