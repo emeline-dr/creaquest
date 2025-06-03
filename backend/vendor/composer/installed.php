@@ -3,7 +3,7 @@
         'name' => 'emeline/creaquest',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '21d30c5479feb9e88e56e5921f732d56e220b942',
+        'reference' => '7739d04a6b3d16821c7ff95e382726d21fdbf27f',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'emeline/creaquest' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '21d30c5479feb9e88e56e5921f732d56e220b942',
+            'reference' => '7739d04a6b3d16821c7ff95e382726d21fdbf27f',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
