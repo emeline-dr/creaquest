@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     libpq-dev \
     libmariadb-dev-compat \
-    libpdo-mysql-dev \
+    libmysqlclient-dev \
     libzip-dev \
     libjpeg-dev \
     libpng-dev \
