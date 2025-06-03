@@ -19,7 +19,7 @@
             "Router\\": "src/routes/",
             "App\\": "src/",
             "App\\Controllers\\": "src/controllers/",
-            "Database\\": "src/database/"
+            "Database\\": "src/Database/"
         }
     }
 }
