@@ -11,9 +11,9 @@ class Router
     {
         // Récupérer l'URL de la requête sans la partie du domaine
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $this->url = rtrim($uri, '/'); // supprime le slash de fin uniquement
-        $this->url = ltrim($this->url, '/'); // évite un slash au début
-
+        $uri = ltrim($uri, '/');
+        $uri = preg_replace('#^index\.php/?#', '', $uri); // enlève index.php/
+        $this->url = rtrim($uri, '/');
     }
 
     public function get(string $path, string $action)
