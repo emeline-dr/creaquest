@@ -8,9 +8,9 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpq-dev \
-    libmariadb-dev-compat \   # Ajout de libmariadb-dev pour la compatibilité avec MySQL
-    libpdo-mysql-dev \         # Installe les bibliothèques nécessaires pour PDO MySQL
-    && docker-php-ext-install pdo pdo_mysql \  # Installe les extensions PHP pour PDO et MySQL
+    libmariadb-dev-compat \
+    libpdo-mysql-dev && \  
+    docker-php-ext-install pdo pdo_mysql \ 
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
