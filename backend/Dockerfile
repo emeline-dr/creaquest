@@ -1,8 +1,17 @@
 FROM php:8.2-fpm
 
-# Installe les dépendances nécessaires, y compris les bibliothèques pour PDO et pdo_mysql
-RUN apt-get update && apt-get install -y nginx unzip git curl libpq-dev libmysqlclient-dev \
-    && docker-php-ext-install pdo pdo_mysql
+# Met à jour le système et installe les dépendances nécessaires
+RUN apt-get update && apt-get install -y \
+    nginx \
+    unzip \
+    git \
+    curl \
+    libpq-dev \
+    libmysqlclient-dev \
+    && apt-get clean
+
+# Installer les extensions PHP : pdo et pdo_mysql
+RUN docker-php-ext-install pdo pdo_mysql
 
 # Installe Composer
 RUN curl -sS https://getcomposer.org/installer | php \
@@ -19,7 +28,7 @@ WORKDIR /app
 
 # Installer les dépendances PHP (whoops, jwt, dotenv)
 RUN composer install \
-    && composer dump-autoload
+ && composer dump-autoload
 
 # Copie la configuration nginx
 COPY nginx.conf /etc/nginx/nginx.conf
