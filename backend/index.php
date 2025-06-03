@@ -9,14 +9,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 use Router\Router;
+
+require "vendor/autoload.php";
+
 use Dotenv\Dotenv;
 
 /* Charger les variables d'environnement à partir du fichier .env */
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-
-require "vendor/autoload.php";
 
 /* Affichage des erreurs avec Whoops */
 $whoops = new \Whoops\Run;
