@@ -17,5 +17,6 @@ return array(
     'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Database\\' => array($baseDir . '/src/database'),
+    'App\\Controllers\\' => array($baseDir . '/src/Controllers'),
     'App\\' => array($baseDir . '/src'),
 );

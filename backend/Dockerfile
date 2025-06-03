@@ -1,7 +1,9 @@
 FROM php:8.2-fpm
 
-# Installe nginx
-RUN apt-get update && apt-get install -y nginx
+# Installe nginx, composer, dépendances utiles
+RUN apt-get update && apt-get install -y nginx unzip git curl \
+    && curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer
 
 # Crée les dossiers nécessaires
 RUN mkdir -p /app /run/php
@@ -9,14 +11,18 @@ RUN mkdir -p /app /run/php
 # Copie les fichiers de l'app
 COPY . /app
 
-# Copie la config nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Dossier de travail
+# Définir le dossier de travail
 WORKDIR /app
+
+# Installer les dépendances PHP (whoops, jwt, dotenv)
+RUN composer install \
+ && composer dump-autoload
+
+# Copie la configuration nginx
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose le port
 EXPOSE 8080
 
-# Commande de démarrage : lance php-fpm en arrière-plan, puis nginx
+# Démarrer PHP-FPM + nginx
 CMD php-fpm -D && nginx -g 'daemon off;'
