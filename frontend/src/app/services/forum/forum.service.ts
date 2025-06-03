@@ -7,7 +7,7 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class ForumService {
-  private apiUrl = 'http://localhost:8000/index.php?api=forum/';
+  private apiUrl = 'https://creaquest-back.up.railway.app/forum/';
   private apiRoute = '';
 
   constructor(

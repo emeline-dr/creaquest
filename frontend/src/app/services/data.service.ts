@@ -7,7 +7,7 @@ import { AuthService } from './auth/auth.service';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://localhost:8000/index.php?api=';
+  private apiUrl = 'https://creaquest-back.up.railway.app/';
   private apiRoute = '';
 
   constructor(
