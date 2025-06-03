@@ -9,8 +9,8 @@ class Router
 
     public function __construct()
     {
-        // Récupérer l'URL de la requête sans la partie du domaine
-        $this->url = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        // Récupérer l'URL de la requête et la nettoyer
+        $this->url = '/' . trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     }
 
     public function get(string $path, string $action)
