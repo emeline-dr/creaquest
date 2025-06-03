@@ -34,7 +34,7 @@ define('DB_PORT', getenv('MYSQL_PORT'));
 date_default_timezone_set('Europe/Paris');
 
 /* Instanciation du retour et définition des routes */
-$router = new Router($_GET['api']);
+$router = new Router();
 
 /* Les Routes */
 /* Login */
