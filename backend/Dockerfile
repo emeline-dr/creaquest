@@ -1,4 +1,3 @@
-# Utilise l'image PHP 8.2 avec FPM
 FROM php:8.2-fpm
 
 # Met à jour les paquets et installe les dépendances nécessaires
@@ -8,37 +7,31 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpq-dev \
-    libmariadb-dev-compat \
-    libmysqlclient-dev \
-    libzip-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libfreetype6-dev \
-    && docker-php-ext-configure zip \
-    && docker-php-ext-install pdo pdo_mysql zip \
+    libmariadb-dev-compat \         # Utilisation de MariaDB au lieu de MySQL
+    && docker-php-ext-install pdo pdo_mysql \
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
 # Crée les dossiers nécessaires
 RUN mkdir -p /app /run/php
 
-# Copie les fichiers de l'application dans le conteneur
+# Copie les fichiers de l'application
 COPY . /app
 
 # Définit le dossier de travail
 WORKDIR /app
 
-# Installe les dépendances PHP avec Composer
+# Installe les dépendances PHP
 RUN composer install && composer dump-autoload
 
-# Copie la configuration Nginx dans le conteneur
+# Copie la configuration nginx (assure-toi que nginx.conf est bien corrigé)
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Donne les bons droits (important pour PHP-FPM)
 RUN chown -R www-data:www-data /app
 
-# Expose le port 8080 pour Nginx
+# Expose le port
 EXPOSE 8080
 
-# Démarre PHP-FPM et Nginx (en mode non-daemon)
+# Démarre PHP-FPM + nginx
 CMD php-fpm -D && nginx -g 'daemon off;'
