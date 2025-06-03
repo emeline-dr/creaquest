@@ -18,7 +18,7 @@ RUN mkdir -p /app /run/php
 COPY . /app
 
 # Définit le dossier de travail
-WORKDIR /app
+WORKDIR /app/backend
 
 # Installe les dépendances PHP (whoops, jwt, dotenv)
 RUN composer install && composer dump-autoload
