@@ -7,10 +7,11 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpq-dev \
-    libmariadb-dev-compat \         # Utilisation de MariaDB au lieu de MySQL
-    && docker-php-ext-install pdo pdo_mysql \
-    && curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+    libmariadb-dev-compat \  # Utilisation de MariaDB au lieu de MySQL
+    && apt-get clean
+
+# Installe les extensions PHP nécessaires
+RUN docker-php-ext-install pdo pdo_mysql
 
 # Crée les dossiers nécessaires
 RUN mkdir -p /app /run/php
@@ -21,8 +22,11 @@ COPY . /app
 # Définit le dossier de travail
 WORKDIR /app
 
-# Installe les dépendances PHP
-RUN composer install && composer dump-autoload
+# Installe les dépendances PHP avec Composer
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer install \
+    && composer dump-autoload
 
 # Copie la configuration nginx (assure-toi que nginx.conf est bien corrigé)
 COPY nginx.conf /etc/nginx/nginx.conf
