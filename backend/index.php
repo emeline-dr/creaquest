@@ -38,14 +38,14 @@ $router = new Router();
 
 /* Les Routes */
 /* Login */
-$router->post('/login', 'App\controllers\UserController@loginPost');
+$router->post('/login', 'App\Controllers\UserController@loginPost');
 
 /* Register */
-$router->post('/register', 'App\controllers\UserController@loginRegister');
+$router->post('/register', 'App\Controllers\UserController@loginRegister');
 
 /* User */
-$router->get('/users', 'App\controllers\UserController@getAllUsers');
-$router->get('/users/:id', 'App\controllers\UserController@getUser');
+$router->get('/users', 'App\Controllers\UserController@getAllUsers');
+$router->get('/users/:id', 'App\Controllers\UserController@getUser');
 
 /* Tasks */
 $router->get('/tasks/writing/:id', 'App\Controllers\TaskController@getWritingTasks');
@@ -75,6 +75,6 @@ try {
     $router->run();
 } catch (Exception $e) {
     http_response_code(404);
-    echo json_encode(["error" => "Route not found"]);
+    echo json_encode(["error" => "Route not found", "message" => $e->getMessage()]);
     exit();
 }
