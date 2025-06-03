@@ -79,7 +79,7 @@ export class LoginComponent {
               localStorage.removeItem("password");
             }
 
-            window.location.href = '/index';
+            window.location.href = '#/index';
           } else {
             console.error('Erreur de connexion :', response.message);
             this.loginError = true;
