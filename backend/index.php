@@ -18,10 +18,11 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 /* Définition des constantes */
-define('DB_NAME', 'emelinedr_creaquest');
-define('DB_HOST', 'mysql-emelinedr.alwaysdata.net');
-define('DB_USER', 'emelinedr');
-define('DB_PASSWORD', 'Eme410121');
+define('DB_NAME', getenv('MYSQL_DATABASE'));
+define('DB_HOST', getenv('MYSQL_HOST'));
+define('DB_USER', getenv('MYSQL_USER'));
+define('DB_PASSWORD', getenv('MYSQL_PASSWORD'));
+define('DB_PORT', getenv('MYSQL_PORT'));
 
 date_default_timezone_set('Europe/Paris');
 
