@@ -9,8 +9,13 @@ RUN apt-get update && apt-get install -y \
     curl \
     libpq-dev \
     libmariadb-dev-compat \
-    libpdo-mysql-dev && \  
-    docker-php-ext-install pdo pdo_mysql \ 
+    libpdo-mysql-dev \
+    libzip-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libfreetype6-dev \
+    && docker-php-ext-configure zip \
+    && docker-php-ext-install pdo pdo_mysql zip \
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
