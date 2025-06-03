@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libpq-dev \
-    libmariadb-dev-compat \  # Utilisation de MariaDB au lieu de MySQL
+    libmariadb-dev-compat \
     && apt-get clean
 
 # Installe les extensions PHP nécessaires
