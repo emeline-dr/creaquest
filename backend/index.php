@@ -9,6 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 use Router\Router;
+use Dotenv\Dotenv;
+
+// Charger les variables d'environnement à partir du fichier .env
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 require "vendor/autoload.php";
 
