@@ -1,7 +1,13 @@
 FROM php:8.2-fpm
 
-# Installe nginx, composer, et d'autres dépendances
-RUN apt-get update && apt-get install -y nginx unzip git curl libpq-dev libmysqlclient-dev \
+# Met à jour les paquets et installe nginx, composer, ainsi que les dépendances
+RUN apt-get update && apt-get install -y \
+    nginx \
+    unzip \
+    git \
+    curl \
+    libpq-dev \
+    libmariadb-dev-compat \
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 
@@ -11,15 +17,17 @@ RUN mkdir -p /app /run/php
 # Copie les fichiers de l'application
 COPY . /app
 
-# Expose le port 8080 pour l'accès HTTP
-EXPOSE 8080
-
-# Installer les dépendances PHP (whoops, jwt, dotenv)
+# Définit le dossier de travail
 WORKDIR /app
+
+# Installe les dépendances PHP (whoops, jwt, dotenv)
 RUN composer install && composer dump-autoload
 
-# Copier la configuration nginx dans le conteneur
+# Copie la configuration nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Lancer PHP-FPM et Nginx en arrière-plan
+# Expose le port
+EXPOSE 8080
+
+# Démarre PHP-FPM + nginx
 CMD php-fpm -D && nginx -g 'daemon off;'
