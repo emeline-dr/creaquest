@@ -38,14 +38,14 @@ $router = new Router();
 
 /* Les Routes */
 /* Login */
-$router->post('/login', 'App\Controllers\UserController@loginPost');
+$router->post('/login', 'App\controllers\UserController@loginPost');
 
 /* Register */
-$router->post('/register', 'App\Controllers\UserController@loginRegister');
+$router->post('/register', 'App\controllers\UserController@loginRegister');
 
 /* User */
-$router->get('/users', 'App\Controllers\UserController@getAllUsers');
-$router->get('/users/:id', 'App\Controllers\UserController@getUser');
+$router->get('/users', 'App\controllers\UserController@getAllUsers');
+$router->get('/users/:id', 'App\controllers\UserController@getUser');
 
 /* Tasks */
 $router->get('/tasks/writing/:id', 'App\Controllers\TaskController@getWritingTasks');
