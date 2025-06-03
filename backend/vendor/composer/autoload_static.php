@@ -47,6 +47,7 @@ class ComposerStaticInit573c0a765223a49f6e3cf404932c757a
         ),
         'A' => 
         array (
+            'App\\Models\\' => 11,
             'App\\Controllers\\' => 16,
             'App\\' => 4,
         ),
@@ -95,11 +96,15 @@ class ComposerStaticInit573c0a765223a49f6e3cf404932c757a
         ),
         'Database\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/database',
+            0 => __DIR__ . '/../..' . '/src/Database',
+        ),
+        'App\\Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/models',
         ),
         'App\\Controllers\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Controllers',
+            0 => __DIR__ . '/../..' . '/src/controllers',
         ),
         'App\\' => 
         array (
