@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -8,8 +8,6 @@ import { AuthService } from '../../services/auth/auth.service';
 
 import { NoPageComponent } from '../../pages/no-page/no-page.component';
 
-declare const Preline: any; // Déclare Preline globalement
-
 @Component({
   selector: 'app-user-snippet',
   standalone: true,
@@ -18,9 +16,9 @@ declare const Preline: any; // Déclare Preline globalement
     RouterModule
   ],
   templateUrl: './user-snippet.component.html',
-  styleUrls: ['./user-snippet.component.css']
+  styleUrl: './user-snippet.component.css'
 })
-export class UserSnippetComponent implements AfterViewChecked {
+export class UserSnippetComponent {
   isLoading = true;
 
   userProfile: any;
@@ -34,8 +32,6 @@ export class UserSnippetComponent implements AfterViewChecked {
     { max: 15, medal: "Medal-Silver" },
     { max: 20, medal: "Medal-Gold" },
   ];
-
-  private dropdownInitialized = false; // Flag to avoid multiple initializations
 
   constructor(
     private authService: AuthService,
@@ -66,10 +62,10 @@ export class UserSnippetComponent implements AfterViewChecked {
 
     this.dataService.getUser().subscribe({
       next: (profile) => {
-        this.userProfile = profile;
+        this.userProfile = profile
 
-        const userLvl = this.userProfile.u_lvl;
-        let medal = 'Medal-Diamond';
+        const userLvl = this.userProfile.u_lvl
+        let medal = 'Medal-Diamond'
 
         for (const tier of this.medalLevels) {
           if (userLvl < tier.max) {
@@ -95,19 +91,5 @@ export class UserSnippetComponent implements AfterViewChecked {
 
   logout(): void {
     this.authService.logout();
-  }
-
-  ngAfterViewChecked(): void {
-    if (!this.dropdownInitialized) {
-      // Utilisation de setTimeout pour attendre que le DOM soit complètement rendu
-      setTimeout(() => {
-        if (window.Preline && window.Preline.Dropdown) {
-          window.Preline.Dropdown.init(); // Initialisation du dropdown
-          this.dropdownInitialized = true; // Marque l'initialisation comme faite
-        } else {
-          console.warn('Preline.Dropdown n’est pas disponible');
-        }
-      }, 0); // Assurer l'exécution après que le DOM soit prêt
-    }
   }
 }

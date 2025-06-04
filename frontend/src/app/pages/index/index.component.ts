@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { DataService } from '../../services/data.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
 
 @Component({
   selector: 'app-index',
@@ -19,7 +20,8 @@ import { LoadingComponent } from '../../components/loading/loading.component';
     CommonModule,
     LucideAngularModule,
     FormsModule,
-    LoadingComponent
+    LoadingComponent,
+    UserSnippetComponent
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
