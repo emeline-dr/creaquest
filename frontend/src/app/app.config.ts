@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection, importProvidersFrom } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { LucideAngularModule, ChevronDown, Instagram, Facebook, Mail, Music, Clock, SquarePen, Award, List, Eye, EyeOff, Users, SquareCheck, Square, Circle, CircleCheckBig, LoaderCircle, Home, Play, Pause, SkipForward, SkipBack } from 'lucide-angular';
@@ -9,7 +9,7 @@ import { provideQuillConfig } from 'ngx-quill';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(routes, withHashLocation()),
     provideHttpClient(),
     provideQuillConfig({
       modules: {
