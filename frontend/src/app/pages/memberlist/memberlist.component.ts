@@ -4,12 +4,14 @@ import { Title } from '@angular/platform-browser';
 import { DataService } from '../../services/data.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
 
 @Component({
   selector: 'app-memberlist',
   standalone: true,
   imports: [
-    LoadingComponent
+    LoadingComponent,
+    UserSnippetComponent
   ],
   templateUrl: './memberlist.component.html',
   styleUrl: './memberlist.component.css'

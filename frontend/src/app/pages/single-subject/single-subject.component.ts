@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ForumService } from '../../services/forum/forum.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
 
 @Component({
   selector: 'app-single-subject',
@@ -15,7 +16,8 @@ import { LoadingComponent } from '../../components/loading/loading.component';
     QuillModule,
     DatePipe,
     FormsModule,
-    LoadingComponent
+    LoadingComponent,
+    UserSnippetComponent
   ],
   templateUrl: './single-subject.component.html',
   styleUrl: './single-subject.component.css'

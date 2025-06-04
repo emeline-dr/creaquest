@@ -5,6 +5,7 @@ import { DatePipe } from '@angular/common';
 import { ForumService } from '../../services/forum/forum.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
 
 @Component({
   selector: 'app-single-categorie',
@@ -12,7 +13,8 @@ import { LoadingComponent } from '../../components/loading/loading.component';
   imports: [
     RouterModule,
     DatePipe,
-    LoadingComponent
+    LoadingComponent,
+    UserSnippetComponent
   ],
   templateUrl: './single-categorie.component.html',
   styleUrl: './single-categorie.component.css'

@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { ForumService } from '../../services/forum/forum.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
 
 @Component({
   selector: 'app-forum',
@@ -13,7 +14,8 @@ import { LoadingComponent } from '../../components/loading/loading.component';
   imports: [
     RouterModule,
     DatePipe,
-    LoadingComponent
+    LoadingComponent,
+    UserSnippetComponent
   ],
   templateUrl: './forum.component.html',
   styleUrl: './forum.component.css'

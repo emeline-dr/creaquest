@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { LogoNavComponent } from './components/logo-nav/logo-nav.component';
-import { UserSnippetComponent } from './components/user-snippet/user-snippet.component';
 import { AudioPlayerComponent } from './components/audio-player/audio-player.component';
 
 @Component({
@@ -11,7 +10,6 @@ import { AudioPlayerComponent } from './components/audio-player/audio-player.com
   imports: [
     RouterOutlet,
     LogoNavComponent,
-    UserSnippetComponent,
     AudioPlayerComponent
   ],
   templateUrl: './app.component.html',
