@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -8,6 +8,8 @@ import { AuthService } from '../../services/auth/auth.service';
 
 import { NoPageComponent } from '../../pages/no-page/no-page.component';
 
+declare const Preline: any; // Déclare Preline ici
+
 @Component({
   selector: 'app-user-snippet',
   standalone: true,
@@ -16,9 +18,9 @@ import { NoPageComponent } from '../../pages/no-page/no-page.component';
     RouterModule
   ],
   templateUrl: './user-snippet.component.html',
-  styleUrl: './user-snippet.component.css'
+  styleUrls: ['./user-snippet.component.css']
 })
-export class UserSnippetComponent {
+export class UserSnippetComponent implements AfterViewInit {
   isLoading = true;
 
   userProfile: any;
@@ -62,10 +64,10 @@ export class UserSnippetComponent {
 
     this.dataService.getUser().subscribe({
       next: (profile) => {
-        this.userProfile = profile
+        this.userProfile = profile;
 
-        const userLvl = this.userProfile.u_lvl
-        let medal = 'Medal-Diamond'
+        const userLvl = this.userProfile.u_lvl;
+        let medal = 'Medal-Diamond';
 
         for (const tier of this.medalLevels) {
           if (userLvl < tier.max) {
@@ -91,5 +93,20 @@ export class UserSnippetComponent {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  ngAfterViewInit(): void {
+    // Après que la vue soit initialisée, réinitialiser le dropdown
+    this.initDropdown();
+  }
+
+  private initDropdown(): void {
+    setTimeout(() => {
+      if (window.Preline && window.Preline.Dropdown) {
+        window.Preline.Dropdown.init(); // Initialiser le dropdown Preline
+      } else {
+        console.warn('Preline.Dropdown n’est pas disponible');
+      }
+    }, 0); // Assure que tout le DOM est chargé avant d'initialiser le dropdown
   }
 }
