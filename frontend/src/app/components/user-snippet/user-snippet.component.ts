@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewChecked } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -35,14 +35,13 @@ export class UserSnippetComponent implements AfterViewChecked {
     { max: 20, medal: "Medal-Gold" },
   ];
 
-  private dropdownInitialized = false; // Ajoute un indicateur pour s'assurer que le dropdown n'est initialisé qu'une seule fois
+  private dropdownInitialized = false; // Flag to avoid multiple initializations
 
   constructor(
     private authService: AuthService,
     private dataService: DataService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private cdr: ChangeDetectorRef // Injection du ChangeDetectorRef pour forcer la détection des changements
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -99,13 +98,16 @@ export class UserSnippetComponent implements AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
-    // S'assurer que Preline est initialisé une seule fois
-    if (!this.dropdownInitialized && window.Preline && window.Preline.Dropdown) {
-      window.Preline.Dropdown.init(); // Initialisation du dropdown Preline
-      this.dropdownInitialized = true; // Marquer comme initialisé
+    if (!this.dropdownInitialized) {
+      // Utilisation de setTimeout pour attendre que le DOM soit complètement rendu
+      setTimeout(() => {
+        if (window.Preline && window.Preline.Dropdown) {
+          window.Preline.Dropdown.init(); // Initialisation du dropdown
+          this.dropdownInitialized = true; // Marque l'initialisation comme faite
+        } else {
+          console.warn('Preline.Dropdown n’est pas disponible');
+        }
+      }, 0); // Assurer l'exécution après que le DOM soit prêt
     }
-
-    // Cette ligne permet de forcer la détection des changements après chaque vérification
-    this.cdr.detectChanges();
   }
 }
