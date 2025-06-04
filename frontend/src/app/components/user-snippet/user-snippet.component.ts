@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth/auth.service';
 
 import { NoPageComponent } from '../../pages/no-page/no-page.component';
 
-declare const Preline: any; // Déclare Preline ici
+declare const Preline: any; // Déclare Preline globalement
 
 @Component({
   selector: 'app-user-snippet',
@@ -20,7 +20,7 @@ declare const Preline: any; // Déclare Preline ici
   templateUrl: './user-snippet.component.html',
   styleUrls: ['./user-snippet.component.css']
 })
-export class UserSnippetComponent implements AfterViewInit {
+export class UserSnippetComponent implements AfterViewChecked {
   isLoading = true;
 
   userProfile: any;
@@ -35,11 +35,14 @@ export class UserSnippetComponent implements AfterViewInit {
     { max: 20, medal: "Medal-Gold" },
   ];
 
+  private dropdownInitialized = false; // Ajoute un indicateur pour s'assurer que le dropdown n'est initialisé qu'une seule fois
+
   constructor(
     private authService: AuthService,
     private dataService: DataService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cdr: ChangeDetectorRef // Injection du ChangeDetectorRef pour forcer la détection des changements
   ) { }
 
   ngOnInit(): void {
@@ -95,18 +98,14 @@ export class UserSnippetComponent implements AfterViewInit {
     this.authService.logout();
   }
 
-  ngAfterViewInit(): void {
-    // Après que la vue soit initialisée, réinitialiser le dropdown
-    this.initDropdown();
-  }
+  ngAfterViewChecked(): void {
+    // S'assurer que Preline est initialisé une seule fois
+    if (!this.dropdownInitialized && window.Preline && window.Preline.Dropdown) {
+      window.Preline.Dropdown.init(); // Initialisation du dropdown Preline
+      this.dropdownInitialized = true; // Marquer comme initialisé
+    }
 
-  private initDropdown(): void {
-    setTimeout(() => {
-      if (window.Preline && window.Preline.Dropdown) {
-        window.Preline.Dropdown.init(); // Initialiser le dropdown Preline
-      } else {
-        console.warn('Preline.Dropdown n’est pas disponible');
-      }
-    }, 0); // Assure que tout le DOM est chargé avant d'initialiser le dropdown
+    // Cette ligne permet de forcer la détection des changements après chaque vérification
+    this.cdr.detectChanges();
   }
 }
