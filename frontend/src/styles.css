@@ -103,4 +103,9 @@ button {
     border: 2px solid;
 }
 
+.hs-overlay-backdrop {
+    display: none !important;
+}
+
+
 /*#endregion*/
