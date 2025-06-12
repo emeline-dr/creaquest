@@ -31,7 +31,7 @@ class Forum extends Model
     {
         $result = $this->query("SELECT 
             s.*, 
-            c.c_name 
+            c.c_title 
         FROM {$this->table_subjects} AS s
         JOIN {$this->table_categories} AS c ON s.s_categorie_id = c.c_id
         WHERE s.s_categorie_id = ?", [$categoryId]);

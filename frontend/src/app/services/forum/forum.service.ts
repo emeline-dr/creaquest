@@ -21,12 +21,17 @@ export class ForumService {
     return this.http.get<any>(this.apiUrl + this.apiRoute);
   }
 
+  /* Récupérer les sujets */
+  getAllSubjects(): Observable<any> {
+    this.apiRoute = 'subjects';
+    return this.http.get<any>(this.apiUrl + this.apiRoute);
+  }
+
   /* Récupérer les sujets par ID de catégorie */
   getSubjectsByCategoryId(categoryId: number): Observable<any> {
     this.apiRoute = `categories/${categoryId}/subjects`;
     return this.http.get<any>(this.apiUrl + this.apiRoute);
   }
-
 
   /* Récupérer les posts */
   getAllPosts(): Observable<any> {
