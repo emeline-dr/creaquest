@@ -27,6 +27,21 @@ class Forum extends Model
         return null;
     }
 
+    public function getSubjectsByCategoriesId($categoryId)
+    {
+        $result = $this->query("SELECT 
+            s.*, 
+            c.c_name 
+        FROM {$this->table_subjects} AS s
+        JOIN {$this->table_categories} AS c ON s.s_categorie_id = c.c_id
+        WHERE s.s_categorie_id = ?", [$categoryId]);
+
+        if ($result) {
+            return $result;
+        }
+        return null;
+    }
+
     public function getPosts()
     {
         $result = $this->query("SELECT * FROM {$this->table_posts}");

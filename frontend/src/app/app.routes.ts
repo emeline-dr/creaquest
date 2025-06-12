@@ -1,18 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './services/auth/auth.guard';
 
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { IndexComponent } from './pages/index/index.component';
-import { ForumComponent } from './pages/forum/forum.component';
-import { NoPageComponent } from './pages/no-page/no-page.component';
-import { MemberlistComponent } from './pages/memberlist/memberlist.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { AdminComponent } from './pages/admin/admin.component';
-import { SingleCategorieComponent } from './pages/single-categorie/single-categorie.component';
-import { SingleSubjectComponent } from './pages/single-subject/single-subject.component';
-
 export const routes: Routes = [
     {
         path: '',
@@ -21,53 +9,58 @@ export const routes: Routes = [
     },
     {
         path: 'home',
-        component: HomeComponent
+        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
     },
     {
         path: 'login',
-        component: LoginComponent
+        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
     },
     {
         path: 'register',
-        component: RegisterComponent
+        loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
     },
     {
         path: 'index',
-        component: IndexComponent,
+        loadComponent: () => import('./pages/index/index.component').then(m => m.IndexComponent),
         canActivate: [AuthGuard]
     },
     {
         path: 'profile',
-        component: ProfileComponent,
+        loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
         canActivate: [AuthGuard]
     },
     {
         path: 'administration',
-        component: AdminComponent,
+        loadComponent: () => import('./pages/admin/admin.component').then(m => m.AdminComponent),
         canActivate: [AuthGuard]
     },
     {
         path: 'memberlist',
-        component: MemberlistComponent,
+        loadComponent: () => import('./pages/memberlist/memberlist.component').then(m => m.MemberlistComponent),
         canActivate: [AuthGuard]
     },
     {
         path: 'forum',
-        component: ForumComponent,
+        loadComponent: () => import('./pages/forum/forum.component').then(m => m.ForumComponent),
         canActivate: [AuthGuard]
     },
     {
         path: 'forum/categorie/:id',
-        component: SingleCategorieComponent,
+        loadComponent: () => import('./pages/single-categorie/single-categorie.component').then(m => m.SingleCategorieComponent),
         canActivate: [AuthGuard]
     },
     {
         path: 'forum/subject/:id',
-        component: SingleSubjectComponent,
+        loadComponent: () => import('./pages/single-subject/single-subject.component').then(m => m.SingleSubjectComponent),
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'forum/new',
+        loadComponent: () => import('./pages/new-subject/new-subject.component').then(m => m.NewSubjectComponent),
         canActivate: [AuthGuard]
     },
     {
         path: '**',
-        component: NoPageComponent
-    },
+        loadComponent: () => import('./pages/no-page/no-page.component').then(m => m.NoPageComponent)
+    }
 ];

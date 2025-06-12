@@ -35,6 +35,21 @@ class ForumController extends Controller
         }
     }
 
+    public function getSubjectsByCategory($categoryId)
+    {
+        $forumModel = new Forum($this->getDB());
+        $result = $forumModel->getSubjectsByCategoriesId($categoryId);
+
+        if ($result) {
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        } else {
+            http_response_code(404);
+            echo json_encode(["error" => "Aucun sujet trouvé pour cette catégorie"]);
+        }
+    }
+
+
     public function getAllPosts(): void
     {
         $forumModel = new Forum($this->getDB());

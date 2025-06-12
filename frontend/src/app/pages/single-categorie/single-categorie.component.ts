@@ -24,8 +24,7 @@ export class SingleCategorieComponent implements OnInit {
   currentCategory: any;
   subjectInThisCategory: any;
   lastPost: any;
-  categorieResponse: any;
-  subjectResponse: any;
+  categorieName: any;
 
   isCatLoading = true;
   isSubPostLoading = true;
@@ -38,37 +37,18 @@ export class SingleCategorieComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.id_categorie = +params['id'];
-
-      this.forumService.getAllCategories().subscribe({
-        next: (categories) => {
-          this.categorieResponse = categories;
-
-          this.currentCategory = this.categorieResponse.find(
-            (element: any) => element.c_id === this.id_categorie
-          );
-
-          this.isCatLoading = false;
-        },
-        error: (err) =>
-          console.error('Erreur lors de la récupération des catégories', err)
-      });
-
-      this.forumService.getAllSubjects().subscribe({
+      this.forumService.getSubjectsByCategoryId(this.id_categorie).subscribe({
         next: (subjects) => {
-          this.subjectResponse = subjects;
-
-          this.subjectInThisCategory = this.subjectResponse.filter(
-            (element: any) => element.s_categorie_id === this.id_categorie
-          );
+          this.subjectInThisCategory = subjects;
 
           this.lastPost = {};
+          this.categorieName = this.subjectInThisCategory.c_name
 
           // Pour chaque sujet, récupérer les posts et stocker le dernier
           this.subjectInThisCategory.forEach((subject: any) => {
             this.forumService.getPostsBySubjectId(subject.s_id).subscribe({
               next: (posts) => {
                 if (posts && posts.length > 0) {
-                  // Trier par date
                   const last = posts.sort((a: any, b: any) =>
                     new Date(b.p_date).getTime() - new Date(a.p_date).getTime()
                   )[0];
