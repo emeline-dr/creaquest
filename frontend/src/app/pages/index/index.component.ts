@@ -58,7 +58,6 @@ export class IndexComponent {
     this.dataService.getWritingTasks().subscribe({
       next: (writingTasks) => {
         this.tasksWriting = writingTasks
-        this.isWritingTaskLoading = false
 
         setTimeout(() => {
           HSOverlay.autoInit();
@@ -67,14 +66,16 @@ export class IndexComponent {
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
     this.dataService.getCompletedWritingTasks().subscribe({
-      next: (writingCompletedTasks) => this.tasksCompletedWriting = writingCompletedTasks,
+      next: (writingCompletedTasks) => {
+        this.tasksCompletedWriting = writingCompletedTasks
+        this.isWritingTaskLoading = false
+      },
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
 
     this.dataService.getReadingTasks().subscribe({
       next: (readingTasks) => {
         this.tasksReading = readingTasks
-        this.isReadingTaskLoading = false
 
         setTimeout(() => {
           HSOverlay.autoInit();
@@ -83,14 +84,16 @@ export class IndexComponent {
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
     this.dataService.getCompletedReadingTasks().subscribe({
-      next: (readingCompletedTasks) => this.tasksCompletedReading = readingCompletedTasks,
+      next: (readingCompletedTasks) => {
+        this.tasksCompletedReading = readingCompletedTasks
+        this.isReadingTaskLoading = false
+      },
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
 
     this.dataService.getDrawingTasks().subscribe({
       next: (drawingTasks) => {
         this.tasksDrawing = drawingTasks
-        this.isDrawingTaskLoading = false
 
         setTimeout(() => {
           HSOverlay.autoInit();
@@ -100,7 +103,10 @@ export class IndexComponent {
     });
 
     this.dataService.getCompletedDrawingTasks().subscribe({
-      next: (drawingCompletedTasks) => this.tasksCompletedDrawing = drawingCompletedTasks,
+      next: (drawingCompletedTasks) => {
+        this.tasksCompletedDrawing = drawingCompletedTasks
+        this.isDrawingTaskLoading = false
+      },
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
   }
