@@ -47,8 +47,8 @@ class Forum extends Model
         $date = date("Y-m-d H:i:s");
 
         $subjectInsert = $this->query(
-            "INSERT INTO {$this->table_subjects} (s_title, s_categorie_id) VALUES (?, ?)",
-            [$title, $categoryId]
+            "INSERT INTO {$this->table_subjects} (s_author_id, s_title, s_categorie_id) VALUES (?, ?)",
+            [$authorId, $title, $categoryId]
         );
 
         if (!$subjectInsert) {
