@@ -68,6 +68,7 @@ $router->get('/forum/categories', 'App\Controllers\ForumController@getAllCategor
 $router->get('/forum/subjects',  'App\Controllers\ForumController@getAllSubjects');
 $router->get('/forum/categories/:id/subjects', 'App\Controllers\ForumController@getSubjectsByCategory');
 $router->get('/forum/subjects/:id/posts', 'App\Controllers\ForumController@getAllPostsBySubject');
+$router->post('/forum/subjects', 'App\Controllers\ForumController@createSubjectWithPost');
 $router->get('/forum/posts', 'App\Controllers\ForumController@getAllPosts');
 $router->post('/forum/posts/', 'App\Controllers\ForumController@addPost');
 

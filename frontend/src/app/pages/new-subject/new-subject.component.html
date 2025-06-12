@@ -1,1 +1,12 @@
-<p>new-subject works!</p>
+<app-user-snippet></app-user-snippet>
+
+<div class="relative flex flex-wrap justify-center top-[160px] md:top-[125px] mx-20 pb-[45px]">
+    <div class="w-3/4">
+        <label class="text-white-base font-revalia">Titre du sujet</label>
+        <input type="text" [(ngModel)]="newSubjectTitle" placeholder="Titre du sujet"
+            class="w-full h-[40px] px-4 mb-[16px] rounded-sm border border-white-base text-white-base" />
+        <quill-editor [(ngModel)]="newSubjectContent" [placeholder]="'Votre message...'"
+            class="w-full h-[200px] my-[16px]"></quill-editor>
+        <button (click)="createTopic()" class="btn btn-orange w-full mt-[16px]">Envoyer le message</button>
+    </div>
+</div>

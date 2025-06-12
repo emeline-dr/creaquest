@@ -33,4 +33,9 @@ abstract class Model
 
         return is_null($single) ? $stmt->fetchAll() : $stmt->fetch();
     }
+
+    public function getPDO(): PDO
+    {
+        return $this->db->getPDO();
+    }
 }

@@ -33,6 +33,15 @@ export class ForumService {
     return this.http.get<any>(this.apiUrl + this.apiRoute);
   }
 
+  /* Nouveau sujet + post allant avec */
+  createSubjectWithPost(categoryId: number, title: string, content: string): Observable<any> {
+    const authorId = this.authService.getUserId();
+    const data = { categoryId, title, content, authorId };
+
+    this.apiRoute = 'subjects';
+    return this.http.post<any>(this.apiUrl + this.apiRoute, data);
+  }
+
   /* Récupérer les posts */
   getAllPosts(): Observable<any> {
     this.apiRoute = 'posts';

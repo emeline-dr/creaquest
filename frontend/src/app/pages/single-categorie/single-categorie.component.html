@@ -9,7 +9,7 @@
     <div class="w-full bg-blue text-white-base rounded px-4 py-2 mb-[24px] flex flex-wrap justify-between">
         <h1 class="text-2xl font-revalia self-center">{{categorieName}}</h1>
 
-        <button class="btn btn-white" routerLink="/forum/new">Nouveau sujet</button>
+        <button class="btn btn-white" routerLink="/forum/new" [state]="{categoryId: id_categorie}">Nouveau sujet</button>
     </div>
 
     @for(subject of subjectInThisCategory; track subject) {

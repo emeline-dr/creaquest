@@ -49,6 +49,38 @@ class ForumController extends Controller
         }
     }
 
+    public function createSubjectWithPost()
+    {
+        $inputData = json_decode(file_get_contents('php://input'), true);
+
+        if (!$inputData) {
+            http_response_code(400);
+            echo json_encode(["error" => "Requête invalide."]);
+            return;
+        }
+
+        $categoryId = isset($inputData['categoryId']) ? (int) $inputData['categoryId'] : null;
+        $title = isset($inputData['title']) ? $inputData['title'] : '';
+        $content = isset($inputData['content']) ? $inputData['content'] : '';
+        $authorId = isset($inputData['authorId']) ? (int) $inputData['authorId'] : null;
+
+        if ($categoryId && $title && $content && $authorId) {
+            $forumModel = new Forum($this->getDB());
+            $subjectId = $forumModel->createSubjectWithPost($categoryId, $title, $content, $authorId);
+
+            if ($subjectId) {
+                http_response_code(201);
+                echo json_encode(["message" => "Sujet et premier post créés avec succès.", "subjectId" => $subjectId]);
+            } else {
+                http_response_code(500);
+                echo json_encode(["error" => "Erreur lors de la création du sujet et du post."]);
+            }
+        } else {
+            http_response_code(400);
+            echo json_encode(["error" => "Données manquantes."]);
+        }
+    }
+
 
     public function getAllPosts(): void
     {

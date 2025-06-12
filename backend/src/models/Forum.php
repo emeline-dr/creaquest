@@ -31,7 +31,7 @@ class Forum extends Model
     {
         $result = $this->query("SELECT 
             s.*, 
-            c.c_title 
+            c.c_title
         FROM {$this->table_subjects} AS s
         JOIN {$this->table_categories} AS c ON s.s_categorie_id = c.c_id
         WHERE s.s_categorie_id = ?", [$categoryId]);
@@ -41,6 +41,34 @@ class Forum extends Model
         }
         return null;
     }
+
+    public function createSubjectWithPost($categoryId, $title, $content, $authorId)
+    {
+        $date = date("Y-m-d H:i:s");
+
+        $subjectInsert = $this->query(
+            "INSERT INTO {$this->table_subjects} (s_title, s_categorie_id) VALUES (?, ?)",
+            [$title, $categoryId]
+        );
+
+        if (!$subjectInsert) {
+            return false;
+        }
+
+        $subjectId = $this->getPDO()->lastInsertId();
+
+        $postInsert = $this->query(
+            "INSERT INTO {$this->table_posts} (p_author_id, p_subject_id, p_content, p_date) VALUES (?, ?, ?, ?)",
+            [$authorId, $subjectId, $content, $date]
+        );
+
+        if (!$postInsert) {
+            return false;
+        }
+
+        return $subjectId;
+    }
+
 
     public function getPosts()
     {
