@@ -5,7 +5,7 @@
     <div class="text-orange w-full flex justify-center">
         <app-loading></app-loading>
     </div>} @else {
-        <h1>{{ categoryName }}</h1>
+    <h1>{{ categoryName }}</h1>
     <h2
         class="block w-full text-center border-b-1 border-b-white-base font-revalia text-white-base text-[36px] mb-[32px]">
         {{currentSubject.s_title}}</h2>
@@ -27,7 +27,7 @@
     </div>
     }
 
-    <div class="w-1/2">
+    <div class="w-full md:w-3/4">
         <quill-editor [(ngModel)]="newPostContent" [placeholder]="'Votre message...'"
             class="w-full h-[200px] my-[16px]"></quill-editor>
         <button (click)="sendPost()" class="btn btn-orange w-full mt-[16px]">Envoyer le message</button>
