@@ -5,9 +5,10 @@
     <div class="text-orange w-full flex justify-center">
         <app-loading></app-loading>
     </div>} @else {
-    <h1
+        <h1>{{ categoryName }}</h1>
+    <h2
         class="block w-full text-center border-b-1 border-b-white-base font-revalia text-white-base text-[36px] mb-[32px]">
-        {{currentSubject.s_title}}</h1>
+        {{currentSubject.s_title}}</h2>
     @for(post of postsInSubject; track post) {
     <div class="w-full flex flex-wrap justify-between mb-[24px]">
         <div class="w-1/4">

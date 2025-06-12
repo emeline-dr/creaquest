@@ -15,7 +15,7 @@
     @for(subject of subjectInThisCategory; track subject) {
     <div
         class="w-9/10 flex flex-wrap justify-between bg-orange text-white-base hover:bg-white-base hover:text-orange rounded-sm mx-auto my-1 px-2 py-1 last:mb-[40px] font-revalia">
-        <a routerLink="/forum/subject/{{subject.s_id}}">
+        <a routerLink="/forum/subject/{{subject.s_id}}" [state]="{ categoryName: categorieName }">
             {{subject.s_title}}
         </a>
         @if(lastPost[subject.s_id]) {

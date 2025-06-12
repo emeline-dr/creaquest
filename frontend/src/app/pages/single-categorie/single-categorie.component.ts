@@ -42,7 +42,7 @@ export class SingleCategorieComponent implements OnInit {
           this.subjectInThisCategory = subjects;
 
           this.lastPost = {};
-          this.categorieName = this.subjectInThisCategory.c_title
+          this.categorieName = this.subjectInThisCategory[0].c_title
 
           // Pour chaque sujet, récupérer les posts et stocker le dernier
           this.subjectInThisCategory.forEach((subject: any) => {

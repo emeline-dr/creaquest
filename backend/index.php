@@ -65,6 +65,7 @@ $router->get('/music', 'App\Controllers\MusicController@getMusicPlaylist');
 
 /* Forum */
 $router->get('/forum/categories', 'App\Controllers\ForumController@getAllCategories');
+$router->get('/forum/subjects',  'App\Controllers\ForumController@getAllSubjects');
 $router->get('/forum/categories/:id/subjects', 'App\Controllers\ForumController@getSubjectsByCategory');
 $router->get('/forum/subjects/:id/posts', 'App\Controllers\ForumController@getAllPostsBySubject');
 $router->get('/forum/posts', 'App\Controllers\ForumController@getAllPosts');

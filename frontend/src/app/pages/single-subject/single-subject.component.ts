@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +23,7 @@ import { UserSnippetComponent } from '../../components/user-snippet/user-snippet
   styleUrl: './single-subject.component.css'
 })
 export class SingleSubjectComponent implements OnInit {
+  categoryName!: string;
   id_subject!: number;
   currentSubject: any;
   postsInSubject: any;
@@ -37,10 +38,14 @@ export class SingleSubjectComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private forumService: ForumService
   ) { }
 
   ngOnInit() {
+    const navigation = this.router.getCurrentNavigation();
+    this.categoryName = navigation?.extras?.state?.['categoryName'];
+
     this.activatedRoute.params.subscribe(params => {
       this.id_subject = +params['id'];
 
