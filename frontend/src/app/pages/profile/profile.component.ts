@@ -5,12 +5,14 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
 import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
   imports: [
-    UserSnippetComponent
+    UserSnippetComponent,
+    DatePipe
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'

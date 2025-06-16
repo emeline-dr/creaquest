@@ -14,7 +14,7 @@
             {{ userProfile.u_username }}
         </span>
 
-        <img src="assets/images/{{ userProfile.u_avatar }}" alt="Avatar de {{ userProfile.u_username }}"
+        <img src="{{ userProfile.u_avatar }}" alt="Avatar de {{ userProfile.u_username }}"
             class="md:hidden absolute end-[-5px] top-[-5px] object-cover rounded size-[100px]">
     </button>
 
@@ -36,7 +36,7 @@
         </a>
     </div>
 
-    <img src="assets/images/{{ userProfile.u_avatar }}" alt="Avatar de {{ userProfile.u_username }}"
+    <img src="{{ userProfile.u_avatar }}" alt="Avatar de {{ userProfile.u_username }}"
         class="hidden md:block absolute end-[-26px] top-[-26px] object-cover rounded-full size-[150px] border-5 border-orange hs-dropdown-open:border-blue">
 </div>
 }

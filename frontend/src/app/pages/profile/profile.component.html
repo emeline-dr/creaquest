@@ -1,7 +1,46 @@
 <app-user-snippet></app-user-snippet>
 
 <div class="relative top-[160px] md:top-[125px] mx-20 pb-[45px]">
-    Profil de {{userProfile.u_username}}
+    <h1
+        class="text-2xl font-revalia text-white-base pb-1 text-center w-full block border-b border-b-1 border-b-white-base">
+        Profil de :
+        <span class="inline-block w-fit px-3 py-1 rounded-sm bg-orange">
+            {{userProfile.u_username}}
+        </span>
+    </h1>
 
-    <img src="{{userMedal}}" alt="Médaille" class="size-[50px] inline">
+    <div class="flex flex-wrap justify-between mt-[40px] w-full lg:w-3/4 mx-auto">
+        <div class="flex w-full flex-wrap justify-center gap-y-[16px] md:w-1/2">
+            <span
+                class="flex w-full justify-center gap-[16px] items-center bg-orange rounded-sm p-[8px] text-white-base">
+                <img src="{{userMedal}}" alt="Médaille" class="size-[50px] inline">
+
+                Niveau <span class="font-revalia text-xl">{{userProfile.u_lvl}}</span>
+                Exp <span class="font-revalia text-xl">{{userProfile.u_exp}}</span>
+            </span>
+
+            <img src="{{userProfile.u_avatar}}" alt="Avatar"
+                class="size-[150px] inline rounded-lg border border-4 border-orange">
+
+            <span class="text-white-base w-full text-center">
+                Inscrit depuis le : <span class="font-revalia">{{userProfile.u_registered_at | date:
+                    'dd/MM/YYYY'}}</span>
+            </span>
+        </div>
+        <div class="flex w-full md:w-1/2  text-white-base">
+            <span class="flex w-full flex-wrap justify-center gap-[16px] items-center">
+                <span class="bg-blue rounded-sm p-[8px] font-revalia">Tâches accomplies</span>
+                {{userProfile.completed_tasks_total}}
+
+                <div class="w-full rounded-sm bg-blue p-[16px]">
+                    <span class="bg-blue-dark rounded-sm p-[8px] font-revalia border border-1">Tâches d'écriture</span>
+                    {{userProfile.completed_tasks_detail.writing}} <br> <br>
+                    <span class="bg-blue-dark rounded-sm p-[8px] font-revalia border border-1">Tâches de lecture</span>
+                    {{userProfile.completed_tasks_detail.reading}} <br> <br>
+                    <span class="bg-blue-dark rounded-sm p-[8px] font-revalia border border-1">Tâches de dessin</span>
+                    {{userProfile.completed_tasks_detail.drawing}}
+                </div>
+            </span>
+        </div>
+    </div>
 </div>
