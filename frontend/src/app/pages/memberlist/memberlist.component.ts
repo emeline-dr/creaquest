@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 
 import { DataService } from '../../services/data.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
 import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-memberlist',
   standalone: true,
   imports: [
     LoadingComponent,
-    UserSnippetComponent
+    UserSnippetComponent,
+    DatePipe,
+    RouterModule
   ],
   templateUrl: './memberlist.component.html',
   styleUrl: './memberlist.component.css'

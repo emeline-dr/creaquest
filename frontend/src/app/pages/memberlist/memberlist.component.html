@@ -42,7 +42,9 @@
                                     <img src="assets/images/{{ user.u_avatar }}" alt="" class="size-25 rounded-lg">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                    {{user.u_username}}
+                                    <a [routerLink]="['/profile', user.u_id]">
+                                        {{ user.u_username }}
+                                    </a>
                                 </td>
                                 <td class="px-6 py-4 text-center whitespace-nowrap text-sm font-revalia">
                                     {{user.u_lvl}}
@@ -53,7 +55,7 @@
                                     </span> / 100
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-end text-sm">
-                                    {{user.u_registered_at}}
+                                    {{user.u_registered_at | date: 'dd/MM/YYYY'}}
                                 </td>
                             </tr>
                             }

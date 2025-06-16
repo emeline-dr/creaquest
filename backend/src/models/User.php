@@ -24,6 +24,12 @@ class User extends Model
         $result = $this->query("SELECT * FROM {$this->table} WHERE u_id = ?", [$id], true);
 
         if ($result) {
+            $taskModel = new Task($this->db);
+            $completedByType = $taskModel->getCompletedTaskCountByType($id);
+
+            $result->completed_tasks_total = array_sum($completedByType);
+            $result->completed_tasks_detail = $completedByType;
+
             return $result;
         }
         return null;

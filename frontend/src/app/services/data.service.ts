@@ -33,6 +33,12 @@ export class DataService {
     return this.http.get<any>(this.apiUrl + this.apiRoute);
   }
 
+  /* User par id */
+  getUserById(id: number): Observable<any> {
+    this.apiRoute = 'users/'
+    return this.http.get<any>(this.apiUrl + this.apiRoute + id)
+  }
+
   /* Infos User */
   getUser(): Observable<any> {
     this.apiRoute = 'users/';

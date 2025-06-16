@@ -34,6 +34,26 @@ class Task extends Model
         return $this->query($taskStatus[$status], [$userId]);
     }
 
+    public function getCompletedTaskCountByType($userId): array
+    {
+        $tables = [
+            'writing' => ['users_writing', 'users_writing_u_id'],
+            'reading' => ['users_reading', 'users_reading_u_id'],
+            'drawing' => ['users_drawing', 'users_drawing_u_id']
+        ];
+
+        $counts = [];
+
+        foreach ($tables as $type => [$table, $userField]) {
+            $sql = "SELECT COUNT(*) as count FROM $table WHERE $userField = ?";
+            $result = $this->query($sql, [$userId], true);
+            $counts[$type] = (int) ($result->count ?? 0);
+        }
+
+        return $counts;
+    }
+
+
     public function validateTask($userId, $taskType, $taskId)
     {
         $tables = [
