@@ -90,7 +90,7 @@ export class MyProfileComponent {
     this.dataService.patchMyProfile(updatedData).subscribe(
       response => {
         console.log('Profil mis à jour avec succès', response);
-        window.location.reload();
+        window.location.href = '#/index';
       },
       error => {
         console.error('Erreur lors de la mise à jour du profil', error);
