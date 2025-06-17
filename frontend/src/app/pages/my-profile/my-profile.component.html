@@ -1,26 +1,61 @@
 <app-user-snippet></app-user-snippet>
 
-<div class="relative top-[160px] md:top-[125px] mx-20 pb-[45px]">
+<div class="relative top-[240px] md:top-[160px] mx-20 pb-[45px]">
     <h1 class="text-2xl font-revalia text-white-base bg-orange p-[8px] rounded-lg">
         Modifier mon profil
     </h1>
 
     <div class="flex flex-wrap justify-evenly mt-[16px]">
-        <img src="{{avatarPreview()}}" alt="Avatar - Prévisualisation" class="size-[150px] rounded-sm inline">
+        <img [src]="avatar" alt="Avatar - Prévisualisation"
+            class="size-[150px] border border-[4px] border-white-base rounded-sm inline">
 
-        <input type="text" class="bg-white-base text-black h-fit p-2 rounded" [(ngModel)]="avatar"
-            (ngModelChange)="onAvatarInputChange($event)" placeholder="URL de l'avatar" />
+        <div class="w-3/4 bg-black rounded-sm p-[16px] flex flex-wrap justify-between gap-[16px] mt-[16px] md:mt-[0px]">
+            <label class="font-revalia text-lg text-white-base">Avatar :</label>
+            <input type="text" class="bg-white-base text-black h-fit p-2 rounded w-full" [(ngModel)]="avatar"
+                (ngModelChange)="onAvatarInputChange($event)" placeholder="URL de l'avatar" />
 
-        <input type="text" class="bg-white-base text-black h-fit p-2 rounded" [(ngModel)]="username"
-            placeholder="Nom d'utilisateur" />
+            <div class="w-full md:flex-1">
+                <label class="font-revalia text-lg text-white-base">Nom d'utilisateur :</label>
+                <input type="text" class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                    [(ngModel)]="username" placeholder="Nom d'utilisateur" />
+            </div>
 
-        <input type="email" class="bg-white-base text-black h-fit p-2 rounded" [(ngModel)]="email"
-            placeholder="Email" />
+            <div class="w-full md:flex-1">
+                <label class="font-revalia text-lg text-white-base">Mot de passe :</label>
+                <input type="password" class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                    [(ngModel)]="password" placeholder="Mot de passe" />
+            </div>
 
-        <input type="password" class="bg-white-base text-black h-fit p-2 rounded" [(ngModel)]="password"
-            placeholder="Mot de passe" />
+            <div class="w-full">
+                <label class="font-revalia text-lg text-white-base">Adresse mail :</label>
+                <input type="email" class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                    [(ngModel)]="email" placeholder="Email" />
+            </div>
+        </div>
 
-        <button (click)="onSubmit()" class="bg-orange p-2 rounded text-white">
+        <div class="flex flex-wrap w-full mx-auto gap-[16px] mt-[80px] mb-[16px]">
+            <h2 class="text-xl w-full font-revalia text-white-base bg-orange p-[8px] rounded-lg">
+                Choisir un fond personnalisé
+            </h2>
+            <div class="flex flex-wrap justify-between bg-blue p-[24px] rounded-sm gap-[16px]">
+                @for(background of backgrounds; track background) {
+                <label class="flex items-center space-x-2 text-white-base">
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" [(ngModel)]="selectedBackground" [value]="background.name"
+                            [disabled]="userLevel < background.unlockLevel"
+                            [ngClass]="{'bg-gray-500': userLevel < background.unlockLevel}">
+                        @if(background.name !== 'Aucun') {
+                        <img [src]="background.imagePath" alt="{{ background.name }}"
+                            class="size-[80px] border border-white-base rounded-sm fit-cover" />
+                        }
+                        <span class="ms-[16px]">{{ background.name }}</span>
+                    </label>
+                </label>
+                }
+            </div>
+        </div>
+
+        <button (click)="onSubmit()" class="btn btn-orange p-2 h-fit mx-auto">
             Enregistrer les modifications
         </button>
     </div>

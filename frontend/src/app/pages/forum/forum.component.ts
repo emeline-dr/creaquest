@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+declare const HSStaticMethods: any;
+
 import { ForumService } from '../../services/forum/forum.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
@@ -90,5 +92,9 @@ export class ForumComponent {
       .filter((s: any) => s.lastPost)
       .sort((a: any, b: any) => new Date(b.lastPost.p_date).getTime() - new Date(a.lastPost.p_date).getTime())
       .slice(0, 5);
+  }
+
+  ngAfterViewInit(): void {
+    HSStaticMethods?.autoInit?.();
   }
 }

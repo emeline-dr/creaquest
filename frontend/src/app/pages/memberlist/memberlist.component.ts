@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 
+declare const HSStaticMethods: any;
+
 import { DataService } from '../../services/data.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
@@ -39,5 +41,9 @@ export class MemberlistComponent {
       },
       error: (err) => console.error('Erreur lors de la récupération des utilisateurs', err)
     });
+  }
+
+  ngAfterViewInit(): void {
+    HSStaticMethods?.autoInit?.();
   }
 }

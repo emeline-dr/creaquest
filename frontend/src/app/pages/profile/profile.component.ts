@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
+declare const HSStaticMethods: any;
+
 import { DataService } from '../../services/data.service';
 
 import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
@@ -54,5 +56,9 @@ export class ProfileComponent {
         this.userMedal = `assets/images/medals/${medal}.png`;
       });
     }
+  }
+
+  ngAfterViewInit(): void {
+    HSStaticMethods?.autoInit?.();
   }
 }

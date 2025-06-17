@@ -4,6 +4,8 @@ import { QuillModule } from 'ngx-quill';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+declare const HSStaticMethods: any;
+
 import { ForumService } from '../../services/forum/forum.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
@@ -94,5 +96,9 @@ export class SingleSubjectComponent implements OnInit {
       },
       error: (err) => console.error('Erreur lors de l\'ajout du post', err)
     });
+  }
+
+  ngAfterViewInit(): void {
+    HSStaticMethods?.autoInit?.();
   }
 }

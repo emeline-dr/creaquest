@@ -24,6 +24,7 @@ export class UserSnippetComponent {
   userProfile: any;
   pageCo = false;
   isBackgroundCustom = false;
+  selectedBackground = '';
 
   userMedal = '';
   medalLevels = [
@@ -80,6 +81,12 @@ export class UserSnippetComponent {
       },
       error: (err) => console.error('Erreur lors de la récupération du profil', err)
     });
+
+    const bg = localStorage.getItem('selectedBackground');
+    if (bg !== null && bg !== '') {
+      this.selectedBackground = bg;
+      this.isBackgroundCustom = true;
+    }
   }
 
   getLastChild(route: ActivatedRoute): ActivatedRoute {

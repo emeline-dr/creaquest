@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule } from '@angular/forms';
 
+declare const HSStaticMethods: any;
+
 import { ForumService } from '../../services/forum/forum.service';
 
 import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
@@ -51,5 +53,9 @@ export class NewSubjectComponent {
           alert('Erreur lors de la création du sujet');
         }
       });
+  }
+
+  ngAfterViewInit(): void {
+    HSStaticMethods?.autoInit?.();
   }
 }

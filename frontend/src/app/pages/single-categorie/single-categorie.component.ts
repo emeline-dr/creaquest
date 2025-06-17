@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+declare const HSStaticMethods: any;
+
 import { ForumService } from '../../services/forum/forum.service';
 
 import { LoadingComponent } from '../../components/loading/loading.component';
@@ -67,5 +69,9 @@ export class SingleCategorieComponent implements OnInit {
           console.error('Erreur lors de la récupération des sujets de cette catégorie', err)
       });
     });
+  }
+
+  ngAfterViewInit(): void {
+    HSStaticMethods?.autoInit?.();
   }
 }
