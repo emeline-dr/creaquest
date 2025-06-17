@@ -46,6 +46,21 @@ export class DataService {
     return this.http.get<any>(this.apiUrl + this.apiRoute + userId);
   }
 
+  /* Modifier son propre profil */
+  patchMyProfile(updatedData: any): Observable<any> {
+    this.apiRoute = 'users/';
+    const userId = this.authService.getUserId();
+
+    const body = {
+      username: updatedData.username,
+      password: updatedData.password,
+      email: updatedData.email,
+      avatar: updatedData.avatar
+    }
+
+    return this.http.patch(this.apiUrl + this.apiRoute + userId, body)
+  }
+
   /* Tâches Écriture */
   getWritingTasks(): Observable<any> {
     this.apiRoute = 'tasks/writing/';

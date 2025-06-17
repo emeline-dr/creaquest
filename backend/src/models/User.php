@@ -76,6 +76,49 @@ class User extends Model
         return false;
     }
 
+    /* Update du profil - tous les champs ne sont pas obligatoires */
+    public function updateUser(int $id, array $data): bool
+    {
+        $allowedFields = [
+            'username',
+            'email',
+            'avatar',
+            'password'
+        ];
+
+        $setParts = [];
+        $params = [];
+
+        foreach ($data as $key => $value) {
+            if (!in_array($key, $allowedFields)) {
+                continue;
+            }
+
+            if ($value === null || $value === '') {
+                continue;
+            }
+
+            if ($key === 'password') {
+                $value = password_hash($value, PASSWORD_DEFAULT);
+            }
+
+            $column = "u_" . $key;
+            $setParts[] = "$column = :$key";
+            $params[$key] = $value;
+        }
+
+        // Si aucun champ à mettre à jour, retourner false
+        if (empty($setParts)) {
+            return false;
+        }
+
+        $sql = "UPDATE {$this->table} SET " . implode(', ', $setParts) . " WHERE u_id = :id";
+        $params['id'] = $id;
+
+        return $this->query($sql, $params);
+    }
+
+
     /* Ajout de l'expérience à l'utilisateur */
     public function addExpToUser($userId, $exp)
     {

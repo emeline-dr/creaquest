@@ -26,6 +26,22 @@ class Router
         $this->routes['POST'][] = new Route($path, $action);
     }
 
+    public function patch(string $path, string $action)
+    {
+        $this->routes['PATCH'][] = new Route($path, $action);
+    }
+
+    public function put(string $path, string $action)
+    {
+        $this->routes['PUT'][] = new Route($path, $action);
+    }
+
+    public function delete(string $path, string $action)
+    {
+        $this->routes['DELETE'][] = new Route($path, $action);
+    }
+
+
     public function run()
     {
         // Vérifier si des routes sont définies pour la méthode HTTP actuelle

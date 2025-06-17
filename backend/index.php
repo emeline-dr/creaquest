@@ -46,6 +46,7 @@ $router->post('/register', 'App\Controllers\UserController@loginRegister');
 /* User */
 $router->get('/users', 'App\Controllers\UserController@getAllUsers');
 $router->get('/users/:id', 'App\Controllers\UserController@getUser');
+$router->patch('/users/:id', 'App\Controllers\UserController@updateUser');
 
 /* Tasks */
 $router->get('/tasks/writing/:id', 'App\Controllers\TaskController@getWritingTasks');

@@ -52,12 +52,11 @@ export class LoginComponent {
     });
 
     const savedUsername = localStorage.getItem('username');
-    const savedPassword = localStorage.getItem('password');
 
-    if (savedUsername && savedPassword) {
+    if (savedUsername) {
       this.loginForm.patchValue({
         username: savedUsername,
-        password: savedPassword,
+        password: '',
         rememberMe: true
       });
     }
@@ -73,10 +72,8 @@ export class LoginComponent {
 
             if (rememberMe) {
               localStorage.setItem("username", username);
-              localStorage.setItem("password", password);
             } else {
               localStorage.removeItem("username");
-              localStorage.removeItem("password");
             }
 
             window.location.href = '#/index';

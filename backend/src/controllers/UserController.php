@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 use App\Models\User;
 
@@ -79,6 +80,23 @@ class UserController extends Controller
             echo json_encode(["status" => "success", "token" => $jwt]);
         } else {
             echo json_encode(["status" => "error", "message" => "Identifiants incorrects."]);
+        }
+    }
+
+    /* Update les informations du profil en vérifiant si co' */
+    public function updateUser(int $id)
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $userModel = new User($this->getDB());
+
+        $result = $userModel->updateUser($id, $data);
+
+        if ($result) {
+            echo json_encode(["status" => "success", "message" => "Utilisateur mis à jour."]);
+        } else {
+            http_response_code(400);
+            echo json_encode(["status" => "error", "message" => "Aucune donnée valide à mettre à jour."]);
         }
     }
 }
