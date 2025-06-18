@@ -65,7 +65,8 @@ class UserController extends Controller
                 "aud" => "localhost",
                 "iat" => time(),
                 "exp" => time() + (30 * 24 * 60 * 60),
-                "user_id" => $user->u_id
+                "user_id" => $user->u_id,
+                "role" => $user->u_role
             ];
 
             $jwt = JWT::encode($payload, "token", 'HS256');
