@@ -57,6 +57,8 @@ $router->get('/completed-tasks/writing/:id', 'App\Controllers\TaskController@get
 $router->get('/completed-tasks/reading/:id', 'App\Controllers\TaskController@getCompletedReadingTasks');
 $router->get('/completed-tasks/drawing/:id', 'App\Controllers\TaskController@getCompletedDrawingTasks');
 
+$router->get('/tasks/all', 'App\Controllers\TaskController@getAllCompletedTasks');
+
 $router->post('/tasks/validation/writing/:userId/:taskId', 'App\Controllers\TaskController@validateWritingTask');
 $router->post('/tasks/validation/reading/:userId/:taskId', 'App\Controllers\TaskController@validateReadingTask');
 $router->post('/tasks/validation/drawing/:userId/:taskId', 'App\Controllers\TaskController@validateDrawingTask');

@@ -177,4 +177,20 @@ class TaskController extends Controller
             echo json_encode(["error" => "Tâches non trouvées"]);
         }
     }
+
+    /* Récupération des tâches complétées par type + total */
+    public function getAllCompletedTasks()
+    {
+        $taskModel = new Task($this->getDB());
+        $countsByType = $taskModel->getGlobalCompletedTaskCountByType();
+        $total = $taskModel->getTotalGlobalCompletedTasks();
+
+        $response = [
+            'completed_by_type' => $countsByType,
+            'total_completed' => $total
+        ];
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
 }

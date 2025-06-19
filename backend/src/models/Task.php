@@ -53,7 +53,6 @@ class Task extends Model
         return $counts;
     }
 
-
     public function validateTask($userId, $taskType, $taskId)
     {
         $tables = [
@@ -68,6 +67,32 @@ class Task extends Model
 
         return $this->query($sql, [$taskId, $userId]);
     }
+
+    public function getGlobalCompletedTaskCountByType(): array
+    {
+        $tables = [
+            'writing' => 'users_writing',
+            'reading' => 'users_reading',
+            'drawing' => 'users_drawing'
+        ];
+
+        $counts = [];
+
+        foreach ($tables as $type => $table) {
+            $sql = "SELECT COUNT(*) as count FROM $table";
+            $result = $this->query($sql, [], true);
+            $counts[$type] = (int) ($result->count ?? 0);
+        }
+
+        return $counts;
+    }
+
+    public function getTotalGlobalCompletedTasks(): int
+    {
+        $counts = $this->getGlobalCompletedTaskCountByType();
+        return array_sum($counts);
+    }
+
 
     public function getTaskExp($taskId, $taskType)
     {
