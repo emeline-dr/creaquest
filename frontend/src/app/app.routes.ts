@@ -41,6 +41,18 @@ export const routes: Routes = [
         data: { role: 'admin' }
     },
     {
+        path: 'administration/users',
+        loadComponent: () => import('./pages/admin/admin-users/admin-users.component').then(m => m.AdminUsersComponent),
+        canActivate: [AuthGuard],
+        data: { role: 'admin' }
+    },
+    {
+        path: 'administration/tasks',
+        loadComponent: () => import('./pages/admin/admin-tasks/admin-tasks.component').then(m => m.AdminTasksComponent),
+        canActivate: [AuthGuard],
+        data: { role: 'admin' }
+    },
+    {
         path: 'memberlist',
         loadComponent: () => import('./pages/memberlist/memberlist.component').then(m => m.MemberlistComponent),
         canActivate: [AuthGuard]

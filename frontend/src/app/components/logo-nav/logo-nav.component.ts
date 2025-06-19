@@ -54,7 +54,10 @@ export class LogoNavComponent {
           currentUrl === '/home' ||
           currentUrl === '/login' ||
           currentUrl === '/register' ||
-          currentUrl === '/login?registration=success'
+          currentUrl === '/login?registration=success' ||
+          currentUrl === '/administration' ||
+          currentUrl === '/administration/tasks' ||
+          currentUrl === '/administration/users'
         ) {
           this.pageCo = true;
         } else {
