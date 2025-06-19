@@ -193,4 +193,80 @@ class TaskController extends Controller
         header('Content-Type: application/json');
         echo json_encode($response);
     }
+
+    /* Créer une nouvelle tâche */
+    public function createTask()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        if (!isset($data['taskType'], $data['title'], $data['description'], $data['exp'])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Champs manquants"]);
+            return;
+        }
+
+        $taskModel = new Task($this->getDB());
+
+        try {
+            $result = $taskModel->createTask(
+                $data['taskType'],
+                $data['title'],
+                $data['description'],
+                (int) $data['exp']
+            );
+
+            if ($result) {
+                http_response_code(201);
+                echo json_encode(["success" => true]);
+            } else {
+                throw new \Exception("Erreur lors de la création");
+            }
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode(["error" => $e->getMessage()]);
+        }
+    }
+
+    /* Modifier une tâche existante */
+    public function updateTask($type, $id)
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!in_array($type, ['writing', 'reading', 'drawing'])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Type de tâche invalide"]);
+            return;
+        }
+
+        $taskModel = new Task($this->getDB());
+        $updated = $taskModel->updateTaskById($type, $id, $data);
+
+        if ($updated) {
+            echo json_encode(["success" => true]);
+        } else {
+            http_response_code(404);
+            echo json_encode(["error" => "Erreur dans la modification de la tâche"]);
+        }
+    }
+
+    /* Supprimer une tâche */
+    public function deleteTask($type, $id)
+    {
+        $taskModel = new Task($this->getDB());
+
+        if (!in_array($type, ['writing', 'reading', 'drawing'])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Type de tâche invalide"]);
+            return;
+        }
+
+        $deleted = $taskModel->deleteTaskById($type, $id);
+
+        if ($deleted) {
+            echo json_encode(["success" => true]);
+        } else {
+            http_response_code(404);
+            echo json_encode(["error" => "Suppression échouée"]);
+        }
+    }
 }

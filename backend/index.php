@@ -47,6 +47,7 @@ $router->post('/register', 'App\Controllers\UserController@loginRegister');
 $router->get('/users', 'App\Controllers\UserController@getAllUsers');
 $router->get('/users/:id', 'App\Controllers\UserController@getUser');
 $router->patch('/users/:id', 'App\Controllers\UserController@updateUser');
+$router->delete('/users/:id', 'App\Controllers\UserController@deleteUser');
 
 /* Tasks */
 $router->get('/tasks/writing/:id', 'App\Controllers\TaskController@getWritingTasks');
@@ -58,6 +59,10 @@ $router->get('/completed-tasks/reading/:id', 'App\Controllers\TaskController@get
 $router->get('/completed-tasks/drawing/:id', 'App\Controllers\TaskController@getCompletedDrawingTasks');
 
 $router->get('/tasks/all', 'App\Controllers\TaskController@getAllCompletedTasks');
+
+$router->post('/tasks/create', 'App\Controllers\TaskController@createTask');
+$router->patch('/tasks/:type/:id', 'App\Controllers\TaskController@updateTask');
+$router->delete('/tasks/:type/:id', 'App\Controllers\TaskController@deleteTask');
 
 $router->post('/tasks/validation/writing/:userId/:taskId', 'App\Controllers\TaskController@validateWritingTask');
 $router->post('/tasks/validation/reading/:userId/:taskId', 'App\Controllers\TaskController@validateReadingTask');

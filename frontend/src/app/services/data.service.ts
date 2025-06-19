@@ -115,6 +115,12 @@ export class DataService {
     return this.http.post<any>(this.apiUrl + this.apiRoute, {});
   }
 
+  /* Tâches : décompte */
+  getCountTasks(): Observable<any> {
+    this.apiRoute = 'tasks/all';
+    return this.http.get<any>(this.apiUrl + this.apiRoute)
+  }
+
   /* Récupération Music */
   getMusic(): Observable<any> {
     this.apiRoute = 'music';

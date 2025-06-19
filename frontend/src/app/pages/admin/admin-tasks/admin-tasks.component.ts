@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarAdminComponent } from '../../../components/navbar-admin/navbar-admin.component';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-admin-tasks',

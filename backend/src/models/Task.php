@@ -93,7 +93,6 @@ class Task extends Model
         return array_sum($counts);
     }
 
-
     public function getTaskExp($taskId, $taskType)
     {
         $tables = [
@@ -109,5 +108,77 @@ class Task extends Model
         $result = $this->query($sql, [$taskId], true);
 
         return $result->$expField ?? 0;
+    }
+
+    public function createTask($taskType, $title, $description, $exp)
+    {
+        $tables = [
+            'writing' => ['writing', 'w_title', 'w_description', 'w_exp'],
+            'reading' => ['reading', 'r_title', 'r_description', 'r_exp'],
+            'drawing' => ['drawing', 'd_title', 'd_description', 'd_exp']
+        ];
+
+        if (!isset($tables[$taskType])) {
+            throw new \Exception("Type de tâche invalide");
+        }
+
+        [$table, $titleField, $descField, $expField] = $tables[$taskType];
+
+        $sql = "INSERT INTO $table ($titleField, $descField, $expField) VALUES (?, ?, ?)";
+
+        return $this->query($sql, [$title, $description, $exp]);
+    }
+
+    public function updateTaskById($taskType, $taskId, array $data)
+    {
+        $tables = [
+            'writing' => ['writing', 'w_id', ['w_title', 'w_description', 'w_exp']],
+            'reading' => ['reading', 'r_id', ['r_title', 'r_description', 'r_exp']],
+            'drawing' => ['drawing', 'd_id', ['d_title', 'd_description', 'd_exp']],
+        ];
+
+        if (!isset($tables[$taskType])) {
+            throw new \Exception("Type de tâche invalide");
+        }
+
+        [$table, $idField, $fields] = $tables[$taskType];
+
+        $setParts = [];
+        $params = [];
+
+        foreach ($fields as $field) {
+            $jsonKey = explode('_', $field, 2)[1];
+            if (isset($data[$jsonKey])) {
+                $setParts[] = "$field = ?";
+                $params[] = $data[$jsonKey];
+            }
+        }
+
+        if (empty($setParts)) {
+            return false;
+        }
+
+        $params[] = $taskId;
+        $sql = "UPDATE $table SET " . implode(', ', $setParts) . " WHERE $idField = ?";
+
+        return $this->query($sql, $params);
+    }
+
+    public function deleteTaskById($taskType, $taskId)
+    {
+        $tables = [
+            'writing' => ['writing', 'w_id'],
+            'reading' => ['reading', 'r_id'],
+            'drawing' => ['drawing', 'd_id'],
+        ];
+
+        if (!isset($tables[$taskType])) {
+            throw new \Exception("Type de tâche invalide");
+        }
+
+        [$table, $idField] = $tables[$taskType];
+
+        $sql = "DELETE FROM $table WHERE $idField = ?";
+        return $this->query($sql, [$taskId]);
     }
 }

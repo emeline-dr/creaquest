@@ -118,6 +118,13 @@ class User extends Model
         return $this->query($sql, $params);
     }
 
+    /* Suppression d'un utilisateur */
+    public function deleteUser($userId)
+    {
+        $sql = "DELETE FROM {$this->table} WHERE u_id = ?";
+
+        return $this->query($sql, $userId);
+    }
 
     /* Ajout de l'expérience à l'utilisateur */
     public function addExpToUser($userId, $exp)
