@@ -1,0 +1,2 @@
+import{a as p}from"./chunk-U4N73S3H.js";import{Da as m,ia as a,ja as s,ka as o,va as i,z as t}from"./chunk-YBDZHZVS.js";import"./chunk-GAL4ENT6.js";var r=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=t({type:n,selectors:[["app-admin-users"]],standalone:!0,features:[m],decls:3,vars:0,consts:[[1,"relative","top-[240px]","md:top-[160px]","mx-20","pb-[45px]"]],template:function(e,c){e&1&&(o(0,"app-navbar-admin"),a(1,"div",0),i(2,` nana users
+`),s())},dependencies:[p]})};export{r as AdminUsersComponent};

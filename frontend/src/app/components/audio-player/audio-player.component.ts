@@ -49,7 +49,10 @@ export class AudioPlayerComponent {
           this.router.url === '/home' ||
           this.router.url === '/login' ||
           this.router.url === '/register' ||
-          this.router.url === '/login?registration=success'
+          this.router.url === '/login?registration=success' ||
+          this.router.url === '/administration' ||
+          this.router.url === '/administration/tasks' ||
+          this.router.url === '/administration/users'
         ) {
           this.pageCo = true;
         } else {
