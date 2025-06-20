@@ -122,9 +122,9 @@ class User extends Model
     public function deleteUser($userId)
     {
         $sql = "DELETE FROM {$this->table} WHERE u_id = ?";
-
-        return $this->query($sql, $userId);
+        return $this->query($sql, [$userId]);
     }
+
 
     /* Ajout de l'expérience à l'utilisateur */
     public function addExpToUser($userId, $exp)

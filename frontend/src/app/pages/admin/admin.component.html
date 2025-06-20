@@ -5,28 +5,28 @@
         Résumé des tâches complétées
     </h1>
 
-    <div class="my-[32px]">
+    <div class="my-[32px] md:px-[32px]">
         <span class="inline-block w-fit px-[16px] py-[4px] rounded-lg bg-blue text-xl font-revalia me-[8px]">
             Tâches complétées
         </span>
         {{tasksCount.total_completed}}
     </div>
 
-    <div class="my-[32px]">
+    <div class="my-[32px] md:px-[32px]">
         <span class="inline-block w-fit px-[16px] py-[4px] rounded-lg bg-blue text-xl font-revalia me-[8px]">
             Tâches complétées en <i>écriture</i>
         </span>
         {{tasksCount.completed_by_type.writing}}
     </div>
 
-    <div class="my-[32px]">
+    <div class="my-[32px] md:px-[32px]">
         <span class="inline-block w-fit px-[16px] py-[4px] rounded-lg bg-blue text-xl font-revalia me-[8px]">
             Tâches complétées en <i>dessin</i>
         </span>
         {{tasksCount.completed_by_type.drawing}}
     </div>
 
-    <div class="my-[32px]">
+    <div class="my-[32px] md:px-[32px]">
         <span class="inline-block w-fit px-[16px] py-[4px] rounded-lg bg-blue text-xl font-revalia me-[8px]">
             Tâches complétées en <i>lecture</i>
         </span>
@@ -37,7 +37,7 @@
         5 derniers utilisateurs enregistrés
     </h1>
 
-    <div class="flex flex-wrap justify-between mt-[32px]">
+    <div class="flex flex-wrap justify-between mt-[32px] md:px-[32px]">
         @for(lastUser of latestUsers; track lastUser) {
         <div [routerLink]="['/profile', lastUser.u_id]"
             class="inline-flex flex-col w-fit p-[16px] rounded-lg bg-blue text-xl font-revalia me-[8px] cursor-pointer">

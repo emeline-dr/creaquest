@@ -1,5 +1,36 @@
 <app-navbar-admin></app-navbar-admin>
 
 <div class="relative top-[240px] md:top-[160px] mx-20 pb-[45px]">
-    nana users
+    <div class="w-full">
+        <div class="hidden md:flex font-bold text-white-base px-[16px] font-revalia text-xl">
+            <div class="w-1/5">Nom d'utilisateur</div>
+            <div class="w-1/5">Niveau</div>
+            <div class="w-1/5">Expérience</div>
+            <div class="w-1/5">Date d'inscription</div>
+            <div class="w-1/5 text-right">Actions</div>
+        </div>
+
+        @for(user of usersProfile; track user){
+        <div
+            class="flex flex-wrap md:flex-nowrap justify-between items-center bg-blue rounded-lg my-[24px] px-[16px] py-[24px] text-white-base">
+            <div class="w-full md:w-1/5 font-revalia text-xl mb-2 md:mb-0">{{user.u_username}}</div>
+            <div class="w-full md:w-1/5 font-revalia mb-2 md:mb-0">{{user.u_lvl}}</div>
+            <div class="w-full md:w-1/5 font-revalia mb-2 md:mb-0">{{user.u_exp}}</div>
+            <div class="w-full md:w-1/5 font-revalia mb-2 md:mb-0 text-center">
+                {{user.u_registered_at | date: 'dd/MM/yyyy'}}
+            </div>
+            <div class="w-full md:w-1/5 flex gap-[8px] justify-start md:justify-end">
+                <button type="button" class="rounded-lg p-[8px] hover:bg-white-base hover:text-blue"
+                    aria-haspopup="dialog" aria-expanded="false" [attr.aria-controls]="'hs-basic-modal-' + user.u_id"
+                    [attr.data-hs-overlay]="'#hs-basic-modal-' + user.u_id">
+                    <i-lucide name="SquarePen"></i-lucide>
+                </button>
+                <button type="button" (click)="deleteUser(user.u_id)"
+                    class="rounded-lg p-[8px] text-red-700 bg-white-base hover:text-white-base hover:bg-red-700">
+                    <i-lucide name="Trash2"></i-lucide>
+                </button>
+            </div>
+        </div>
+        }
+    </div>
 </div>

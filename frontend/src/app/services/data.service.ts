@@ -61,6 +61,27 @@ export class DataService {
     return this.http.patch(this.apiUrl + this.apiRoute + userId, body)
   }
 
+  /* Modifier un profil */
+  patchProfile(updatedData: any, userId: number): Observable<any> {
+    this.apiRoute = 'users/';
+
+    const body = {
+      username: updatedData.username,
+      password: updatedData.password,
+      email: updatedData.email,
+      avatar: updatedData.avatar
+    }
+
+    return this.http.patch(this.apiUrl + this.apiRoute + userId, body)
+  }
+
+  /* Supprimer un utilisateur */
+  deleteUser(userId: number): Observable<any> {
+    this.apiRoute = 'users/'
+
+    return this.http.delete(this.apiUrl + this.apiRoute + userId);
+  }
+
   /* Tâches Écriture */
   getWritingTasks(): Observable<any> {
     this.apiRoute = 'tasks/writing/';
