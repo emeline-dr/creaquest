@@ -55,7 +55,7 @@ export class MyProfileComponent {
   }
 
   loadSelectedBackground() {
-    const savedBackground = localStorage.getItem('selectedBackground');
+    const savedBackground = sessionStorage.getItem('selectedBackground');
     if (savedBackground) {
       this.selectedBackground = savedBackground;
     }
@@ -77,15 +77,14 @@ export class MyProfileComponent {
     const selectedBg = this.backgrounds.find(bg => bg.name === this.selectedBackground);
 
     if (this.selectedBackground === 'Aucun') {
-      localStorage.removeItem('selectedBackground');
+      sessionStorage.removeItem('selectedBackground');
       this.selectedBackground = null;
     } else if (selectedBg && this.userLevel >= selectedBg.unlockLevel) {
-      localStorage.setItem('selectedBackground', this.selectedBackground!);
+      sessionStorage.setItem('selectedBackground', this.selectedBackground!);
     } else {
-      localStorage.removeItem('selectedBackground');
+      sessionStorage.removeItem('selectedBackground');
       this.selectedBackground = null;
     }
-
 
     this.dataService.patchMyProfile(updatedData).subscribe(
       response => {

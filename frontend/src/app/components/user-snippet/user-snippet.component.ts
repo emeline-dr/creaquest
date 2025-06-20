@@ -82,7 +82,7 @@ export class UserSnippetComponent {
       error: (err) => console.error('Erreur lors de la récupération du profil', err)
     });
 
-    const bg = localStorage.getItem('selectedBackground');
+    const bg = sessionStorage.getItem('selectedBackground');
     if (bg !== null && bg !== '') {
       this.selectedBackground = bg;
       this.isBackgroundCustom = true;

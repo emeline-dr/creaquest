@@ -86,3 +86,7 @@
 ::ng-deep .ql-toolbar.ql-snow+.ql-container.ql-snow {
     border-top: 2px solid var(--color-white-base);
 }
+
+.content-subject {
+    word-break: break-word
+}
