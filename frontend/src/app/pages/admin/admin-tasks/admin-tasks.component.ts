@@ -3,6 +3,7 @@ import { NavbarAdminComponent } from '../../../components/navbar-admin/navbar-ad
 import { DataService } from '../../../services/data.service';
 import { LucideAngularModule } from 'lucide-angular';
 import { FormsModule } from '@angular/forms';
+import { NewTaskComponent } from './new-task/new-task.component';
 
 declare var HSOverlay: any;
 
@@ -12,7 +13,8 @@ declare var HSOverlay: any;
   imports: [
     FormsModule,
     LucideAngularModule,
-    NavbarAdminComponent
+    NavbarAdminComponent,
+    NewTaskComponent
   ],
   templateUrl: './admin-tasks.component.html',
   styleUrl: './admin-tasks.component.css'

@@ -137,9 +137,9 @@ class Task extends Model
     public function createTask($taskType, $title, $description, $exp)
     {
         $tables = [
-            'writing' => ['writing', 'w_title', 'w_description', 'w_exp'],
-            'reading' => ['reading', 'r_title', 'r_description', 'r_exp'],
-            'drawing' => ['drawing', 'd_title', 'd_description', 'd_exp']
+            'writing' => ['writing', 'w_name', 'w_description', 'w_exp'],
+            'reading' => ['reading', 'r_name', 'r_description', 'r_exp'],
+            'drawing' => ['drawing', 'd_name', 'd_description', 'd_exp']
         ];
 
         if (!isset($tables[$taskType])) {

@@ -1,0 +1,71 @@
+<button type="button" class="btn btn-white mb-[40px] float-right" aria-haspopup="dialog" aria-expanded="false"
+    [attr.aria-controls]="'#hs-basic-modal-' + taskType" [attr.data-hs-overlay]="'#hs-basic-modal-' + taskType">
+    Ajouter une nouvelle tâche
+</button>
+
+<div [id]="'hs-basic-modal-' + taskType"
+    class="hs-overlay hidden size-full fixed flex flex-wrap content-center top-0 start-0 backdrop-blur-xs z-60 overflow-x-hidden overflow-y-auto pointer-events-none"
+    role="dialog" tabindex="-1" aria-labelledby="hs-unstyled-modal-label">
+    <div
+        class="h-fit hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+        <div class="flex flex-col bg-blue-dark border border-black shadow-2xs rounded-xl pointer-events-auto">
+            <div class="flex justify-between items-center py-3 px-4">
+                <h3 class="font-revalia font-bold text-white-base">
+                    Créer une nouvelle tâche
+                </h3>
+                <button type="button"
+                    class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100"
+                    aria-label="Fermer" [attr.data-hs-overlay]="'#create-task-modal'">
+                    <span class="sr-only">Fermer</span>
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-white-base hover:text-black"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 overflow-y-auto">
+                <!-- Sélection du type de tâche -->
+                <div class="w-full">
+                    <label class="font-revalia text-lg text-white-base">Type de la tâche :</label>
+                    <select [(ngModel)]="taskType" class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]">
+                        <option value="drawing">Dessin</option>
+                        <option value="reading">Lecture</option>
+                        <option value="writing">Écriture</option>
+                    </select>
+                </div>
+
+                <!-- Nom de la tâche -->
+                <div class="w-full mt-[16px]">
+                    <label class="font-revalia text-lg text-white-base">Nom de la tâche :</label>
+                    <input type="text" class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                        [(ngModel)]="newTask.name" placeholder="Nom de la tâche" />
+                </div>
+
+                <!-- Description -->
+                <div class="w-full mt-[16px]">
+                    <label class="font-revalia text-lg text-white-base">Description :</label>
+                    <textarea class="bg-white-base text-black h-fit p-2 rounded w-full"
+                        [(ngModel)]="newTask.description" placeholder="Description de la tâche"></textarea>
+                </div>
+
+                <!-- Expérience -->
+                <div class="w-full mt-[16px]">
+                    <label class="font-revalia text-lg text-white-base">Expérience :</label>
+                    <input type="number" class="bg-white-base text-black h-fit p-2 rounded w-full"
+                        [(ngModel)]="newTask.experience" placeholder="Expérience" />
+                </div>
+            </div>
+            <div class="flex justify-end items-center gap-x-2 py-3 px-4 font-revalia">
+                <button type="button"
+                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium text-white-base shadow-2xs hover:bg-blue rounded"
+                    [attr.data-hs-overlay]="'#create-task-modal'">Fermer</button>
+                <a (click)="createNewTask()"
+                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded bg-orange text-white-base hover:bg-white-base hover:text-orange cursor-pointer">
+                    Créer la tâche
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
