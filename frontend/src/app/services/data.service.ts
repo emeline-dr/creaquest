@@ -87,6 +87,24 @@ export class DataService {
     return this.http.get<any>(this.apiUrl + this.apiRoute);
   }
 
+  /* Créer une tâche */
+  createTask(taskData: any): Observable<any> {
+    this.apiRoute = 'tasks/create';
+    return this.http.post<any>(this.apiUrl + this.apiRoute, taskData);
+  }
+
+  /* Modifier une tâche */
+  updateTask(type: string, id: number, updatedTask: any): Observable<any> {
+    this.apiRoute = `tasks/${type}/${id}`;
+    return this.http.patch<any>(this.apiUrl + this.apiRoute, updatedTask);
+  }
+
+  /* Supprimer une tâche */
+  deleteTask(type: string, id: number): Observable<any> {
+    this.apiRoute = `tasks/${type}/${id}`;
+    return this.http.delete<any>(this.apiUrl + this.apiRoute);
+  }
+
 
   /* Tâches Écriture */
   getWritingTasks(): Observable<any> {

@@ -2,7 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection, importProvidersFrom } fr
 import { provideRouter, withHashLocation } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
-import { LucideAngularModule, ChevronDown, Instagram, Facebook, Mail, Music, Clock, SquarePen, Award, List, Eye, EyeOff, Users, SquareCheck, Square, Circle, CircleCheckBig, LoaderCircle, Home, Play, Pause, SkipForward, SkipBack, Trash2 } from 'lucide-angular';
+import { LucideAngularModule, ChevronDown, Instagram, Facebook, Mail, Music, Clock, SquarePen, Award, List, Eye, EyeOff, Users, SquareCheck, Square, Circle, CircleCheckBig, LoaderCircle, Home, Play, Pause, SkipForward, SkipBack, Trash2, ChevronUp } from 'lucide-angular';
 
 import { provideQuillConfig } from 'ngx-quill';
 
@@ -47,7 +47,8 @@ export const appConfig: ApplicationConfig = {
       Pause,
       SkipForward,
       SkipBack,
-      Trash2
+      Trash2,
+      ChevronUp
     }))
   ]
 };

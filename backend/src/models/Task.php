@@ -156,9 +156,9 @@ class Task extends Model
     public function updateTaskById($taskType, $taskId, array $data)
     {
         $tables = [
-            'writing' => ['writing', 'w_id', ['w_title', 'w_description', 'w_exp']],
-            'reading' => ['reading', 'r_id', ['r_title', 'r_description', 'r_exp']],
-            'drawing' => ['drawing', 'd_id', ['d_title', 'd_description', 'd_exp']],
+            'writing' => ['writing', 'w_id', ['w_name', 'w_description', 'w_exp']],
+            'reading' => ['reading', 'r_id', ['r_name', 'r_description', 'r_exp']],
+            'drawing' => ['drawing', 'd_id', ['d_name', 'd_description', 'd_exp']],
         ];
 
         if (!isset($tables[$taskType])) {
