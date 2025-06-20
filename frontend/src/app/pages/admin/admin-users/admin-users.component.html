@@ -20,15 +20,136 @@
                 {{user.u_registered_at | date: 'dd/MM/yyyy'}}
             </div>
             <div class="w-full md:w-1/5 flex gap-[8px] justify-start md:justify-end">
-                <button type="button" class="rounded-lg p-[8px] hover:bg-white-base hover:text-blue"
-                    aria-haspopup="dialog" aria-expanded="false" [attr.aria-controls]="'hs-basic-modal-' + user.u_id"
+                <!-- Edit : bouton + modal -->
+                <button type="button" (click)="openEditModal(user)"
+                    class="rounded-lg p-[8px] hover:bg-white-base hover:text-blue" aria-haspopup="dialog"
+                    aria-expanded="false" [attr.aria-controls]="'hs-basic-modal-' + user.u_id"
                     [attr.data-hs-overlay]="'#hs-basic-modal-' + user.u_id">
                     <i-lucide name="SquarePen"></i-lucide>
                 </button>
-                <button type="button" (click)="deleteUser(user.u_id)"
+
+                <div [id]="'hs-basic-modal-' + user.u_id"
+                    class="hs-overlay hidden size-full fixed flex flex-wrap content-center top-0 start-0 backdrop-blur-xs z-60 overflow-x-hidden overflow-y-auto pointer-events-none"
+                    role="dialog" tabindex="-1" aria-labelledby="hs-unstyled-modal-label">
+                    <div
+                        class="h-fit hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+                        <div
+                            class="flex flex-col bg-blue-dark border border-black shadow-2xs rounded-xl pointer-events-auto">
+                            <div class="flex justify-between items-center py-3 px-4">
+                                <h3 id="hs-basic-modal-label" class="font-revalia font-bold text-white-base">
+                                    {{ user.u_username }}
+                                </h3>
+                                <button type="button"
+                                    class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100"
+                                    aria-label="Close" [attr.data-hs-overlay]="'#hs-basic-modal-' + user.u_id">
+                                    <span class="sr-only">Fermer</span>
+                                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        class="text-white-base hover:text-black" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 6 6 18"></path>
+                                        <path d="m6 6 12 12"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="p-4 overflow-y-auto">
+                                <div class="w-full flex justify-center">
+                                    <img [src]="avatar" alt="Avatar - Prévisualisation"
+                                        class="mb-[24px] object-cover size-[100px] border border-[4px] border-white-base rounded-sm inline">
+                                </div>
+
+                                <label class="font-revalia text-lg text-white-base">Avatar :</label>
+                                <input type="text" class="bg-white-base text-black h-fit p-2 rounded w-full"
+                                    [(ngModel)]="avatar" (ngModelChange)="onAvatarInputChange($event)"
+                                    placeholder="URL de l'avatar" />
+
+                                <div class="w-full md:flex-1">
+                                    <label class="font-revalia text-lg text-white-base">Nom d'utilisateur :</label>
+                                    <input type="text"
+                                        class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                                        [(ngModel)]="username" placeholder="Nom d'utilisateur" />
+                                </div>
+
+                                <div class="w-full md:flex-1">
+                                    <label class="font-revalia text-lg text-white-base">Mot de passe :</label>
+                                    <input type="password"
+                                        class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                                        [(ngModel)]="password" placeholder="Mot de passe" />
+                                </div>
+
+                                <div class="w-full">
+                                    <label class="font-revalia text-lg text-white-base">Adresse mail :</label>
+                                    <input type="email"
+                                        class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                                        [(ngModel)]="email" placeholder="Email" />
+                                </div>
+                            </div>
+                            <div class="flex justify-end items-center gap-x-2 py-3 px-4 font-revalia">
+                                <button type="button"
+                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium text-white-base shadow-2xs hover:bg-blue rounded"
+                                    [attr.data-hs-overlay]="'#hs-basic-modal-' + user.u_id">
+                                    Fermer
+                                </button>
+                                <a (click)="updateUser(user.u_id)"
+                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded bg-orange text-white-base hover:bg-white-base hover:text-orange cursor-pointer">
+                                    Modifier l'utilisateur
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suppression : bouton + modal -->
+                <button type="button" aria-haspopup="dialog" aria-expanded="false"
+                    [attr.aria-controls]="'hs-basic-modal-delete-' + user.u_id"
+                    [attr.data-hs-overlay]="'#hs-basic-modal-delete-' + user.u_id"
                     class="rounded-lg p-[8px] text-red-700 bg-white-base hover:text-white-base hover:bg-red-700">
                     <i-lucide name="Trash2"></i-lucide>
                 </button>
+
+                <div [id]="'hs-basic-modal-delete-' + user.u_id"
+                    class="hs-overlay hidden size-full fixed flex flex-wrap content-center top-0 start-0 backdrop-blur-xs z-60 overflow-x-hidden overflow-y-auto pointer-events-none"
+                    role="dialog" tabindex="-1" aria-labelledby="hs-unstyled-modal-label">
+                    <div
+                        class="h-fit hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+                        <div
+                            class="flex flex-col bg-blue-dark border border-black shadow-2xs rounded-xl pointer-events-auto">
+                            <div class="flex justify-between items-center py-3 px-4">
+                                <h3 id="hs-basic-modal-label" class="font-revalia font-bold text-white-base">
+                                    {{ user.u_username }}
+                                </h3>
+                                <button type="button"
+                                    class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100"
+                                    aria-label="Close" [attr.data-hs-overlay]="'#hs-basic-modal-delete-' + user.u_id">
+                                    <span class="sr-only">Fermer</span>
+                                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        class="text-white-base hover:text-black" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M18 6 6 18"></path>
+                                        <path d="m6 6 12 12"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="p-4 overflow-y-auto">
+                                <p class="mt-1 text-white-base">
+                                    Êtes-vous sûr de vouloir supprimer cet utilisateur ?
+                                </p>
+                            </div>
+                            <div class="flex justify-end items-center gap-x-2 py-3 px-4 font-revalia">
+                                <button type="button"
+                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium text-white-base shadow-2xs hover:bg-blue rounded"
+                                    [attr.data-hs-overlay]="'#hs-basic-modal-delete-' + user.u_id">
+                                    Fermer
+                                </button>
+                                <a class="rounded-lg p-[8px] text-red-700 bg-white-base hover:text-white-base hover:bg-red-700 cursor-pointer"
+                                    (click)="deleteUser(user.u_id)">
+                                    Supprimer l'utilisateur
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         }
