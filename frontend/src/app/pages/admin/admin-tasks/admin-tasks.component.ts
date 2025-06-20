@@ -85,31 +85,15 @@ export class AdminTasksComponent implements AfterViewChecked {
     }
 
     const taskToUpdate = {
-      [`${namePrefix}name`]: updatedTask.name || undefined,
-      [`${descriptionPrefix}description`]: updatedTask.description || undefined,
-      [`${expPrefix}exp`]: updatedTask.experience || undefined
+      name: updatedTask[`${namePrefix}name`] || undefined,
+      description: updatedTask[`${descriptionPrefix}description`] || undefined,
+      experience: updatedTask[`${expPrefix}exp`] || undefined
     };
 
     this.dataService.updateTask(type, id, taskToUpdate).subscribe((response) => {
-      if (type === 'writing') {
-        const index = this.writingTasks.findIndex((task: any) => task.w_id === id);
-        if (index !== -1) {
-          this.writingTasks[index] = { ...this.writingTasks[index], ...taskToUpdate };
-        }
-      } else if (type === 'reading') {
-        const index = this.readingTasks.findIndex((task: any) => task.r_id === id);
-        if (index !== -1) {
-          this.readingTasks[index] = { ...this.readingTasks[index], ...taskToUpdate };
-        }
-      } else if (type === 'drawing') {
-        const index = this.drawingTasks.findIndex((task: any) => task.d_id === id);
-        if (index !== -1) {
-          this.drawingTasks[index] = { ...this.drawingTasks[index], ...taskToUpdate };
-        }
-      }
+      window.location.reload();
     });
   }
-
 
   deleteTask(type: string, id: number) {
     this.dataService.deleteTask(type, id).subscribe(() => {

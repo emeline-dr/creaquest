@@ -30,7 +30,7 @@
             <div class="w-full md:w-1/5 flex gap-[8px] justify-start md:justify-end">
                 <!-- Edit : bouton + modal -->
                 <button type="button" class="rounded-lg p-[8px] hover:bg-white-base hover:text-blue"
-                    aria-haspopup="dialog" aria-expanded="false"
+                    aria-haspopup="dialog" aria-expanded="false" (click)="editTask(writingTask)"
                     [attr.aria-controls]="'hs-basic-modal-w-' + writingTask.w_id"
                     [attr.data-hs-overlay]="'#hs-basic-modal-w-' + writingTask.w_id">
                     <i-lucide name="SquarePen"></i-lucide>
@@ -61,7 +61,25 @@
                                 </button>
                             </div>
                             <div class="p-4 overflow-y-auto">
-                                blah
+                                <div class="w-full">
+                                    <label class="font-revalia text-lg text-white-base">Nom de la tâche :</label>
+                                    <input type="text"
+                                        class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                                        [(ngModel)]="updatedTask.w_name" placeholder="Nom de la tâche" />
+                                </div>
+
+                                <div class="w-full mt-[16px]">
+                                    <label class="font-revalia text-lg text-white-base">Description :</label>
+                                    <textarea class="bg-white-base text-black h-fit p-2 rounded w-full"
+                                        [(ngModel)]="updatedTask.w_description"
+                                        placeholder="Description de la tâche"></textarea>
+                                </div>
+
+                                <div class="w-full mt-[16px]">
+                                    <label class="font-revalia text-lg text-white-base">Expérience :</label>
+                                    <input type="number" class="bg-white-base text-black h-fit p-2 rounded w-full"
+                                        [(ngModel)]="updatedTask.w_exp" placeholder="Expérience" />
+                                </div>
                             </div>
                             <div class="flex justify-end items-center gap-x-2 py-3 px-4 font-revalia">
                                 <button type="button"
@@ -69,7 +87,7 @@
                                     [attr.data-hs-overlay]="'#hs-basic-modal-w-' + writingTask.w_id">
                                     Fermer
                                 </button>
-                                <a
+                                <a (click)="updateTask('writing', writingTask.w_id, updatedTask)"
                                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded bg-orange text-white-base hover:bg-white-base hover:text-orange cursor-pointer">
                                     Modifier la tâche
                                 </a>
@@ -164,7 +182,7 @@
             <div class="w-full md:w-1/5 flex gap-[8px] justify-start md:justify-end">
                 <!-- Edit : bouton + modal -->
                 <button type="button" class="rounded-lg p-[8px] hover:bg-white-base hover:text-blue"
-                    aria-haspopup="dialog" aria-expanded="false"
+                    aria-haspopup="dialog" aria-expanded="false" (click)="editTask(readingTask)"
                     [attr.aria-controls]="'hs-basic-modal-w-' + readingTask.r_id"
                     [attr.data-hs-overlay]="'#hs-basic-modal-w-' + readingTask.r_id">
                     <i-lucide name="SquarePen"></i-lucide>
@@ -195,7 +213,25 @@
                                 </button>
                             </div>
                             <div class="p-4 overflow-y-auto">
-                                blah
+                                <div class="w-full">
+                                    <label class="font-revalia text-lg text-white-base">Nom de la tâche :</label>
+                                    <input type="text"
+                                        class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
+                                        [(ngModel)]="updatedTask.r_name" placeholder="Nom de la tâche" />
+                                </div>
+
+                                <div class="w-full mt-[16px]">
+                                    <label class="font-revalia text-lg text-white-base">Description :</label>
+                                    <textarea class="bg-white-base text-black h-fit p-2 rounded w-full"
+                                        [(ngModel)]="updatedTask.r_description"
+                                        placeholder="Description de la tâche"></textarea>
+                                </div>
+
+                                <div class="w-full mt-[16px]">
+                                    <label class="font-revalia text-lg text-white-base">Expérience :</label>
+                                    <input type="number" class="bg-white-base text-black h-fit p-2 rounded w-full"
+                                        [(ngModel)]="updatedTask.r_exp" placeholder="Expérience" />
+                                </div>
                             </div>
                             <div class="flex justify-end items-center gap-x-2 py-3 px-4 font-revalia">
                                 <button type="button"
@@ -203,7 +239,7 @@
                                     [attr.data-hs-overlay]="'#hs-basic-modal-w-' + readingTask.r_id">
                                     Fermer
                                 </button>
-                                <a
+                                <a (click)="updateTask('reading', readingTask.r_id, updatedTask)"
                                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded bg-orange text-white-base hover:bg-white-base hover:text-orange cursor-pointer">
                                     Modifier la tâche
                                 </a>
@@ -333,20 +369,20 @@
                                     <label class="font-revalia text-lg text-white-base">Nom de la tâche :</label>
                                     <input type="text"
                                         class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
-                                        [(ngModel)]="updatedTask.name" placeholder="Nom de la tâche" />
+                                        [(ngModel)]="updatedTask.d_name" placeholder="Nom de la tâche" />
                                 </div>
 
                                 <div class="w-full mt-[16px]">
                                     <label class="font-revalia text-lg text-white-base">Description :</label>
                                     <textarea class="bg-white-base text-black h-fit p-2 rounded w-full"
-                                        [(ngModel)]="updatedTask.description"
+                                        [(ngModel)]="updatedTask.d_description"
                                         placeholder="Description de la tâche"></textarea>
                                 </div>
 
                                 <div class="w-full mt-[16px]">
                                     <label class="font-revalia text-lg text-white-base">Expérience :</label>
                                     <input type="number" class="bg-white-base text-black h-fit p-2 rounded w-full"
-                                        [(ngModel)]="updatedTask.experience" placeholder="Expérience" />
+                                        [(ngModel)]="updatedTask.d_exp" placeholder="Expérience" />
                                 </div>
                             </div>
                             <div class="flex justify-end items-center gap-x-2 py-3 px-4 font-revalia">
