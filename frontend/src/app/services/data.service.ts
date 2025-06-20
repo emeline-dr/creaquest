@@ -78,9 +78,15 @@ export class DataService {
   /* Supprimer un utilisateur */
   deleteUser(userId: number): Observable<any> {
     this.apiRoute = 'users/'
-
     return this.http.delete(this.apiUrl + this.apiRoute + userId);
   }
+
+  /* Récupérer toutes les tâches */
+  getAllTasks(): Observable<any> {
+    this.apiRoute = 'tasks/all-tasks';
+    return this.http.get<any>(this.apiUrl + this.apiRoute);
+  }
+
 
   /* Tâches Écriture */
   getWritingTasks(): Observable<any> {

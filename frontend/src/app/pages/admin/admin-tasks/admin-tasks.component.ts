@@ -12,5 +12,21 @@ import { DataService } from '../../../services/data.service';
   styleUrl: './admin-tasks.component.css'
 })
 export class AdminTasksComponent {
+  writingTasks: any;
+  readingTasks: any;
+  drawingTasks: any;
 
+  constructor(
+    private dataService: DataService
+  ) { }
+
+  ngOnInit() {
+    this.dataService.getAllTasks().subscribe((data) => {
+      console.log('Toutes les tâches récupérées:', data);
+      this.writingTasks = data.writing;
+      this.readingTasks = data.reading;
+      this.drawingTasks = data.drawing;
+    });
+
+  }
 }
