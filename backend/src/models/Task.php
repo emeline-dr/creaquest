@@ -4,6 +4,30 @@ namespace App\Models;
 
 class Task extends Model
 {
+    public function getAllTasks(): array
+    {
+        $taskTables = [
+            'writing' => ['w_id', 'w_title', 'w_description', 'w_exp'],
+            'reading' => ['r_id', 'r_title', 'r_description', 'r_exp'],
+            'drawing' => ['d_id', 'd_title', 'd_description', 'd_exp']
+        ];
+
+        $allTasks = [];
+
+        foreach ($taskTables as $type => $fields) {
+            $fieldList = implode(', ', $fields);
+            $sql = "SELECT '$type' as type, $fieldList FROM $type";
+            $results = $this->query($sql);
+
+            foreach ($results as $task) {
+                $task->type = $type;
+                $allTasks[] = $task;
+            }
+        }
+
+        return $allTasks;
+    }
+
     public function getTask($userId, $taskType, $status)
     {
         $tables = [

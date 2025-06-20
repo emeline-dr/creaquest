@@ -50,6 +50,8 @@ $router->patch('/users/:id', 'App\Controllers\UserController@updateUser');
 $router->delete('/users/:id', 'App\Controllers\UserController@deleteUser');
 
 /* Tasks */
+$router->get('/tasks/all-tasks', 'App\Controllers\TaskController@getAllTasks');
+
 $router->get('/tasks/writing/:id', 'App\Controllers\TaskController@getWritingTasks');
 $router->get('/tasks/reading/:id', 'App\Controllers\TaskController@getReadingTasks');
 $router->get('/tasks/drawing/:id', 'App\Controllers\TaskController@getDrawingTasks');

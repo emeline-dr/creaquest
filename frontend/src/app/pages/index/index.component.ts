@@ -58,6 +58,7 @@ export class IndexComponent {
     this.dataService.getWritingTasks().subscribe({
       next: (writingTasks) => {
         this.tasksWriting = writingTasks
+        this.isWritingTaskLoading = false
 
         setTimeout(() => {
           HSOverlay.autoInit();
@@ -69,6 +70,7 @@ export class IndexComponent {
       next: (writingCompletedTasks) => {
         this.tasksCompletedWriting = writingCompletedTasks
         this.isWritingTaskLoading = false
+
       },
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });
@@ -76,6 +78,7 @@ export class IndexComponent {
     this.dataService.getReadingTasks().subscribe({
       next: (readingTasks) => {
         this.tasksReading = readingTasks
+        this.isReadingTaskLoading = false
 
         setTimeout(() => {
           HSOverlay.autoInit();
@@ -94,6 +97,7 @@ export class IndexComponent {
     this.dataService.getDrawingTasks().subscribe({
       next: (drawingTasks) => {
         this.tasksDrawing = drawingTasks
+        this.isDrawingTaskLoading = false
 
         setTimeout(() => {
           HSOverlay.autoInit();
@@ -106,6 +110,7 @@ export class IndexComponent {
       next: (drawingCompletedTasks) => {
         this.tasksCompletedDrawing = drawingCompletedTasks
         this.isDrawingTaskLoading = false
+
       },
       error: (err) => console.error('Erreur lors de la récupération des tâches', err)
     });

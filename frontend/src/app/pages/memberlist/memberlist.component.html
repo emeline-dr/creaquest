@@ -39,7 +39,7 @@
                             @for(user of allUsers; track user) {
                             <tr class="odd:bg-blue even:bg-orange text-white-base">
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                    <img src="{{ user.u_avatar }}" alt="" class="size-25 rounded-lg">
+                                    <img src="{{ user.u_avatar }}" alt="" class="object-cover size-25 rounded-lg">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                                     <a [routerLink]="['/profile', user.u_id]">

@@ -7,6 +7,22 @@ use App\Models\User;
 
 class TaskController extends Controller
 {
+    /* Récupérer toutes les tâches */
+    public function getAllTasks()
+    {
+        $taskModel = new Task($this->getDB());
+        $tasks = $taskModel->getAllTasks();
+
+        if ($tasks) {
+            header('Content-Type: application/json');
+            echo json_encode($tasks);
+        } else {
+            http_response_code(404);
+            echo json_encode(["error" => "Aucune tâche trouvée"]);
+        }
+    }
+
+
     /* Récupérer les tâches d'écriture par User */
     public function getCompletedWritingTasks($userId)
     {
