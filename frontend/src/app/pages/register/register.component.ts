@@ -45,7 +45,7 @@ export class RegisterComponent {
       this.dataService.register({ username, password, passwordBis, email }).subscribe(
         (response) => {
           if (response.status === "success") {
-            window.location.href = '/login?registration=success'
+            window.location.href = '#/login?registration=success'
           } else {
             this.registerError = true;
           }
