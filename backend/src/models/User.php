@@ -83,7 +83,8 @@ class User extends Model
             'username',
             'email',
             'avatar',
-            'password'
+            'password',
+            'background'
         ];
 
         $setParts = [];

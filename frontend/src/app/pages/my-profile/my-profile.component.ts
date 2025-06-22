@@ -50,15 +50,8 @@ export class MyProfileComponent {
       this.avatar = this.userProfile.u_avatar;
       this.userLevel = this.userProfile.u_lvl;
 
-      this.loadSelectedBackground();
+      this.selectedBackground = this.userProfile.u_background || null;
     })
-  }
-
-  loadSelectedBackground() {
-    const savedBackground = sessionStorage.getItem('selectedBackground');
-    if (savedBackground) {
-      this.selectedBackground = savedBackground;
-    }
   }
 
   onAvatarInputChange(event: Event) {
@@ -67,24 +60,22 @@ export class MyProfileComponent {
   }
 
   onSubmit() {
+    const selectedBg = this.backgrounds.find(bg => bg.name === this.selectedBackground);
+
+    let validBackground: string | null = null;
+    if (this.selectedBackground === 'Aucun') {
+      validBackground = null;
+    } else if (selectedBg && this.userLevel >= selectedBg.unlockLevel) {
+      validBackground = this.selectedBackground!;
+    }
+
     const updatedData = {
       username: this.username,
       email: this.email,
       avatar: this.avatar,
-      password: this.password
+      password: this.password,
+      background: validBackground
     };
-
-    const selectedBg = this.backgrounds.find(bg => bg.name === this.selectedBackground);
-
-    if (this.selectedBackground === 'Aucun') {
-      sessionStorage.removeItem('selectedBackground');
-      this.selectedBackground = null;
-    } else if (selectedBg && this.userLevel >= selectedBg.unlockLevel) {
-      sessionStorage.setItem('selectedBackground', this.selectedBackground!);
-    } else {
-      sessionStorage.removeItem('selectedBackground');
-      this.selectedBackground = null;
-    }
 
     this.dataService.patchMyProfile(updatedData).subscribe(
       response => {
@@ -96,4 +87,5 @@ export class MyProfileComponent {
       }
     );
   }
+
 }

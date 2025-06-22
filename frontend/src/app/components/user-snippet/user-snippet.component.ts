@@ -65,6 +65,9 @@ export class UserSnippetComponent {
       next: (profile) => {
         this.userProfile = profile
 
+        this.selectedBackground = this.userProfile.selectedBackground || '';
+        this.isBackgroundCustom = !!this.selectedBackground;
+
         const userLvl = this.userProfile.u_lvl
         let medal = 'Medal-Diamond'
 
@@ -81,12 +84,6 @@ export class UserSnippetComponent {
       },
       error: (err) => console.error('Erreur lors de la récupération du profil', err)
     });
-
-    const bg = sessionStorage.getItem('selectedBackground');
-    if (bg !== null && bg !== '') {
-      this.selectedBackground = bg;
-      this.isBackgroundCustom = true;
-    }
   }
 
   getLastChild(route: ActivatedRoute): ActivatedRoute {
