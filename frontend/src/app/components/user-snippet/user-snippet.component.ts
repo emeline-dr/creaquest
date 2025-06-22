@@ -65,7 +65,7 @@ export class UserSnippetComponent {
       next: (profile) => {
         this.userProfile = profile
 
-        this.selectedBackground = this.userProfile.selectedBackground || '';
+        this.selectedBackground = this.userProfile.u_background || '';
         this.isBackgroundCustom = !!this.selectedBackground;
 
         const userLvl = this.userProfile.u_lvl

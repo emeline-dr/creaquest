@@ -55,7 +55,8 @@ export class DataService {
       username: updatedData.username,
       password: updatedData.password,
       email: updatedData.email,
-      avatar: updatedData.avatar
+      avatar: updatedData.avatar,
+      background: updatedData.background
     }
 
     return this.http.patch(this.apiUrl + this.apiRoute + userId, body)

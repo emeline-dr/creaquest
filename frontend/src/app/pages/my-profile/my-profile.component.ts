@@ -74,7 +74,7 @@ export class MyProfileComponent {
       email: this.email,
       avatar: this.avatar,
       password: this.password,
-      background: validBackground
+      background: validBackground ?? null
     };
 
     this.dataService.patchMyProfile(updatedData).subscribe(
