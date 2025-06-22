@@ -7,7 +7,40 @@
             Vous n'avez pas de compte ?
         </a>
     </div>
-    <button class="btn btn-orange mt-[50px]">Nous contacter</button>
+    <button type="button" class="hs-collapse-toggle btn btn-orange mt-[16px]" id="hs-basic-collapse"
+        aria-expanded="false" aria-controls="hs-basic-collapse-heading" data-hs-collapse="#hs-basic-collapse-heading">
+        Nous contacter
+    </button>
+
+    <div id="hs-basic-collapse-heading"
+        class="hs-collapse z-10 hidden w-full overflow-hidden transition-[height] duration-300"
+        aria-labelledby="hs-basic-collapse">
+        <form class="w-full mx-auto flex justify-center flex-wrap mt-[8px]">
+            <div class="contactFormulaire w-full bg-blue rounded p-[15px] text-white-base text-xs">
+                <label for="formIdentity" class="mt-[10px] font-bold text-base">Prénom Nom</label>
+                <input
+                    class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-orange bg-white-base"
+                    name="formIdentity" id="formIdentity" type="text" placeholder="Entrez votre prénom et votre nom"
+                    required>
+                <label for="formMail" class="font-bold text-base">Adresse mail</label>
+                <input
+                    class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-orange bg-white-base"
+                    name="formMail" id="formMail" type="email" placeholder="Entrez votre adresse mail" required>
+                <label for="formObject" class="font-bold text-base">Objet du message</label>
+                <input
+                    class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-orange bg-white-base"
+                    name="formObject" id="formObject" type="text" placeholder="Entrez l'objet de votre message"
+                    required>
+                <label for="formMsg" class="font-bold text-base">Contenu du message</label>
+                <textarea
+                    class="w-full mt-[10px] mb-[15px] px-[15px] py-[10px] text-base text-black rounded-sm border border-1 border-orange bg-white-base"
+                    name="formMsg" id="formMsg" placeholder="Entrez le contenu de votre message" required></textarea>
+            </div>
+            <button style="width:fit-content !important;" class="btn btn-orange w-11/12 mt-[15px]">
+                Envoyer le message
+            </button>
+        </form>
+    </div>
     <div class="absolute bottom-0 text-white-base more-infos w-fit flex flex-col items-center text-base font-bold">
         Plus d'infos
         <i-lucide class="lucide-ChevronDown" name="ChevronDown" [size]="48"></i-lucide>
