@@ -30,6 +30,8 @@ export class AudioPlayerComponent {
   isPlaying = false;
   progress = 0;
   currentTitle = '';
+  loopMode: boolean = false;
+  shuffleMode: boolean = false;
 
   constructor(
     private dataService: DataService,
@@ -38,6 +40,17 @@ export class AudioPlayerComponent {
   ) { }
 
   ngOnInit() {
+    const storedLoop = localStorage.getItem('audio_loop');
+    const storedShuffle = localStorage.getItem('audio_shuffle');
+
+    if (storedLoop !== null) {
+      this.loopMode = JSON.parse(storedLoop);
+    }
+
+    if (storedShuffle !== null) {
+      this.shuffleMode = JSON.parse(storedShuffle);
+    }
+
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd || event instanceof ActivationEnd))
       .subscribe(() => {
@@ -76,6 +89,8 @@ export class AudioPlayerComponent {
     const src = `assets/music/${music.m_url}`;
     this.currentTitle = music.m_name;
 
+    this.progress = 0;
+
     if (this.sound) {
       this.sound.unload();
     }
@@ -102,15 +117,43 @@ export class AudioPlayerComponent {
     this.isPlaying ? this.pause() : this.play();
   }
 
-  playNext() {
-    this.currentIndex = (this.currentIndex + 1) % this.listMusic.length;
-    this.loadCurrentTrack();
+  toggleShuffle() {
+    this.shuffleMode = !this.shuffleMode;
+    localStorage.setItem('audio_shuffle', JSON.stringify(this.shuffleMode));
   }
+
+  toggleLoop() {
+    this.loopMode = !this.loopMode;
+    localStorage.setItem('audio_loop', JSON.stringify(this.loopMode));
+  }
+
+
+  playNext() {
+    if (this.shuffleMode) {
+      let nextIndex: number;
+      do {
+        nextIndex = Math.floor(Math.random() * this.listMusic.length);
+      } while (nextIndex === this.currentIndex && this.listMusic.length > 1);
+      this.currentIndex = nextIndex;
+    } else if (this.loopMode && this.currentIndex === this.listMusic.length - 1) {
+      this.currentIndex = 0;
+    } else if (this.currentIndex < this.listMusic.length - 1) {
+      this.currentIndex++;
+    } else if (!this.loopMode) {
+      this.isPlaying = false;
+      return;
+    }
+
+    this.loadCurrentTrack();
+    this.play();
+  }
+
 
   playPrevious() {
     this.currentIndex =
       (this.currentIndex - 1 + this.listMusic.length) % this.listMusic.length;
     this.loadCurrentTrack();
+    this.play();
   }
 
   trackProgress() {

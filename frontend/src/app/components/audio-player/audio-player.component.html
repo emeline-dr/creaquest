@@ -25,5 +25,13 @@
     <button (click)="playNext()">
         <i-lucide name="SkipForward" size="32"></i-lucide>
     </button>
+    <button (click)="toggleShuffle()" [class.text-orange]="shuffleMode" [class.text-white-base]="!shuffleMode">
+        <i-lucide name="Shuffle" size="24"></i-lucide>
+    </button>
+
+    <button (click)="toggleLoop()" [class.text-orange]="loopMode" [class.text-white-base]="!loopMode">
+        <i-lucide name="Repeat" size="24"></i-lucide>
+    </button>
+
 </div>
 }
