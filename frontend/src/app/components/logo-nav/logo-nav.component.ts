@@ -32,37 +32,30 @@ export class LogoNavComponent {
       .pipe(filter(event => event instanceof NavigationEnd || event instanceof ActivationEnd))
       .subscribe(() => {
         const currentUrl = this.router.url;
+        const hasToken = !!localStorage.getItem('token');
 
-        // Route par défaut
-        if (
-          currentUrl === '/login' ||
-          currentUrl === '/register' ||
-          currentUrl === '/login?registration=success'
-        ) {
-          this.routeUrl = '/home';
+        const lastChild = this.getLastChild(this.activatedRoute);
+        const data = lastChild.snapshot.data;
+
+        const is404 = data['is404'] === true;
+
+        // 🔁 Redirection dynamique logo
+        if (is404 || currentUrl === '/home' || currentUrl === '/login' || currentUrl === '/register') {
+          this.routeUrl = hasToken ? '/index' : '/home';
         } else {
           this.routeUrl = '/index';
         }
 
         this.pageHome = currentUrl === '/home';
 
-        const lastChild = this.getLastChild(this.activatedRoute);
-        const component = lastChild.snapshot.routeConfig?.component;
-
-        if (
-          component === NoPageComponent ||
+        this.pageCo = data['hideNav'] === true ||
           currentUrl === '/home' ||
           currentUrl === '/login' ||
           currentUrl === '/register' ||
           currentUrl === '/login?registration=success' ||
           currentUrl === '/administration' ||
           currentUrl === '/administration/tasks' ||
-          currentUrl === '/administration/users'
-        ) {
-          this.pageCo = true;
-        } else {
-          this.pageCo = false;
-        }
+          currentUrl === '/administration/users';
       });
   }
 

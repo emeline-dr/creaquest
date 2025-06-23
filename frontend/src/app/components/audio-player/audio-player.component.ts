@@ -42,22 +42,17 @@ export class AudioPlayerComponent {
       .pipe(filter(event => event instanceof NavigationEnd || event instanceof ActivationEnd))
       .subscribe(() => {
         const lastChild = this.getLastChild(this.activatedRoute);
-        const component = lastChild.snapshot.routeConfig?.component;
+        const data = lastChild.snapshot.data;
 
-        if (
-          component === NoPageComponent ||
-          this.router.url === '/home' ||
-          this.router.url === '/login' ||
-          this.router.url === '/register' ||
-          this.router.url === '/login?registration=success' ||
-          this.router.url === '/administration' ||
-          this.router.url === '/administration/tasks' ||
-          this.router.url === '/administration/users'
-        ) {
-          this.pageCo = true;
-        } else {
-          this.pageCo = false;
-        }
+        this.pageCo = data['hideNav'] === true || [
+          '/home',
+          '/login',
+          '/register',
+          '/login?registration=success',
+          '/administration',
+          '/administration/tasks',
+          '/administration/users'
+        ].includes(this.router.url);
       });
 
     this.dataService.getMusic().subscribe({

@@ -79,6 +79,10 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        loadComponent: () => import('./pages/no-page/no-page.component').then(m => m.NoPageComponent)
+        loadComponent: () => import('./pages/no-page/no-page.component').then(m => m.NoPageComponent),
+        data: {
+            hideNav: true,
+            is404: true
+        }
     }
 ];
