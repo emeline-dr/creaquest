@@ -7,10 +7,12 @@
 
     <div class="flex flex-wrap justify-evenly mt-[16px]">
         <img [src]="avatar" alt="Avatar - Prévisualisation"
-            class="size-[150px] border border-[4px] border-white-base rounded-sm inline">
+            class="size-[150px] border border-[4px] border-white-base rounded-sm inline object-cover">
 
         <div class="w-3/4 bg-black rounded-sm p-[16px] flex flex-wrap justify-between gap-[16px] mt-[16px] md:mt-[0px]">
-            <label class="font-revalia text-lg text-white-base">Avatar :</label>
+            <label class="font-revalia text-lg text-white-base">Avatar :
+                <span class="font-helvetica text-sm">(<i>Format icône</i>)</span>
+            </label>
             <input type="text" class="bg-white-base text-black h-fit p-2 rounded w-full" [(ngModel)]="avatar"
                 (ngModelChange)="onAvatarInputChange($event)" placeholder="URL de l'avatar" />
 
@@ -21,7 +23,9 @@
             </div>
 
             <div class="w-full md:flex-1">
-                <label class="font-revalia text-lg text-white-base">Mot de passe :</label>
+                <label class="font-revalia text-lg text-white-base">Mot de passe :
+                    <span class="font-helvetica text-sm">(<i>min. 5 caractères</i>)</span>
+                </label>
                 <input type="password" class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
                     [(ngModel)]="password" placeholder="Mot de passe" />
             </div>
@@ -39,17 +43,29 @@
             </h2>
             <div class="flex flex-wrap justify-between bg-blue p-[24px] rounded-sm gap-[16px]">
                 @for(background of backgrounds; track background) {
-                <label class="flex items-center space-x-2 text-white-base">
-                    <label class="flex items-center space-x-2">
-                        <input type="radio" [(ngModel)]="selectedBackground" [value]="background.name"
-                            [disabled]="userLevel < background.unlockLevel"
-                            [ngClass]="{'bg-gray-500': userLevel < background.unlockLevel}">
-                        @if(background.name !== 'Aucun') {
-                        <img [src]="background.imagePath" alt="{{ background.name }}"
-                            class="size-[80px] border border-white-base rounded-sm fit-cover" />
-                        }
-                        <span class="ms-[16px]">{{ background.name }}</span>
-                    </label>
+                <label class="flex items-center space-x-2 cursor-pointer text-white-base">
+                    <input type="radio" class="hidden peer" [(ngModel)]="selectedBackground" [value]="background.name"
+                        [disabled]="userLevel < background.unlockLevel" />
+
+                    <div class="p-[8px] rounded-sm bg-orange">
+                        <lucide-icon [name]="selectedBackground === background.name ? 'circle-check' : 'circle'"
+                            [ngClass]="{
+                                'size-[24px]': true,
+                                'text-orange': userLevel < background.unlockLevel,
+                                'text-white-base': userLevel >= background.unlockLevel
+                            }">
+                        </lucide-icon>
+                    </div>
+
+                    @if(background.name !== 'Aucun') {
+                    <img [src]="background.imagePath" alt="{{ background.name }}"
+                        class="size-[80px] ms-[8px] border border-white-base rounded-sm fit-cover" />
+                    }
+
+                    <span class="ms-[16px]">
+                        {{ background.name }}
+                        <i class="text-xs">Débloqué au lvl : {{background.unlockLevel}}</i>
+                    </span>
                 </label>
                 }
             </div>

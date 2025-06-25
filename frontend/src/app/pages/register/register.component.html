@@ -41,7 +41,10 @@
                         formControlName="username" name="username" id="username" type="text"
                         placeholder="Entrez votre nom d'utilisateur" required>
 
-                    <label for="password" class="font-bold text-base">Mot de passe</label>
+                    <label for="password" class="font-bold text-base">
+                        Mot de passe
+                        <span class="font-helvetica text-xs">(<i>min. 5 caractères</i>)</span>
+                    </label>
                     @if(registerForm.get('password')?.hasError('required') &&
                     registerForm.get('password')?.touched){
                     <div class="bg-rose-600 rounded text-xs text-center">

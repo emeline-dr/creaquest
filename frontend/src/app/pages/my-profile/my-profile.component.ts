@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+declare const HSStaticMethods: any;
+
 import { DataService } from '../../services/data.service';
 
 import { UserSnippetComponent } from '../../components/user-snippet/user-snippet.component';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-my-profile',
@@ -12,7 +15,8 @@ import { UserSnippetComponent } from '../../components/user-snippet/user-snippet
   imports: [
     FormsModule,
     CommonModule,
-    UserSnippetComponent
+    LucideAngularModule,
+    UserSnippetComponent,
   ],
   templateUrl: './my-profile.component.html',
   styleUrl: './my-profile.component.css'
@@ -88,4 +92,7 @@ export class MyProfileComponent {
     );
   }
 
+  ngAfterViewInit(): void {
+    HSStaticMethods?.autoInit?.();
+  }
 }

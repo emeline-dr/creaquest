@@ -29,7 +29,6 @@ export class SingleCategorieComponent implements OnInit {
   categorieName: any;
 
   isCatLoading = true;
-  isSubPostLoading = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,12 +38,23 @@ export class SingleCategorieComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.id_categorie = +params['id'];
+
+      this.forumService.getAllCategories().subscribe({
+        next: (categories) => {
+          this.categorieName = categories.find((cat: any) => cat.c_id === this.id_categorie);
+
+          this.isCatLoading = false;
+        },
+        error: (err) => {
+          console.error("Erreur lors du chargement des catégories:", err);
+        }
+      })
+
       this.forumService.getSubjectsByCategoryId(this.id_categorie).subscribe({
         next: (subjects) => {
           this.subjectInThisCategory = subjects;
 
           this.lastPost = {};
-          this.categorieName = this.subjectInThisCategory[0].c_title
 
           // Pour chaque sujet, récupérer les posts et stocker le dernier
           this.subjectInThisCategory.forEach((subject: any) => {
@@ -58,7 +68,6 @@ export class SingleCategorieComponent implements OnInit {
                   // Stocker le dernier post pour ce sujet
                   this.lastPost[subject.s_id] = last;
                 }
-                this.isSubPostLoading = false;
               },
               error: (err) =>
                 console.error(`Erreur lors de la récupération des posts pour le sujet ${subject.s_id}`, err)
