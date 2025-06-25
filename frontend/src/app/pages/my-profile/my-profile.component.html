@@ -27,7 +27,13 @@
                     <span class="font-helvetica text-sm">(<i>min. 5 caractères</i>)</span>
                 </label>
                 <input type="password" class="bg-white-base text-black h-fit p-2 rounded w-full mt-[16px]"
-                    [(ngModel)]="password" placeholder="Mot de passe" />
+                    [(ngModel)]="password" #passwordModel="ngModel" minlength="5" placeholder="Mot de passe" />
+
+                @if (passwordModel.invalid && passwordModel.dirty && password) {
+                <div class="bg-rose-600 rounded text-xs text-center mt-2">
+                    Le mot de passe ne fait pas min. 5 caractères.
+                </div>
+                }
             </div>
 
             <div class="w-full">
